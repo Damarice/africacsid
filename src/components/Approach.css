@@ -1,0 +1,133 @@
+.approach {
+  padding: 6rem 4rem;
+  background: white;
+  overflow: hidden;
+}
+
+.approach-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.approach-container h2 {
+  font-size: 2.8rem;
+  color: #333;
+  margin-bottom: 1rem;
+  font-weight: 800;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.approach-subtitle {
+  color: #666;
+  font-size: 1.15rem;
+  margin-bottom: 3.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.2s forwards;
+}
+
+.approach-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.approach-card {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  padding: 2.5rem 1.5rem;
+  border-radius: 20px;
+  transition: all 0.4s ease;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+.approach-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.approach-card:hover::before {
+  opacity: 1;
+}
+
+.approach-card:nth-child(1) {
+  animation-delay: 0.3s;
+}
+
+.approach-card:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.approach-card:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+.approach-card:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+.approach-card:hover {
+  transform: translateY(-12px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(76, 175, 80, 0.4);
+}
+
+.approach-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  display: inline-block;
+  animation: bounce 2s ease-in-out infinite;
+  color: white;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.approach-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+}
+
+.approach-card p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  opacity: 0.95;
+}
+
+@media (max-width: 968px) {
+  .approach-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 568px) {
+  .approach {
+    padding: 4rem 2rem;
+  }
+  .approach-grid {
+    grid-template-columns: 1fr;
+  }
+  .approach-container h2 {
+    font-size: 2.2rem;
+  }
+}
