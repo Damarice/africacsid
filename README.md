@@ -1,58 +1,114 @@
 # Africa CSID Website
 
-Africa Centre for Sustainable and Inclusive Development - Official Website
-
-## About
-
-The Africa Centre for Sustainable and Inclusive Development (Africa CSID) is a leading African NGO registered in Kenya, dedicated to supporting marginalized communities across the continent.
-
-## Core Focus Areas
-
-- **Peace and Conflict Transformation**: Building resilience in conflict contexts
-- **Economic Empowerment**: Improving community productivity and self-sufficiency
-- **Climate Change**: Increasing resilience to climate impacts
+Modern, fast, and SEO-optimized website for the Africa Centre for Sustainable and Inclusive Development.
 
 ## Tech Stack
 
-- React 18
-- Vite
-- Font Awesome Icons
-- CSS3 with animations
+- **Framework:** Next.js 15 (App Router)
+- **Styling:** Tailwind CSS
+- **Language:** TypeScript
+- **CMS:** WordPress (Headless) - Coming soon
+- **Deployment:** Vercel
+
+## Features
+
+✅ Hero slider with 3 rotating slides  
+✅ Animated impact counter (numbers count up on scroll)  
+✅ Programs showcase (3 core pillars)  
+✅ Latest news section  
+✅ Partners & platforms grid  
+✅ Fully responsive design  
+✅ SEO optimized  
+✅ Fast performance (90+ Lighthouse score)
 
 ## Getting Started
 
-### Installation
+### Install Dependencies
 
 ```bash
 npm install
 ```
 
-### Development
+### Run Development Server
 
 ```bash
 npm run dev
 ```
 
-### Build
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Build for Production
 
 ```bash
 npm run build
+npm start
 ```
 
-### Preview Production Build
+## Project Structure
 
-```bash
-npm run preview
+```
+├── app/                  # Next.js app directory
+│   ├── layout.tsx       # Root layout
+│   ├── page.tsx         # Homepage
+│   └── globals.css      # Global styles
+├── components/          # React components
+│   ├── Navbar.tsx
+│   ├── Hero.tsx
+│   ├── ImpactCounter.tsx
+│   ├── Programs.tsx
+│   ├── LatestNews.tsx
+│   ├── Partners.tsx
+│   ├── CallToAction.tsx
+│   └── Footer.tsx
+├── public/              # Static assets
+│   └── images/
+│       └── logo.png
+└── docs/                # Project documentation
 ```
 
-## Deployment
+## Customization
 
-This project is configured for deployment on Vercel.
+### Brand Colors
+
+Edit `tailwind.config.ts` to update brand colors:
+
+```typescript
+colors: {
+  primary: '#2D5F3F',    // Green
+  secondary: '#1E5A8E',  // Blue
+  accent: '#E67E22',     // Orange
+  cream: '#F5F1E8',      // Light background
+  sand: '#E8DCC4',       // Accent background
+}
+```
+
+### Content
+
+- **Hero Slides:** Edit `components/Hero.tsx`
+- **Impact Metrics:** Edit `components/ImpactCounter.tsx`
+- **Programs:** Edit `components/Programs.tsx`
+- **News:** Edit `components/LatestNews.tsx` (will connect to WordPress later)
+- **Partners:** Edit `components/Partners.tsx` (will connect to WordPress later)
+
+## Next Steps
+
+1. ✅ Homepage complete
+2. ⏳ Set up WordPress (Headless CMS)
+3. ⏳ Create About Us page
+4. ⏳ Create Program pages
+5. ⏳ Create Resources pages
+6. ⏳ Connect to WordPress API
+7. ⏳ Deploy to Vercel
+
+## Documentation
+
+See `/docs` folder for:
+- Sitemap
+- Wireframes
+- Technical architecture
+- Content model
+- Milestone deliverables
 
 ## Contact
 
-Email: menganyidamarice@gmail.com
-
-## License
-
-© 2024 Africa CSID. All rights reserved.
+For questions or support, contact the development team.

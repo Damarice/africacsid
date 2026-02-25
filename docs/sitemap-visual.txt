@@ -1,0 +1,243 @@
+AFRICA CSID WEBSITE - VISUAL SITEMAP
+=====================================
+
+                                    HOME
+                                     |
+        ┌────────────────────────────┼────────────────────────────┐
+        |                            |                             |
+    ABOUT US                   WHAT WE DO                    RESOURCES
+        |                            |                             |
+   ┌────┼────┐              ┌────────┼────────┐          ┌────────┼────────┐
+   |    |    |              |        |        |          |        |        |
+  Who  Team Platforms    Peace   Economic Climate    Publications Blogs Events Gallery
+  We                     &                                  |        |      |
+  Are                  Conflict                             |        |      |
+                                                            |        |      |
+                                                      [slug pages] [slug] [slug]
+
+
+        |                            |
+   GET INVOLVED                   CONTACT
+        |
+   ┌────┼────┐
+   |         |
+Partner    Work
+With Us   With Us
+          (Careers)
+
+
+NAVIGATION STRUCTURE
+====================
+
+Desktop Menu:
+┌─────────────────────────────────────────────────────────────────┐
+│ [LOGO]  Home  About▼  Programs▼  Resources▼  Get Involved▼  Contact │
+└─────────────────────────────────────────────────────────────────┘
+
+About Dropdown:
+├── Who We Are
+├── Our Team
+└── Platforms & Partnerships
+
+Programs Dropdown:
+├── Peace & Conflict Transformation
+├── Economic Empowerment
+└── Climate Change
+
+Resources Dropdown:
+├── Publications
+├── News & Blogs
+├── Events
+└── Gallery
+
+Get Involved Dropdown:
+├── Partner With Us
+└── Work With Us
+
+
+HOMEPAGE SECTIONS
+=================
+
+┌─────────────────────────────────────┐
+│         HERO SLIDER                 │  ← Auto-rotating, 3 slides
+│    [Mission Statement + CTAs]       │     with overlay
+└─────────────────────────────────────┘
+
+┌─────────────────────────────────────┐
+│   IMPACT AT A GLANCE (COUNTER)      │  ← 6 animated metrics
+│   [Communities, Projects, etc.]     │     Numbers count up on scroll
+│   500+ | 15+ | 50+ | 10,000+ ...   │
+└─────────────────────────────────────┘
+
+┌─────────────────────────────────────┐
+│         WHAT WE DO                  │  ← 3 program cards
+│   [Peace | Economic | Climate]      │     with icons & CTAs
+└─────────────────────────────────────┘
+
+┌─────────────────────────────────────┐
+│      LATEST NEWS & INSIGHTS         │  ← 3 recent blog posts
+│   [Blog Card | Card | Card]         │     from WordPress
+└─────────────────────────────────────┘
+
+┌─────────────────────────────────────┐
+│    OUR PARTNERS & PLATFORMS         │  ← Partner logos grid
+│   [Logo Logo Logo Logo Logo]        │     Grayscale → Color hover
+│   [Logo Logo Logo Logo Logo]        │     12+ partner logos
+│   [Logo Logo Logo Logo Logo]        │
+└─────────────────────────────────────┘
+
+┌─────────────────────────────────────┐
+│      CALL TO ACTION                 │  ← Final CTA section
+│  [Partner With Us] [Get Involved]   │     with background image
+└─────────────────────────────────────┘
+
+┌─────────────────────────────────────┐
+│           FOOTER                    │  ← Links, contact, social
+└─────────────────────────────────────┘
+
+
+URL STRUCTURE
+=============
+
+Static Pages:
+/                                    → Home
+/about                              → About main
+/about/who-we-are                   → Who We Are
+/about/team                         → Team
+/about/platforms                    → Platforms
+/programs                           → Programs overview
+/programs/peace-conflict            → Peace program
+/programs/economic                  → Economic program
+/programs/climate                   → Climate program
+/get-involved                       → Get Involved main
+/get-involved/partner               → Partner form
+/get-involved/careers               → Careers
+/contact                            → Contact
+
+Dynamic Pages (WordPress):
+/resources/publications             → Publications list
+/resources/publication/[slug]       → Single publication
+/resources/blogs                    → Blog list
+/resources/blog/[slug]              → Single blog post
+/resources/events                   → Events list
+/resources/event/[slug]             → Single event
+/resources/gallery                  → Photo/video gallery
+
+
+CONTENT FLOW
+============
+
+WordPress (Backend)                Next.js (Frontend)
+─────────────────                 ──────────────────
+
+Add Publication  ──────────────>  Publications Page
+                                  ↓
+                                  Publication Detail
+
+Write Blog Post  ──────────────>  Blog Listing
+                                  ↓
+                                  Blog Post Page
+                                  ↓
+                                  Homepage (Latest 3)
+
+Add Event       ──────────────>   Events Page
+                                  ↓
+                                  Event Detail
+                                  ↓
+                                  Homepage (Upcoming)
+
+Add Team Member ──────────────>   Team Page
+
+
+USER JOURNEYS
+=============
+
+Journey 1: Finding a Publication
+Home → Resources → Publications → Filter by topic → Download PDF
+
+Journey 2: Learning About Programs
+Home → What We Do → Select Program → Read details → View related publications
+
+Journey 3: Partnering
+Home → Get Involved → Partner With Us → Fill form → Submit
+
+Journey 4: Reading News
+Home → Click blog card → Read full article → View related posts
+
+Journey 5: Contact
+Any page → Contact (in menu) → Fill form → Submit
+
+
+MOBILE NAVIGATION
+=================
+
+┌─────────────────────┐
+│ [LOGO]         [☰]  │  ← Hamburger menu
+└─────────────────────┘
+
+When opened:
+┌─────────────────────┐
+│ [LOGO]         [✕]  │
+├─────────────────────┤
+│ Home                │
+│ About Us         ▼  │
+│   Who We Are        │
+│   Team              │
+│   Platforms         │
+│ Programs         ▼  │
+│   Peace & Conflict  │
+│   Economic          │
+│   Climate           │
+│ Resources        ▼  │
+│   Publications      │
+│   Blogs             │
+│   Events            │
+│   Gallery           │
+│ Get Involved     ▼  │
+│   Partner           │
+│   Careers           │
+│ Contact             │
+└─────────────────────┘
+
+
+FOOTER STRUCTURE
+================
+
+┌─────────────────────────────────────────────────────────┐
+│  [LOGO]                                                 │
+│                                                         │
+│  About Us          Programs           Resources        │
+│  • Who We Are      • Peace            • Publications   │
+│  • Team            • Economic         • Blogs          │
+│  • Platforms       • Climate          • Events         │
+│                                                         │
+│  Get Involved      Contact            Follow Us        │
+│  • Partner         📍 Kenya           [Twitter]        │
+│  • Careers         📞 +254113909961   [Facebook]       │
+│                    ✉️ info@...        [LinkedIn]       │
+│                                       [Instagram]      │
+│                                                         │
+│  © 2025 Africa CSID | All Rights Reserved              │
+└─────────────────────────────────────────────────────────┘
+
+
+KEY PAGES PRIORITY
+==================
+
+Priority 1 (Must Have):
+✓ Home
+✓ About Us / Who We Are
+✓ Programs (all 3)
+✓ Publications
+✓ Contact
+
+Priority 2 (Important):
+✓ Blogs
+✓ Events
+✓ Team
+✓ Partner With Us
+
+Priority 3 (Nice to Have):
+✓ Gallery
+✓ Careers
+✓ Platforms (detailed)
