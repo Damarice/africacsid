@@ -20,7 +20,7 @@ export default function CallToAction() {
         <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-up animation-delay-400">
           <Link
             href="/get-involved/partner"
-            className="bg-white text-primary hover:bg-cream font-semibold py-5 px-12 rounded-lg text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+            className="bg-gold hover:bg-secondary text-gray-900 font-semibold py-5 px-12 rounded-lg text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
           >
             Partner With Us
           </Link>

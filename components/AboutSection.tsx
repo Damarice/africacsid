@@ -28,7 +28,7 @@ export default function AboutSection() {
                 tirelessly to uplift underserved communities and create lasting change.
               </p>
 
-              <button className="mt-6 bg-primary hover:bg-primary-dark text-white font-semibold px-8 py-3 rounded transition-all duration-300">
+              <button className="mt-6 bg-gold hover:bg-secondary text-gray-900 font-semibold px-8 py-3 rounded transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
                 Learn More
               </button>
             </div>

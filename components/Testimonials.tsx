@@ -9,24 +9,28 @@ const testimonials = [
     author: "Community Leader",
     location: "Nyatike, Kenya",
     image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=400&fit=crop&q=80",
+    borderColor: "border-primary",
   },
   {
     quote: "The climate resilience training provided by Africa CSID has empowered our farmers to adapt to changing weather patterns.",
     author: "Agricultural Coordinator",
     location: "Zanzibar, Tanzania",
     image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=400&fit=crop&q=80",
+    borderColor: "border-accent",
   },
   {
     quote: "Through their economic empowerment programs, we've seen real change in our community's self-sufficiency.",
     author: "Women's Group Leader",
     location: "Migori County, Kenya",
     image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=400&fit=crop&q=80",
+    borderColor: "border-gold",
   },
   {
     quote: "The peace-building initiatives have brought our divided communities together and created lasting harmony.",
     author: "Peace Ambassador",
     location: "Migori, Kenya",
     image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400&h=400&fit=crop&q=80",
+    borderColor: "border-secondary",
   },
 ];
 
@@ -48,7 +52,7 @@ export default function Testimonials() {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300"
+              className={`bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 border-l-4 ${testimonial.borderColor}`}
             >
               <FontAwesomeIcon
                 icon={faQuoteLeft}
@@ -59,7 +63,7 @@ export default function Testimonials() {
               </p>
               <div className="flex items-center gap-3">
                 <div
-                  className="w-12 h-12 rounded-full bg-cover bg-center border-2 border-primary flex-shrink-0"
+                  className={`w-12 h-12 rounded-full bg-cover bg-center border-2 ${testimonial.borderColor} flex-shrink-0`}
                   style={{ backgroundImage: `url(${testimonial.image})` }}
                 />
                 <div>

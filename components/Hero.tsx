@@ -63,7 +63,7 @@ export default function Hero() {
                 {slide.description}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-400">
-                <Link href="/about" className="btn-secondary">
+                <Link href="/about" className="bg-gold hover:bg-secondary text-gray-900 font-semibold py-3 px-8 rounded transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
                   Click Here
                 </Link>
               </div>

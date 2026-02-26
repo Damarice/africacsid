@@ -10,18 +10,27 @@ const areas = [
     description: "component seeks to build resilience in conflict contexts by developing and strengthening relevant architectures for peace to address conflict",
     icon: faDove,
     link: "/programs/peace-conflict",
+    bgColor: "bg-primary",
+    textColor: "text-white",
+    iconColor: "text-white",
   },
   {
     title: "The Economic Empowerment",
     description: "focuses on improving the communities' productivity and self-sufficiency through education, training and skills development, and exploiting",
     icon: faUsers,
     link: "/programs/economic",
+    bgColor: "bg-accent",
+    textColor: "text-white",
+    iconColor: "text-white",
   },
   {
     title: "Climate Change",
     description: "focuses on increasing resilience of the target population to the impacts of climate change, engaging the communities in emission reduction initiatives",
     icon: faTree,
     link: "/programs/climate",
+    bgColor: "bg-gold",
+    textColor: "text-gray-900",
+    iconColor: "text-gray-900",
   },
 ];
 
@@ -66,20 +75,20 @@ export default function AreaOfFocus() {
           {areas.map((area, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group p-6"
+              className={`${area.bgColor} rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group p-6`}
             >
-              <div className="text-primary text-4xl mb-4">
+              <div className={`${area.iconColor} text-4xl mb-4`}>
                 <FontAwesomeIcon icon={area.icon} />
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight">
+              <h3 className={`text-xl font-bold ${area.textColor} mb-3 leading-tight`}>
                 {area.title}
               </h3>
-              <p className="text-gray-600 mb-4 leading-relaxed text-base">
+              <p className={`${area.textColor} mb-4 leading-relaxed text-base opacity-90`}>
                 {area.description}
               </p>
               <Link
                 href={area.link}
-                className="inline-flex items-center text-primary font-semibold hover:text-primary-dark transition-colors"
+                className={`inline-flex items-center ${area.textColor} font-semibold hover:opacity-80 transition-opacity`}
               >
                 Learn More
                 <svg

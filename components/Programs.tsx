@@ -11,20 +11,26 @@ const programs = [
     icon: faDove,
     link: "/programs/peace-conflict",
     color: "bg-primary",
+    borderColor: "border-primary",
+    hoverColor: "group-hover:text-primary",
   },
   {
     title: "Economic Empowerment",
     description: "Improving communities' productivity and self-sufficiency through education, training, and skills development.",
     icon: faChartLine,
     link: "/programs/economic",
-    color: "bg-primary",
+    color: "bg-accent",
+    borderColor: "border-accent",
+    hoverColor: "group-hover:text-accent",
   },
   {
     title: "Climate Change",
     description: "Increasing resilience to climate impacts and engaging communities in emission reduction initiatives.",
     icon: faSeedling,
     link: "/programs/climate",
-    color: "bg-primary",
+    color: "bg-gold",
+    borderColor: "border-gold",
+    hoverColor: "group-hover:text-secondary",
   },
 ];
 
@@ -45,15 +51,15 @@ export default function Programs() {
           {programs.map((program, index) => (
             <div
               key={index}
-              className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2 border-t-4 border-primary"
+              className={`group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2 border-t-4 ${program.borderColor}`}
               style={{ animationDelay: `${index * 150}ms` }}
             >
               <div className={`${program.color} h-1 transition-all duration-300 group-hover:h-2`} />
               <div className="p-10">
-                <div className="text-primary text-6xl mb-8 transform transition-all duration-300 group-hover:scale-110">
+                <div className={`text-6xl mb-8 transform transition-all duration-300 group-hover:scale-110 ${program.color === 'bg-gold' ? 'text-secondary' : program.color === 'bg-accent' ? 'text-accent' : 'text-primary'}`}>
                   <FontAwesomeIcon icon={program.icon} />
                 </div>
-                <h3 className="text-3xl font-bold text-gray-900 mb-5 transition-colors duration-300 group-hover:text-primary">
+                <h3 className={`text-3xl font-bold text-gray-900 mb-5 transition-colors duration-300 ${program.hoverColor}`}>
                   {program.title}
                 </h3>
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed">
@@ -61,7 +67,7 @@ export default function Programs() {
                 </p>
                 <Link
                   href={program.link}
-                  className="inline-flex items-center text-primary font-semibold text-lg hover:text-primary-dark transition-colors group/link"
+                  className={`inline-flex items-center font-semibold text-lg transition-colors group/link ${program.color === 'bg-gold' ? 'text-secondary hover:text-secondary-dark' : program.color === 'bg-accent' ? 'text-accent hover:text-accent-dark' : 'text-primary hover:text-primary-dark'}`}
                 >
                   Learn More
                   <svg

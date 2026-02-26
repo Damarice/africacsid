@@ -94,7 +94,7 @@ export default function Navbar() {
             >
               Contact
             </Link>
-            <Link href="/get-involved" className="btn-primary">
+            <Link href="/get-involved" className="bg-gold hover:bg-secondary text-gray-900 font-semibold py-3 px-8 rounded transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
               Get Involved
             </Link>
           </div>
@@ -130,7 +130,7 @@ export default function Navbar() {
             <Link href="/contact" className="block px-4 py-2 text-gray-700 hover:bg-cream">
               Contact
             </Link>
-            <Link href="/get-involved" className="block px-4 py-2 text-primary font-semibold">
+            <Link href="/get-involved" className="block px-4 py-2 bg-gold text-gray-900 font-semibold rounded mx-4 mt-2 text-center hover:bg-secondary transition-colors">
               Get Involved
             </Link>
           </div>
