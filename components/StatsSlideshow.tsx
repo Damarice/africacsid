@@ -15,17 +15,17 @@ const statsSlides = [
   {
     title: "Community Empowerment",
     stats: [
-      { icon: faUsers, value: "500+", label: "Communities Reached" },
-      { icon: faGraduationCap, value: "2,500+", label: "People Trained" },
-      { icon: faHandHoldingHeart, value: "10,000+", label: "Lives Impacted" },
+      { icon: faUsers, value: "500+", label: "Communities Reached", color: "text-primary", bgColor: "from-primary/10 to-primary/5" },
+      { icon: faGraduationCap, value: "2,500+", label: "People Trained", color: "text-accent", bgColor: "from-accent/10 to-accent/5" },
+      { icon: faHandHoldingHeart, value: "10,000+", label: "Lives Impacted", color: "text-secondary", bgColor: "from-secondary/10 to-secondary/5" },
     ],
   },
   {
     title: "Environmental Impact",
     stats: [
-      { icon: faTree, value: "50,000+", label: "Trees Planted" },
-      { icon: faWater, value: "30+", label: "Water Projects" },
-      { icon: faHome, value: "100+", label: "Villages Supported" },
+      { icon: faTree, value: "50,000+", label: "Trees Planted", color: "text-primary", bgColor: "from-primary/10 to-primary/5" },
+      { icon: faWater, value: "30+", label: "Water Projects", color: "text-accent", bgColor: "from-accent/10 to-accent/5" },
+      { icon: faHome, value: "100+", label: "Villages Supported", color: "text-secondary", bgColor: "from-secondary/10 to-secondary/5" },
     ],
   },
 ];
@@ -41,7 +41,7 @@ export default function StatsSlideshow() {
   }, []);
 
   return (
-    <section className="py-20 bg-white relative">
+    <section className="py-20 bg-gradient-to-br from-secondary/5 to-primary/5 relative">
       <div className="container-custom">
         {/* Content */}
         <div className="relative min-h-[300px]">
@@ -60,9 +60,9 @@ export default function StatsSlideshow() {
                 {slide.stats.map((stat, index) => (
                   <div
                     key={index}
-                    className="bg-gradient-to-br from-gray-50 to-white border border-gray-200 rounded-xl p-8 text-center hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+                    className={`bg-gradient-to-br ${stat.bgColor} border-2 border-${stat.color.replace('text-', '')}/20 rounded-xl p-8 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105`}
                   >
-                    <div className="text-primary text-4xl mb-4">
+                    <div className={`${stat.color} text-5xl mb-4`}>
                       <FontAwesomeIcon icon={stat.icon} />
                     </div>
                     <div className="text-4xl font-bold text-gray-900 mb-2">

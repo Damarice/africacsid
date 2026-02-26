@@ -8,6 +8,7 @@ const news = [
     date: "Jan 8, 2026",
     image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&h=600&fit=crop&q=80",
     slug: "seeds-of-change-nyatike",
+    accentColor: "border-primary",
   },
   {
     title: "Bridging the Gap at COP30",
@@ -15,6 +16,7 @@ const news = [
     date: "Oct 14, 2025",
     image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&h=600&fit=crop&q=80",
     slug: "bridging-gap-cop30",
+    accentColor: "border-accent",
   },
   {
     title: "KAIROS Canada Partnership",
@@ -22,12 +24,13 @@ const news = [
     date: "Feb 1, 2025",
     image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=600&fit=crop&q=80",
     slug: "kairos-partnership",
+    accentColor: "border-secondary",
   },
 ];
 
 export default function LatestNews() {
   return (
-    <section className="py-20 md:py-28 bg-cream">
+    <section className="py-20 md:py-28 bg-gradient-to-br from-accent/5 to-primary/5">
       <div className="container-custom">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -42,7 +45,7 @@ export default function LatestNews() {
           {news.map((item, index) => (
             <article
               key={index}
-              className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2"
+              className={`bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-t-4 ${item.accentColor}`}
               style={{ animationDelay: `${index * 150}ms` }}
             >
               <div className="relative h-56 overflow-hidden">
@@ -88,7 +91,7 @@ export default function LatestNews() {
         <div className="text-center mt-16">
           <Link
             href="/resources/blogs"
-            className="inline-flex items-center text-primary font-semibold text-xl hover:text-primary-dark transition-colors"
+            className="inline-flex items-center bg-gold hover:bg-secondary text-gray-900 font-semibold text-xl px-10 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
           >
             View All News
             <svg

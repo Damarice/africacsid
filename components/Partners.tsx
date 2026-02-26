@@ -36,7 +36,7 @@ export default function Partners() {
   return (
     <section className="py-20 md:py-28 bg-white relative overflow-hidden">
       {/* Decorative background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-cream/50 via-transparent to-sand/30"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5"></div>
       
       <div className="container-custom relative z-10">
         <div className="text-center mb-16">
@@ -52,10 +52,10 @@ export default function Partners() {
           {partners.map((partner, index) => (
             <div
               key={index}
-              className="flex flex-col items-center justify-center p-8 bg-white rounded-2xl hover:bg-gradient-to-br hover:from-cream hover:to-sand transition-all duration-500 group transform hover:-translate-y-2 hover:shadow-xl border border-gray-100"
+              className="flex flex-col items-center justify-center p-8 bg-white rounded-2xl hover:bg-gradient-to-br hover:from-primary/10 hover:to-accent/10 transition-all duration-500 group transform hover:-translate-y-2 hover:shadow-xl border-2 border-gray-100 hover:border-primary/30"
               style={{ animationDelay: `${index * 50}ms` }}
             >
-              <div className={`${partner.color} text-6xl mb-4 grayscale group-hover:grayscale-0 transition-all duration-500 transform group-hover:scale-125 group-hover:rotate-12`}>
+              <div className={`${partner.color} text-6xl mb-4 transition-all duration-500 transform group-hover:scale-125 group-hover:rotate-12`}>
                 <FontAwesomeIcon icon={partner.icon} />
               </div>
               <div className="text-base font-semibold text-gray-700 text-center group-hover:text-primary transition-colors duration-300">

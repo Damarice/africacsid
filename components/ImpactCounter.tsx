@@ -66,9 +66,9 @@ function Counter({ end, duration = 2000, suffix = "", color = "text-primary" }: 
 
 export default function ImpactCounter() {
   return (
-    <section className="py-20 md:py-28 bg-sand relative overflow-hidden">
+    <section className="py-20 md:py-28 bg-cream relative overflow-hidden">
       {/* Subtle decorative elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
       
       <div className="container-custom relative z-10">

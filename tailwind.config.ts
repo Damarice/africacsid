@@ -25,9 +25,8 @@ const config: Config = {
           light: '#1E88E5',
           dark: '#004A8F',
         },
-        cream: '#FFF8F0', // Warm light background
-        sand: '#FFE8CC', // Warm accent background
-        gold: '#FFB84D', // Gold accent
+        gold: '#FFB84D', // Gold/Yellow accent
+        cream: '#FFF8F0', // Very light warm background (subtle)
       },
     },
   },

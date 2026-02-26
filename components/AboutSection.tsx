@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function AboutSection() {
   return (
-    <section className="py-16 md:py-20 bg-white">
+    <section className="py-16 md:py-20 bg-gradient-to-br from-primary/5 to-accent/5">
       <div className="container-custom">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
