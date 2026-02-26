@@ -6,7 +6,7 @@ import { faMapMarkerAlt, faPhone, faEnvelope } from "@fortawesome/free-solid-svg
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white relative overflow-hidden">
+    <footer className="bg-neutral text-white relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
@@ -32,26 +32,26 @@ export default function Footer() {
             <h3 className="font-bold text-lg mb-4 text-white">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/about" className="text-gray-400 hover:text-secondary transition-colors duration-300 flex items-center group">
-                  <span className="w-0 group-hover:w-2 h-0.5 bg-secondary transition-all duration-300 mr-0 group-hover:mr-2"></span>
+                <Link href="/about" className="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center group">
+                  <span className="w-0 group-hover:w-2 h-0.5 bg-gold transition-all duration-300 mr-0 group-hover:mr-2"></span>
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/programs" className="text-gray-400 hover:text-secondary transition-colors duration-300 flex items-center group">
-                  <span className="w-0 group-hover:w-2 h-0.5 bg-secondary transition-all duration-300 mr-0 group-hover:mr-2"></span>
+                <Link href="/programs" className="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center group">
+                  <span className="w-0 group-hover:w-2 h-0.5 bg-gold transition-all duration-300 mr-0 group-hover:mr-2"></span>
                   Programs
                 </Link>
               </li>
               <li>
-                <Link href="/resources/publications" className="text-gray-400 hover:text-secondary transition-colors duration-300 flex items-center group">
-                  <span className="w-0 group-hover:w-2 h-0.5 bg-secondary transition-all duration-300 mr-0 group-hover:mr-2"></span>
+                <Link href="/resources/publications" className="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center group">
+                  <span className="w-0 group-hover:w-2 h-0.5 bg-gold transition-all duration-300 mr-0 group-hover:mr-2"></span>
                   Publications
                 </Link>
               </li>
               <li>
-                <Link href="/resources/blogs" className="text-gray-400 hover:text-secondary transition-colors duration-300 flex items-center group">
-                  <span className="w-0 group-hover:w-2 h-0.5 bg-secondary transition-all duration-300 mr-0 group-hover:mr-2"></span>
+                <Link href="/resources/blogs" className="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center group">
+                  <span className="w-0 group-hover:w-2 h-0.5 bg-gold transition-all duration-300 mr-0 group-hover:mr-2"></span>
                   News & Blogs
                 </Link>
               </li>
@@ -88,31 +88,31 @@ export default function Footer() {
             <h3 className="font-bold text-lg mb-4 text-white">Contact Us</h3>
             <ul className="space-y-3 text-gray-400 text-sm">
               <li className="flex items-start group hover:text-white transition-colors duration-300">
-                <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-3 mt-1 text-secondary" />
+                <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-3 mt-1 text-gold" />
                 <span>Kenya</span>
               </li>
               <li className="flex items-start group hover:text-white transition-colors duration-300">
-                <FontAwesomeIcon icon={faPhone} className="mr-3 mt-1 text-secondary" />
+                <FontAwesomeIcon icon={faPhone} className="mr-3 mt-1 text-gold" />
                 <span>+254113909961</span>
               </li>
               <li className="flex items-start group hover:text-white transition-colors duration-300">
-                <FontAwesomeIcon icon={faEnvelope} className="mr-3 mt-1 text-secondary" />
-                <a href="mailto:info@africacsid.org" className="hover:text-secondary transition-colors">
+                <FontAwesomeIcon icon={faEnvelope} className="mr-3 mt-1 text-gold" />
+                <a href="mailto:info@africacsid.org" className="hover:text-gold transition-colors">
                   info@africacsid.org
                 </a>
               </li>
             </ul>
             <div className="flex space-x-4 mt-6">
-              <a href="#" className="text-gray-400 hover:text-secondary transition-all duration-300 transform hover:scale-125 hover:-translate-y-1">
+              <a href="#" className="text-gray-400 hover:text-gold transition-all duration-300 transform hover:scale-125 hover:-translate-y-1">
                 <FontAwesomeIcon icon={faTwitter} className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-secondary transition-all duration-300 transform hover:scale-125 hover:-translate-y-1">
+              <a href="#" className="text-gray-400 hover:text-gold transition-all duration-300 transform hover:scale-125 hover:-translate-y-1">
                 <FontAwesomeIcon icon={faFacebook} className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-secondary transition-all duration-300 transform hover:scale-125 hover:-translate-y-1">
+              <a href="#" className="text-gray-400 hover:text-gold transition-all duration-300 transform hover:scale-125 hover:-translate-y-1">
                 <FontAwesomeIcon icon={faLinkedin} className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-secondary transition-all duration-300 transform hover:scale-125 hover:-translate-y-1">
+              <a href="#" className="text-gray-400 hover:text-gold transition-all duration-300 transform hover:scale-125 hover:-translate-y-1">
                 <FontAwesomeIcon icon={faInstagram} className="w-6 h-6" />
               </a>
             </div>

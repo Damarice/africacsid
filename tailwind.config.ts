@@ -9,23 +9,27 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Brand colors from logo
+        // Brand colors from logo - CORRECT COLORS
         primary: {
-          DEFAULT: '#1B7340', // Rich Green
-          light: '#2A9D5F',
-          dark: '#0F5A2E',
+          DEFAULT: '#72bc4d', // Light Green
+          light: '#66c73c',
+          dark: '#559441',
+          darker: '#366330',
         },
         secondary: {
-          DEFAULT: '#F7941D', // Vibrant Orange
-          light: '#FFA940',
-          dark: '#E67E00',
+          DEFAULT: '#fcd260', // Yellow
+          light: '#fcd260',
+          dark: '#9f8255',
         },
         accent: {
-          DEFAULT: '#0066B3', // Deep Blue
-          light: '#1E88E5',
-          dark: '#004A8F',
+          DEFAULT: '#80bae6', // Light Blue
+          light: '#80bae6',
+          dark: '#779478',
         },
-        gold: '#FFB84D', // Gold/Yellow accent
+        neutral: {
+          DEFAULT: '#2a2a22', // Dark neutral
+        },
+        gold: '#fcd260', // Yellow for buttons
         cream: '#FFF8F0', // Very light warm background (subtle)
       },
     },

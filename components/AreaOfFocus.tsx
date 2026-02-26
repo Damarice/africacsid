@@ -6,8 +6,8 @@ import { faDove, faUsers, faTree } from "@fortawesome/free-solid-svg-icons";
 
 const areas = [
   {
-    title: "The Peace and Conflict transformation",
-    description: "component seeks to build resilience in conflict contexts by developing and strengthening relevant architectures for peace to address conflict",
+    title: "The Peace and Conflict Transformation",
+    description: "The primary objective of this component is to promote and enhance resilience in conflict-affected communities by leveraging relevant architectures for peacebuilding. This will be achieved by adopting a comprehensive and integrated approach that prioritizes the identification and resolution of conflict drivers that exist within these communities.",
     icon: faDove,
     link: "/programs/peace-conflict",
     bgColor: "bg-primary",
@@ -16,7 +16,7 @@ const areas = [
   },
   {
     title: "The Economic Empowerment",
-    description: "focuses on improving the communities' productivity and self-sufficiency through education, training and skills development, and exploiting",
+    description: "The Economic Empowerment component of our program is an integral part of our efforts towards improving the well-being, productivity and self-sufficiency of marginalized communities across different regions. Through our comprehensive approach, we aim to address the root causes of poverty and guide our communities towards a more prosperous future.",
     icon: faUsers,
     link: "/programs/economic",
     bgColor: "bg-accent",
@@ -24,8 +24,8 @@ const areas = [
     iconColor: "text-white",
   },
   {
-    title: "Climate Change",
-    description: "focuses on increasing resilience of the target population to the impacts of climate change, engaging the communities in emission reduction initiatives",
+    title: "The Climate Change",
+    description: "One of our objectives is to address the escalating impacts of climate change, particularly on marginalized communities, by enhancing their overall resilience and advocating for climate justice, biodiversity conservation, and sustainable food systems. We work closely with these communities to boost their capacity to adapt to the impacts of climate change.",
     icon: faTree,
     link: "/programs/climate",
     bgColor: "bg-gold",

@@ -51,7 +51,7 @@ export default function Hero() {
           />
           
           {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/70 via-gray-900/60 to-gray-900/70" />
+          <div className="absolute inset-0 bg-gradient-to-br from-neutral/80 via-primary-dark/70 to-neutral/80" />
 
           {/* Content */}
           <div className="relative h-full flex items-center justify-center text-center px-4">
@@ -63,7 +63,7 @@ export default function Hero() {
                 {slide.description}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-400">
-                <Link href="/about" className="bg-gold hover:bg-secondary text-gray-900 font-semibold py-3 px-8 rounded transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                <Link href="/about" className="bg-gold hover:bg-secondary-dark text-neutral font-semibold py-3 px-8 rounded transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
                   Click Here
                 </Link>
               </div>

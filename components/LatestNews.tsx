@@ -91,7 +91,7 @@ export default function LatestNews() {
         <div className="text-center mt-16">
           <Link
             href="/resources/blogs"
-            className="inline-flex items-center bg-gold hover:bg-secondary text-gray-900 font-semibold text-xl px-10 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+            className="inline-flex items-center bg-gold hover:bg-secondary-dark text-neutral font-semibold text-xl px-10 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
           >
             View All News
             <svg
