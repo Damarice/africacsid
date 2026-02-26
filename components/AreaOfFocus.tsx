@@ -36,7 +36,7 @@ const areas = [
 
 export default function AreaOfFocus() {
   return (
-    <section className="py-16 md:py-20 bg-sand">
+    <section className="py-16 md:py-20 bg-white">
       <div className="container-custom">
         <div className="mb-10">
           <p className="text-sm uppercase tracking-wider text-primary mb-3 font-semibold">Our Approach</p>
