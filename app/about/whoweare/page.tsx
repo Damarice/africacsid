@@ -18,14 +18,14 @@ export default function WhoWeArePage() {
           alt="Community"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-neutral/80 via-primary-dark/70 to-neutral/80" />
+        <div className="absolute inset-0 bg-gradient-to-br from-green-900/80 via-green-800/70 to-green-900/80" />
         
-        <div className="relative h-full flex items-center justify-center text-center px-4">
-          <div className="max-w-4xl">
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-4">
+        <div className="relative h-full flex items-center justify-start px-8 md:px-16">
+          <div className="max-w-2xl">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
               Who We Are
             </h1>
-            <p className="text-2xl text-white/95">
+            <p className="text-xl text-white/95">
               Africa Centre for Sustainable and Inclusive Development
             </p>
           </div>
@@ -46,18 +46,27 @@ export default function WhoWeArePage() {
             
             <div>
               <h2 className="text-4xl font-bold text-gray-900 mb-8">
-                Africa CSID
+                About the Organization
               </h2>
               <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
                 <p>
-                  is an African NGO, registered in Kenya, working with the marginal communities across the continent. 
-                  Informed by the marginalization typologies, marginalization is defined by two dimensions parameters 
-                  namely geographical and population context.
+                  <strong>Africa Centre for Sustainable and Inclusive Development (Africa CSID)</strong>
                 </p>
                 <p>
-                  It is against this background that Africa CSID has developed a strategic plan that focuses on three 
-                  core pillars namely Peace and Conflict Transformation, Economic Empowerment, and Climate Change. 
-                  These pillars are supported by two critical enablers—governance and gender-responsive solutions.
+                  is an African NGO, registered in Kenya, working with the marginalized communities in Africa. 
+                  Informed by the organization's mandate, marginalization is defined by two interrelated parameters 
+                  namely geographical and population context of marginalization. The geographical context of 
+                  marginalization is defined by country-specific categorization of hardship areas. The population 
+                  context is defined using global indices and parameters that define different groups as marginalized 
+                  or vulnerable.
+                </p>
+                <p>
+                  The organization works on three areas; Peace and Conflict Transformation, Economic Empowerment, 
+                  and Climate Change with governance and gender-responsive solutions as enablers and overarching 
+                  actions in undertaking these three components. Africa CSID's work is underpinned by three 
+                  interlinked approaches to work namely voice, capacity and influence with all interventions 
+                  focusing on amplifying the voices of the marginalized communities, actions to strengthen local 
+                  capacities and effecting change through policy influence at local, national and continental levels.
                 </p>
               </div>
             </div>
@@ -81,7 +90,7 @@ export default function WhoWeArePage() {
                 <FontAwesomeIcon icon={faEye} className="text-6xl mb-6" />
                 <h3 className="text-4xl font-bold mb-4">VISION</h3>
                 <p className="text-xl">
-                  Sustainable societies that promote access and finance generations
+                  Development actions that protect current and future generations
                 </p>
               </div>
             </div>
@@ -98,8 +107,7 @@ export default function WhoWeArePage() {
                 <FontAwesomeIcon icon={faBullseye} className="text-6xl mb-6" />
                 <h3 className="text-4xl font-bold mb-4">MISSION</h3>
                 <p className="text-xl">
-                  To facilitate the empowerment that promotes equality, peace and livelihood of the 
-                  marginalized communities through sustainable and inclusive development
+                  Advocate for development that considers specific needs and interests of the marginalized communities without compromising the needs of the future generations in Africa.
                 </p>
               </div>
             </div>
@@ -116,21 +124,17 @@ export default function WhoWeArePage() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              "Enhance evidence-based policy-making",
-              "Promote conflict-sensitive approaches",
-              "Promote research on marginalized communities",
-              "Facilitate civil society engagement",
-              "Promote gender-responsive management",
-              "Promote sustainable financing",
-              "Promote partnerships and networking",
-              "Promote people-led development",
-              "Put communities first"
+              "To enhance evidence-based policy making, accountable governance and inclusive, pro-marginalized sustainable development through advocacy",
+              "To conduct rigorous research on marginalized communities and people, and facilitate multi-stakeholder engagement on the outcomes of such research",
+              "To develop and strengthen capacity of non-state actors to influence and shape the conduct of public policy; demand accountability from government; and identify and advance marginalized communities and people interests",
+              "Amplify the voice of the marginalized communities on effective, sustainable development",
+              "Support innovative and practical people led development actions among marginalized communities"
             ].map((objective, index) => (
               <div
                 key={index}
-                className="flex items-center gap-4 p-6 bg-gradient-to-r from-primary/10 to-transparent rounded-xl"
+                className="flex items-start gap-4 p-6 bg-gradient-to-r from-primary/10 to-transparent rounded-xl"
               >
-                <div className="w-3 h-3 bg-primary rounded-full flex-shrink-0"></div>
+                <div className="w-3 h-3 bg-primary rounded-full flex-shrink-0 mt-2"></div>
                 <p className="text-gray-700 text-lg">{objective}</p>
               </div>
             ))}
@@ -147,12 +151,13 @@ export default function WhoWeArePage() {
           
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {[
-              { name: "Inclusiveness", img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=400&fit=crop&q=80" },
-              { name: "Integrity", img: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400&h=400&fit=crop&q=80" },
-              { name: "Transparency", img: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=400&fit=crop&q=80" },
-              { name: "Equity", img: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=400&fit=crop&q=80" },
-              { name: "Accountability", img: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=400&fit=crop&q=80" },
-              { name: "Sustainability", img: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=400&h=400&fit=crop&q=80" }
+              { name: "Integrity and ethics", img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=400&fit=crop&q=80" },
+              { name: "Respect", img: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400&h=400&fit=crop&q=80" },
+              { name: "Innovation", img: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=400&fit=crop&q=80" },
+              { name: "Trust", img: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=400&fit=crop&q=80" },
+              { name: "Ingenuity", img: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=400&fit=crop&q=80" },
+              { name: "Accountability", img: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=400&h=400&fit=crop&q=80" },
+              { name: "Value-centricity", img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=400&fit=crop&q=80" }
             ].map((value, index) => (
               <div
                 key={index}

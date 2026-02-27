@@ -43,18 +43,19 @@ export default function GetInvolvedPage() {
       <Navbar />
       
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1920&h=1080&fit=crop&q=80')" }}
+        <img
+          src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1920&h=1080&fit=crop&q=80"
+          alt="Get Involved"
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-neutral/80 via-primary-dark/70 to-neutral/80" />
+        <div className="absolute inset-0 bg-gradient-to-br from-green-900/80 via-green-800/70 to-green-900/80" />
         
-        <div className="relative h-full flex items-center justify-center text-center px-4">
-          <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+        <div className="relative h-full flex items-center justify-start px-8 md:px-16">
+          <div className="max-w-2xl">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
               Get Involved
             </h1>
-            <p className="text-xl md:text-2xl text-white/95 leading-relaxed">
+            <p className="text-xl text-white/95">
               Join us in creating lasting change across Africa
             </p>
           </div>
