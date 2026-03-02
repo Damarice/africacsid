@@ -27,6 +27,19 @@ export default function Hero() {
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Check if mobile on client side only
+    setIsMobile(window.innerWidth <= 768);
+    
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const nextSlide = useCallback(() => {
     if (isAnimating) return;
@@ -111,7 +124,7 @@ export default function Hero() {
             className="absolute inset-0 bg-cover bg-center will-change-transform"
             style={{ 
               backgroundImage: `url(${slide.image})`,
-              transform: window.innerWidth > 768 ? `translate3d(0, ${scrollY * 0.5}px, 0) scale(1.1)` : 'scale(1.1)'
+              transform: isMobile ? 'scale(1.1)' : `translate3d(0, ${scrollY * 0.5}px, 0) scale(1.1)`
             }}
           />
           
