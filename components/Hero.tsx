@@ -111,6 +111,7 @@ export default function Hero() {
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
+      style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden', WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}
     >
       {slides.map((slide, index) => (
         <div
@@ -118,13 +119,16 @@ export default function Hero() {
           className={`absolute inset-0 transition-opacity duration-1000 will-change-opacity ${
             index === currentSlide ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
+          style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
         >
           {/* Background Image with Parallax - disabled on mobile for performance */}
           <div
             className="absolute inset-0 bg-cover bg-center will-change-transform"
             style={{ 
               backgroundImage: `url(${slide.image})`,
-              transform: isMobile ? 'scale(1.1)' : `translate3d(0, ${scrollY * 0.5}px, 0) scale(1.1)`
+              transform: isMobile ? 'scale(1.1)' : `translate3d(0, ${scrollY * 0.5}px, 0) scale(1.1)`,
+              WebkitBackfaceVisibility: 'hidden',
+              backfaceVisibility: 'hidden'
             }}
           />
           

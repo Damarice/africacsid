@@ -107,10 +107,10 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="py-8 md:py-10 bg-gradient-to-br from-accent/5 to-secondary/5 relative overflow-hidden">
+    <section className="py-8 md:py-10 bg-gradient-to-br from-accent/5 to-secondary/5 relative overflow-hidden" style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden', WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}>
       {/* Animated background elements - optimized for mobile */}
-      <div className="absolute top-10 left-10 w-32 h-32 bg-primary/10 rounded-full animate-float will-change-transform"></div>
-      <div className="absolute bottom-10 right-10 w-40 h-40 bg-secondary/10 rounded-full animate-float animation-delay-300 will-change-transform"></div>
+      <div className="absolute top-10 left-10 w-32 h-32 bg-primary/10 rounded-full animate-float will-change-transform" style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}></div>
+      <div className="absolute bottom-10 right-10 w-40 h-40 bg-secondary/10 rounded-full animate-float animation-delay-300 will-change-transform" style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}></div>
       
       <div className="container-custom relative z-10">
         <div className="mb-8 text-center">
@@ -148,9 +148,9 @@ export default function Testimonials() {
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
-            style={{ WebkitUserSelect: 'none', userSelect: 'none' }}
+            style={{ WebkitUserSelect: 'none', userSelect: 'none', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden', WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}
           >
-            <div className={`transition-opacity duration-500 will-change-opacity ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
+            <div className={`transition-opacity duration-500 will-change-opacity ${isAnimating ? 'opacity-0' : 'opacity-100'}`} style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {getCurrentTestimonials().map((testimonial, index) => (
                   <div
