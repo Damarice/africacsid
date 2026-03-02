@@ -82,7 +82,7 @@ export default function PlatformsPage() {
           alt="Our Platforms & Partnerships"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-primary/80" />
+        <div className="absolute inset-0 bg-primary/60" />
         
         <div className="relative h-full flex items-center justify-start px-6 md:px-12">
           <div className="max-w-2xl">
@@ -120,26 +120,40 @@ export default function PlatformsPage() {
                 onMouseLeave={() => setHoveredCard(null)}
                 onClick={() => toggleExpanded(index)}
               >
-                {/* Animated Background Gradient */}
+                {/* Animated Background */}
                 <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Platform Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={
+                      index === 0 ? "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&h=600&fit=crop&q=80" :
+                      index === 1 ? "https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800&h=600&fit=crop&q=80" :
+                      index === 2 ? "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&h=600&fit=crop&q=80" :
+                      index === 3 ? "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=800&h=600&fit=crop&q=80" :
+                      "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=800&h=600&fit=crop&q=80"
+                    }
+                    alt={platform.name}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                  
+                  {/* Logo Overlay on Image */}
+                  {platform.logo && (
+                    <div className="absolute bottom-4 left-4 w-16 h-16 bg-white rounded-lg p-2 shadow-lg">
+                      <img 
+                        src={platform.logo} 
+                        alt={`${platform.acronym} Logo`}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                  )}
+                </div>
                 
                 {/* Platform Header */}
                 <div className="relative p-6 border-b border-gray-100 group-hover:border-primary/20 transition-colors duration-300">
-                  <div className="flex flex-col gap-4 mb-4">
-                    <div className="flex items-center gap-4">
-                      {platform.logo ? (
-                        <div className="w-16 h-16 flex-shrink-0 bg-gray-50 rounded-lg p-3 border group-hover:border-primary/30 group-hover:shadow-lg transition-all duration-300 transform group-hover:scale-105">
-                          <img 
-                            src={platform.logo} 
-                            alt={`${platform.acronym} Logo`}
-                            className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
-                          />
-                        </div>
-                      ) : (
-                        <div className="w-16 h-16 flex-shrink-0 bg-primary rounded-lg flex items-center justify-center group-hover:bg-primary-dark transition-colors duration-300 transform group-hover:scale-105">
-                          <span className="text-white text-xl font-bold">{platform.acronym.charAt(0)}</span>
-                        </div>
-                      )}
+                  <div className="flex flex-col gap-3">
+                    <div className="flex items-start justify-between gap-4">
                       <div className="flex-1 min-w-0">
                         <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors duration-300 leading-tight">
                           {platform.name}
@@ -150,18 +164,18 @@ export default function PlatformsPage() {
                           </span>
                         </div>
                       </div>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className="px-3 py-1 bg-secondary/20 text-secondary-dark rounded-full text-sm font-medium group-hover:bg-secondary/30 transition-colors duration-300">
-                        Member Organization
-                      </span>
-                      <div className={`w-6 h-6 flex items-center justify-center transform transition-transform duration-300 ${
+                      <div className={`w-8 h-8 flex items-center justify-center transform transition-transform duration-300 ${
                         expandedCard === index ? 'rotate-180' : 'group-hover:rotate-90'
                       }`}>
-                        <svg className="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5 text-gray-400 group-hover:text-primary transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
                       </div>
+                    </div>
+                    <div>
+                      <span className="inline-block px-4 py-2 bg-secondary/20 text-secondary-dark rounded-full text-sm font-medium group-hover:bg-secondary/30 transition-colors duration-300">
+                        Member Organization
+                      </span>
                     </div>
                   </div>
                 </div>

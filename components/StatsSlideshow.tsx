@@ -10,6 +10,7 @@ import {
   faWater,
   faHome
 } from "@fortawesome/free-solid-svg-icons";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const statsSlides = [
   {
@@ -32,6 +33,7 @@ const statsSlides = [
 
 export default function StatsSlideshow() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const { ref, isVisible } = useScrollAnimation(0.2);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -41,10 +43,14 @@ export default function StatsSlideshow() {
   }, []);
 
   return (
-    <section className="py-20 bg-gradient-to-br from-secondary/5 to-primary/5 relative">
-      <div className="container-custom">
+    <section className="py-20 bg-gradient-to-br from-secondary/5 to-primary/5 relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute top-10 right-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-float"></div>
+      <div className="absolute bottom-10 left-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }}></div>
+      
+      <div className="container-custom relative z-10">
         {/* Content */}
-        <div className="relative min-h-[300px]">
+        <div ref={ref} className="relative min-h-[300px]">
           {statsSlides.map((slide, slideIndex) => (
             <div
               key={slideIndex}
@@ -60,9 +66,15 @@ export default function StatsSlideshow() {
                 {slide.stats.map((stat, index) => (
                   <div
                     key={index}
-                    className={`bg-gradient-to-br ${stat.bgColor} border-2 border-${stat.color.replace('text-', '')}/20 rounded-xl p-8 text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105`}
+                    className={`bg-gradient-to-br ${stat.bgColor} border-2 border-${stat.color.replace('text-', '')}/20 rounded-xl p-8 text-center hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 group ${
+                      isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                    }`}
+                    style={{ 
+                      transitionDelay: `${index * 150}ms`,
+                      transition: 'all 0.6s ease-out'
+                    }}
                   >
-                    <div className={`${stat.color} text-5xl mb-4`}>
+                    <div className={`${stat.color} text-5xl mb-4 transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6`}>
                       <FontAwesomeIcon icon={stat.icon} />
                     </div>
                     <div className="text-4xl font-bold text-gray-900 mb-2">

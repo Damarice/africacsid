@@ -1,38 +1,52 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { 
-  faGlobe, 
-  faHandshake, 
-  faSeedling, 
-  faLeaf, 
-  faCloudSun,
-  faLink,
-  faBriefcase,
-  faNetworkWired,
-  faLandmark,
-  faBullseye,
-  faChartBar,
-  faStar
-} from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
 
 const partners = [
-  { name: "AFSTC", icon: faGlobe, color: "text-primary" },
-  { name: "JRT", icon: faHandshake, color: "text-secondary" },
-  { name: "ISFAA", icon: faSeedling, color: "text-accent" },
-  { name: "CSA MSP", icon: faLeaf, color: "text-primary" },
-  { name: "KCCWG", icon: faCloudSun, color: "text-secondary" },
-  { name: "Partner 6", icon: faLink, color: "text-accent" },
-  { name: "Partner 7", icon: faBriefcase, color: "text-primary" },
-  { name: "Partner 8", icon: faNetworkWired, color: "text-secondary" },
-  { name: "Partner 9", icon: faLandmark, color: "text-accent" },
-  { name: "Partner 10", icon: faBullseye, color: "text-primary" },
-  { name: "Partner 11", icon: faChartBar, color: "text-secondary" },
-  { name: "Partner 12", icon: faStar, color: "text-accent" },
+  { name: "AFSTC", logo: "/images/AFSTC.png", acronym: "African Food Systems Transformation Collective" },
+  { name: "JRT", logo: "/images/JRT.png", acronym: "Just Rural Transition" },
+  { name: "ISFAA", logo: "/images/ISFAA.png", acronym: "Intersectoral Forum on Agrobiodiversity and Agroecology" },
+  { name: "CSA MSP", logo: "/images/CSA MSP.png", acronym: "Kenya Climate Smart Agriculture Multi Stakeholder Platform" },
+  { name: "KCCWG", logo: "/images/KCCWG.jpeg", acronym: "Kenya Climate Change Working Group" },
 ];
 
 export default function Partners() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    let scrollAmount = 0;
+    const scrollSpeed = 1; // pixels per frame
+    const gap = 32; // gap between items in pixels
+
+    const scroll = () => {
+      if (!scrollContainer) return;
+      
+      scrollAmount += scrollSpeed;
+      
+      // Get the width of one item plus gap
+      const itemWidth = scrollContainer.scrollWidth / (partners.length * 2);
+      
+      // Reset when we've scrolled through half the items (since we duplicated them)
+      if (scrollAmount >= itemWidth * partners.length) {
+        scrollAmount = 0;
+      }
+      
+      scrollContainer.style.transform = `translateX(-${scrollAmount}px)`;
+    };
+
+    const intervalId = setInterval(scroll, 30);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  // Duplicate partners array for seamless loop
+  const duplicatedPartners = [...partners, ...partners];
+
   return (
     <section className="py-20 md:py-28 bg-white relative overflow-hidden">
       {/* Decorative background */}
@@ -48,21 +62,37 @@ export default function Partners() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
-          {partners.map((partner, index) => (
-            <div
-              key={index}
-              className="flex flex-col items-center justify-center p-8 bg-white rounded-2xl hover:bg-gradient-to-br hover:from-primary/10 hover:to-accent/10 transition-all duration-500 group transform hover:-translate-y-2 hover:shadow-xl border-2 border-gray-100 hover:border-primary/30"
-              style={{ animationDelay: `${index * 50}ms` }}
-            >
-              <div className={`${partner.color} text-6xl mb-4 transition-all duration-500 transform group-hover:scale-125 group-hover:rotate-12`}>
-                <FontAwesomeIcon icon={partner.icon} />
+        {/* Slideshow Container */}
+        <div className="relative overflow-hidden py-8">
+          {/* Gradient overlays for fade effect */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
+          
+          {/* Scrolling content */}
+          <div 
+            ref={scrollRef}
+            className="flex gap-8 transition-transform"
+            style={{ willChange: 'transform' }}
+          >
+            {duplicatedPartners.map((partner, index) => (
+              <div
+                key={index}
+                className="flex-shrink-0 w-64 flex flex-col items-center justify-center p-8 bg-white rounded-2xl hover:bg-gradient-to-br hover:from-primary/10 hover:to-secondary/10 transition-all duration-500 group transform hover:-translate-y-2 hover:shadow-xl border-2 border-gray-100 hover:border-primary/30"
+              >
+                <div className="relative w-full h-24 mb-4 transition-all duration-500 transform group-hover:scale-110">
+                  <Image
+                    src={partner.logo}
+                    alt={partner.acronym}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <div className="text-base font-semibold text-gray-700 text-center group-hover:text-primary transition-colors duration-300">
+                  {partner.name}
+                </div>
               </div>
-              <div className="text-base font-semibold text-gray-700 text-center group-hover:text-primary transition-colors duration-300">
-                {partner.name}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         <div className="text-center mt-16">

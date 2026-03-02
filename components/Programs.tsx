@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDove, faChartLine, faSeedling } from "@fortawesome/free-solid-svg-icons";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const programs = [
   {
@@ -35,9 +36,15 @@ const programs = [
 ];
 
 export default function Programs() {
+  const { ref, isVisible } = useScrollAnimation(0.1);
+
   return (
-    <section className="py-20 md:py-28 bg-white">
-      <div className="container-custom">
+    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+      {/* Floating background elements */}
+      <div className="absolute top-20 right-10 w-32 h-32 bg-primary/10 rounded-full blur-2xl animate-float"></div>
+      <div className="absolute bottom-20 left-10 w-40 h-40 bg-accent/10 rounded-full blur-2xl animate-float" style={{ animationDelay: '1s' }}></div>
+      
+      <div className="container-custom relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             What We Do
@@ -47,12 +54,17 @@ export default function Programs() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {programs.map((program, index) => (
             <div
               key={index}
-              className={`group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2 border-t-4 ${program.borderColor}`}
-              style={{ animationDelay: `${index * 150}ms` }}
+              className={`group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2 border-t-4 ${program.borderColor} ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+              style={{ 
+                transitionDelay: `${index * 150}ms`,
+                transition: 'all 0.6s ease-out'
+              }}
             >
               <div className={`${program.color} h-1 transition-all duration-300 group-hover:h-2`} />
               <div className="p-10">

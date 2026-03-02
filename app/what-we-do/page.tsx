@@ -98,7 +98,7 @@ export default function WhatWeDoPage() {
           alt="What We Do"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-primary/80" />
+        <div className="absolute inset-0 bg-primary/60" />
         
         <div className="relative h-full flex items-center justify-start px-6 md:px-12">
           <div className="max-w-2xl">

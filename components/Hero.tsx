@@ -23,12 +23,21 @@ const slides = [
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const goToSlide = (index: number) => {
@@ -44,14 +53,17 @@ export default function Hero() {
             index === currentSlide ? "opacity-100" : "opacity-0"
           }`}
         >
-          {/* Background Image */}
+          {/* Background Image with Parallax */}
           <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${slide.image})` }}
+            className="absolute inset-0 bg-cover bg-center transform scale-110"
+            style={{ 
+              backgroundImage: `url(${slide.image})`,
+              transform: `translateY(${scrollY * 0.5}px) scale(1.1)`
+            }}
           />
           
           {/* Overlay */}
-          <div className="absolute inset-0 bg-primary/80" />
+          <div className="absolute inset-0 bg-primary/60" />
 
           {/* Content */}
           <div className="relative h-full flex items-center justify-center text-center px-4">

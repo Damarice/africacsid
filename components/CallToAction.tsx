@@ -1,14 +1,40 @@
+"use client";
+
 import Link from "next/link";
+import { useState, useEffect } from "react";
 
 export default function CallToAction() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <section
-      className="relative py-28 md:py-36 bg-cover bg-center"
+      className="relative py-28 md:py-36 bg-cover bg-center overflow-hidden"
       style={{
         backgroundImage: "url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&h=600&fit=crop&q=80')",
       }}
     >
+      {/* Parallax background */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&h=600&fit=crop&q=80')",
+          transform: `translateY(${scrollY * 0.3}px)`
+        }}
+      />
+      
       <div className="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary-dark/95" />
+      
+      {/* Animated floating elements */}
+      <div className="absolute top-10 right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl animate-float"></div>
+      <div className="absolute bottom-10 left-10 w-40 h-40 bg-secondary/20 rounded-full blur-2xl animate-float" style={{ animationDelay: '1s' }}></div>
       
       <div className="relative container-custom text-center text-white">
         <h2 className="text-4xl md:text-6xl font-bold mb-8 animate-fade-in-up leading-tight">

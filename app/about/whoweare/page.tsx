@@ -18,7 +18,7 @@ export default function WhoWeArePage() {
           alt="Community"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-green-900/80 via-green-800/70 to-green-900/80" />
+        <div className="absolute inset-0 bg-primary/60" />
         
         <div className="relative h-full flex items-center justify-start px-8 md:px-16">
           <div className="max-w-2xl">

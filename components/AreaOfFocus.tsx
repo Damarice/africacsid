@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDove, faUsers, faTree } from "@fortawesome/free-solid-svg-icons";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const areas = [
   {
@@ -35,9 +36,15 @@ const areas = [
 ];
 
 export default function AreaOfFocus() {
+  const { ref, isVisible } = useScrollAnimation(0.1);
+
   return (
-    <section className="py-16 md:py-20 bg-white">
-      <div className="container-custom">
+    <section className="py-16 md:py-20 bg-white relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute top-10 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div className="absolute bottom-10 right-10 w-64 h-64 bg-accent/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1.5s' }}></div>
+      
+      <div className="container-custom relative z-10">
         <div className="mb-10">
           <p className="text-sm uppercase tracking-wider text-primary mb-3 font-semibold">Our Approach</p>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
@@ -71,11 +78,17 @@ export default function AreaOfFocus() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6" ref={ref}>
           {areas.map((area, index) => (
             <div
               key={index}
-              className={`${area.bgColor} rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden group p-6`}
+              className={`${area.bgColor} rounded-lg shadow-md hover:shadow-lg transition-all duration-500 overflow-hidden group p-6 transform hover:-translate-y-1 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+              style={{ 
+                transitionDelay: `${index * 150}ms`,
+                transition: 'all 0.6s ease-out'
+              }}
             >
               <div className={`${area.iconColor} text-4xl mb-4`}>
                 <FontAwesomeIcon icon={area.icon} />
