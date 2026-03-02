@@ -38,9 +38,9 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/programs" className="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center group">
+                <Link href="/what-we-do" className="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center group">
                   <span className="w-0 group-hover:w-2 h-0.5 bg-gold transition-all duration-300 mr-0 group-hover:mr-2"></span>
-                  Programs
+                  What We Do
                 </Link>
               </li>
               <li>

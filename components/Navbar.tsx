@@ -8,11 +8,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
-  const [programsDropdownOpen, setProgramsDropdownOpen] = useState(false);
   const [resourcesDropdownOpen, setResourcesDropdownOpen] = useState(false);
 
   const aboutRef = useRef<HTMLDivElement>(null);
-  const programsRef = useRef<HTMLDivElement>(null);
   const resourcesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -28,9 +26,6 @@ export default function Navbar() {
     const handleClickOutside = (event: MouseEvent) => {
       if (aboutRef.current && !aboutRef.current.contains(event.target as Node)) {
         setAboutDropdownOpen(false);
-      }
-      if (programsRef.current && !programsRef.current.contains(event.target as Node)) {
-        setProgramsDropdownOpen(false);
       }
       if (resourcesRef.current && !resourcesRef.current.contains(event.target as Node)) {
         setResourcesDropdownOpen(false);
@@ -71,7 +66,6 @@ export default function Navbar() {
               <button 
                 onClick={() => {
                   setAboutDropdownOpen(!aboutDropdownOpen);
-                  setProgramsDropdownOpen(false);
                   setResourcesDropdownOpen(false);
                 }}
                 className="font-medium text-gray-700 hover:text-primary transition-colors flex items-center"
@@ -108,47 +102,13 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* Programs Dropdown */}
-            <div className="relative" ref={programsRef}>
-              <button 
-                onClick={() => {
-                  setProgramsDropdownOpen(!programsDropdownOpen);
-                  setAboutDropdownOpen(false);
-                  setResourcesDropdownOpen(false);
-                }}
-                className="font-medium text-gray-700 hover:text-primary transition-colors flex items-center"
-              >
-                Programs
-                <svg className={`w-4 h-4 ml-1 transition-transform ${programsDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {programsDropdownOpen && (
-                <div className="absolute left-0 mt-2 w-56 bg-white rounded-md shadow-xl py-2 z-50 border border-gray-100">
-                  <Link 
-                    href="/programs/peace-conflict" 
-                    className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
-                    onClick={() => setProgramsDropdownOpen(false)}
-                  >
-                    Peace & Conflict
-                  </Link>
-                  <Link 
-                    href="/programs/economic" 
-                    className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
-                    onClick={() => setProgramsDropdownOpen(false)}
-                  >
-                    Economic Empowerment
-                  </Link>
-                  <Link 
-                    href="/programs/climate" 
-                    className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
-                    onClick={() => setProgramsDropdownOpen(false)}
-                  >
-                    Climate Change
-                  </Link>
-                </div>
-              )}
-            </div>
+            {/* What We Do Link */}
+            <Link
+              href="/what-we-do"
+              className="font-medium text-gray-700 hover:text-primary transition-colors"
+            >
+              What We Do
+            </Link>
 
             {/* Resources Dropdown */}
             <div className="relative" ref={resourcesRef}>
@@ -156,7 +116,6 @@ export default function Navbar() {
                 onClick={() => {
                   setResourcesDropdownOpen(!resourcesDropdownOpen);
                   setAboutDropdownOpen(false);
-                  setProgramsDropdownOpen(false);
                 }}
                 className="font-medium text-gray-700 hover:text-primary transition-colors flex items-center"
               >
@@ -225,8 +184,8 @@ export default function Navbar() {
             <Link href="/about/whoweare" className="block px-4 py-2 text-gray-700 hover:bg-primary/10 hover:text-primary">
               About Us
             </Link>
-            <Link href="/programs" className="block px-4 py-2 text-gray-700 hover:bg-primary/10 hover:text-primary">
-              Programs
+            <Link href="/what-we-do" className="block px-4 py-2 text-gray-700 hover:bg-primary/10 hover:text-primary">
+              What We Do
             </Link>
             <Link href="/resources/publications" className="block px-4 py-2 text-gray-700 hover:bg-primary/10 hover:text-primary">
               Resources

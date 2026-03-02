@@ -28,9 +28,9 @@ const areas = [
     description: "One of our objectives is to address the escalating impacts of climate change, particularly on marginalized communities, by enhancing their overall resilience and advocating for climate justice, biodiversity conservation, and sustainable food systems. We work closely with these communities to boost their capacity to adapt to the impacts of climate change.",
     icon: faTree,
     link: "/programs/climate",
-    bgColor: "bg-gold",
-    textColor: "text-gray-900",
-    iconColor: "text-gray-900",
+    bgColor: "bg-gradient-to-br from-gold to-secondary",
+    textColor: "text-neutral",
+    iconColor: "text-neutral",
   },
 ];
 

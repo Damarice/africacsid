@@ -76,20 +76,20 @@ export default function PlatformsPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
+      <section className="relative h-[50vh] min-h-[350px] w-full overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1920&h=1080&fit=crop&q=80"
           alt="Our Platforms & Partnerships"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-green-900/80 via-green-800/70 to-green-900/80" />
+        <div className="absolute inset-0 bg-primary/80" />
         
-        <div className="relative h-full flex items-center justify-start px-8 md:px-16">
+        <div className="relative h-full flex items-center justify-start px-6 md:px-12">
           <div className="max-w-2xl">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 animate-fade-in-up">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 animate-fade-in-up">
               Our Platforms & Partnerships
             </h1>
-            <p className="text-xl text-white/95 animate-fade-in-up animation-delay-200">
+            <p className="text-lg text-white/95 animate-fade-in-up animation-delay-200">
               Collaborating across networks to transform food systems and build climate resilience
             </p>
           </div>
@@ -97,19 +97,19 @@ export default function PlatformsPage() {
       </section>
 
       {/* Main Content */}
-      <section className="py-16 md:py-20 bg-gray-50">
+      <section className="py-12 md:py-16 bg-gray-50">
         <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 animate-fade-in-up">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4 animate-fade-in-up">
               Strategic Collaborative Platforms
             </h2>
-            <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed animate-fade-in-up animation-delay-100">
+            <p className="text-base text-gray-700 max-w-3xl mx-auto leading-relaxed animate-fade-in-up animation-delay-100">
               Africa CSID actively participates in various platforms and networks to amplify our impact 
               and foster collaboration across sectors and borders.
             </p>
           </div>
 
-          <div className="grid gap-8 md:gap-12">
+          <div className="grid gap-6 lg:gap-8 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
             {platforms.map((platform, index) => (
               <div
                 key={index}
@@ -121,53 +121,55 @@ export default function PlatformsPage() {
                 onClick={() => toggleExpanded(index)}
               >
                 {/* Animated Background Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 {/* Platform Header */}
-                <div className="relative p-8 border-b border-gray-100 group-hover:border-primary/20 transition-colors duration-300">
-                  <div className="flex items-center gap-6 mb-4">
-                    {platform.logo ? (
-                      <div className="w-24 h-24 md:w-28 md:h-28 flex-shrink-0 bg-gray-50 rounded-xl p-4 border group-hover:border-primary/30 group-hover:shadow-lg transition-all duration-300 transform group-hover:scale-105">
-                        <img 
-                          src={platform.logo} 
-                          alt={`${platform.acronym} Logo`}
-                          className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
-                        />
-                      </div>
-                    ) : (
-                      <div className="w-24 h-24 md:w-28 md:h-28 flex-shrink-0 bg-primary rounded-xl flex items-center justify-center group-hover:bg-primary-dark transition-colors duration-300 transform group-hover:scale-105">
-                        <span className="text-white text-2xl md:text-3xl font-bold">{platform.acronym.charAt(0)}</span>
-                      </div>
-                    )}
-                    <div className="flex-1">
-                      <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors duration-300">
-                        {platform.name}
-                      </h3>
-                      <div className="flex items-center gap-3 flex-wrap">
-                        <span className="text-lg font-semibold text-primary group-hover:text-primary-dark transition-colors duration-300">
-                          {platform.acronym}
-                        </span>
-                        <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium group-hover:bg-primary/20 transition-colors duration-300">
-                          Member Organization
-                        </span>
-                        <div className="ml-auto">
-                          <div className={`w-6 h-6 flex items-center justify-center transform transition-transform duration-300 ${
-                            expandedCard === index ? 'rotate-180' : 'group-hover:rotate-90'
-                          }`}>
-                            <svg className="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                            </svg>
-                          </div>
+                <div className="relative p-6 border-b border-gray-100 group-hover:border-primary/20 transition-colors duration-300">
+                  <div className="flex flex-col gap-4 mb-4">
+                    <div className="flex items-center gap-4">
+                      {platform.logo ? (
+                        <div className="w-16 h-16 flex-shrink-0 bg-gray-50 rounded-lg p-3 border group-hover:border-primary/30 group-hover:shadow-lg transition-all duration-300 transform group-hover:scale-105">
+                          <img 
+                            src={platform.logo} 
+                            alt={`${platform.acronym} Logo`}
+                            className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
+                          />
                         </div>
+                      ) : (
+                        <div className="w-16 h-16 flex-shrink-0 bg-primary rounded-lg flex items-center justify-center group-hover:bg-primary-dark transition-colors duration-300 transform group-hover:scale-105">
+                          <span className="text-white text-xl font-bold">{platform.acronym.charAt(0)}</span>
+                        </div>
+                      )}
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors duration-300 leading-tight">
+                          {platform.name}
+                        </h3>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-base font-semibold text-primary group-hover:text-primary-dark transition-colors duration-300">
+                            {platform.acronym}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="px-3 py-1 bg-secondary/20 text-secondary-dark rounded-full text-sm font-medium group-hover:bg-secondary/30 transition-colors duration-300">
+                        Member Organization
+                      </span>
+                      <div className={`w-6 h-6 flex items-center justify-center transform transition-transform duration-300 ${
+                        expandedCard === index ? 'rotate-180' : 'group-hover:rotate-90'
+                      }`}>
+                        <svg className="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Platform Preview Content */}
-                <div className="relative p-8">
-                  <div className="prose prose-lg max-w-none">
-                    <p className="text-gray-700 leading-relaxed text-lg group-hover:text-gray-900 transition-colors duration-300">
+                <div className="relative p-6">
+                  <div className="prose prose-base max-w-none">
+                    <p className="text-gray-700 leading-relaxed group-hover:text-gray-900 transition-colors duration-300 text-sm lg:text-base">
                       {platform.description}
                     </p>
                     
@@ -184,7 +186,7 @@ export default function PlatformsPage() {
                 <div className={`overflow-hidden transition-all duration-500 ease-in-out ${
                   expandedCard === index ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
                 }`}>
-                  <div className="px-8 pb-8 border-t border-gray-100">
+                  <div className="px-6 pb-6 border-t border-gray-100">
                     {platform.details && (
                       <div className="bg-gradient-to-r from-gray-50 to-gray-100/50 rounded-lg p-6 mb-6 mt-6 transform transition-all duration-300 hover:shadow-md">
                         <h4 className="text-xl font-semibold text-gray-900 mb-3 flex items-center gap-2">
