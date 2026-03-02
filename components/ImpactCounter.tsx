@@ -67,9 +67,9 @@ function Counter({ end, duration = 2000, suffix = "", color = "text-primary" }: 
 export default function ImpactCounter() {
   return (
     <section className="py-8 md:py-10 bg-cream relative overflow-hidden" style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden', WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}>
-      {/* Subtle decorative elements - optimized for mobile */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl will-change-transform" style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl will-change-transform" style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}></div>
+      {/* Subtle decorative elements - hidden on mobile to prevent shaking */}
+      <div className="hidden md:block absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl will-change-transform" style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}></div>
+      <div className="hidden md:block absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl will-change-transform" style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}></div>
       
       <div className="container-custom relative z-10">
         <div className="text-center mb-6">

@@ -89,9 +89,9 @@ export default function StatsSlideshow() {
 
   return (
     <section className="py-20 bg-gradient-to-br from-secondary/5 to-primary/5 relative overflow-hidden" style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden', WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}>
-      {/* Animated background elements - reduced for mobile performance */}
-      <div className="absolute top-10 right-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-float will-change-transform" style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}></div>
-      <div className="absolute bottom-10 left-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-float will-change-transform" style={{ animationDelay: '1.5s', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}></div>
+      {/* Animated background elements - hidden on mobile to prevent shaking */}
+      <div className="hidden md:block absolute top-10 right-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-float will-change-transform" style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}></div>
+      <div className="hidden md:block absolute bottom-10 left-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-float will-change-transform" style={{ animationDelay: '1.5s', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}></div>
       
       <div className="container-custom relative z-10">
         {/* Content */}

@@ -32,9 +32,9 @@ export default function CallToAction() {
       
       <div className="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary-dark/95" />
       
-      {/* Animated floating elements */}
-      <div className="absolute top-10 right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl animate-float"></div>
-      <div className="absolute bottom-10 left-10 w-40 h-40 bg-secondary/20 rounded-full blur-2xl animate-float" style={{ animationDelay: '1s' }}></div>
+      {/* Animated floating elements - hidden on mobile */}
+      <div className="hidden md:block absolute top-10 right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl animate-float"></div>
+      <div className="hidden md:block absolute bottom-10 left-10 w-40 h-40 bg-secondary/20 rounded-full blur-2xl animate-float" style={{ animationDelay: '1s' }}></div>
       
       <div className="relative container-custom text-center text-white">
         <h2 className="text-3xl md:text-5xl font-bold mb-6 animate-fade-in-up leading-tight">

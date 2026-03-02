@@ -13,9 +13,9 @@ export default function LatestNews() {
 
   return (
     <section className="py-8 md:py-10 bg-gradient-to-br from-accent/5 to-primary/5 relative overflow-hidden" style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden', WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}>
-      {/* Floating background elements - optimized for mobile */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float will-change-transform" style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}></div>
-      <div className="absolute bottom-20 right-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl animate-float will-change-transform" style={{ animationDelay: '1.5s', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}></div>
+      {/* Floating background elements - hidden on mobile to prevent shaking */}
+      <div className="hidden md:block absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float will-change-transform" style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}></div>
+      <div className="hidden md:block absolute bottom-20 right-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl animate-float will-change-transform" style={{ animationDelay: '1.5s', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}></div>
       
       <div className="container-custom relative z-10">
         <div className="text-center mb-6">

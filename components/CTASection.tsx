@@ -8,9 +8,9 @@ export default function CTASection() {
 
   return (
     <section className="py-10 md:py-12 bg-primary text-white relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl animate-pulse-slow"></div>
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+      {/* Animated background elements - hidden on mobile */}
+      <div className="hidden md:block absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div className="hidden md:block absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
       
       <div ref={ref} className="container-custom text-center relative z-10">
         <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-all duration-700`}>

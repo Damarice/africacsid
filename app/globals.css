@@ -187,9 +187,13 @@
     -webkit-tap-highlight-color: transparent;
   }
   
-  /* Optimize animations for mobile performance */
+  /* Disable floating animations on mobile to prevent shaking */
   .animate-float,
-  .animate-pulse-slow,
+  .animate-pulse-slow {
+    animation: none !important;
+  }
+  
+  /* Optimize remaining animations for mobile performance */
   .animate-rotate-slow {
     animation-duration: 4s;
   }
