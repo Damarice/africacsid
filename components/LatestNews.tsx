@@ -17,7 +17,7 @@ export default function LatestNews() {
       <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float will-change-transform"></div>
       <div className="absolute bottom-20 right-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl animate-float will-change-transform" style={{ animationDelay: '1.5s' }}></div>
       
-      <div className="container-custom relative z-10">
+      <div className="container-custom relative z-10" style={{ WebkitTransform: 'translate3d(0, 0, 0)', transform: 'translate3d(0, 0, 0)' }}>
         <div className="text-center mb-6">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Latest News & Insights

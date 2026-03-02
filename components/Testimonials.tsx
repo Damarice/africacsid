@@ -112,7 +112,7 @@ export default function Testimonials() {
       <div className="absolute top-10 left-10 w-32 h-32 bg-primary/10 rounded-full animate-float will-change-transform"></div>
       <div className="absolute bottom-10 right-10 w-40 h-40 bg-secondary/10 rounded-full animate-float animation-delay-300 will-change-transform"></div>
       
-      <div className="container-custom relative z-10">
+      <div className="container-custom relative z-10" style={{ WebkitTransform: 'translate3d(0, 0, 0)', transform: 'translate3d(0, 0, 0)' }}>
         <div className="mb-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 animate-fade-in-up">
             Voices from the Field

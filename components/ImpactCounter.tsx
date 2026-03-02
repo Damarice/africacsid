@@ -71,7 +71,7 @@ export default function ImpactCounter() {
       <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl will-change-transform"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl will-change-transform"></div>
       
-      <div className="container-custom relative z-10">
+      <div className="container-custom relative z-10" style={{ WebkitTransform: 'translate3d(0, 0, 0)', transform: 'translate3d(0, 0, 0)' }}>
         <div className="text-center mb-6">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Our Impact At a Glance

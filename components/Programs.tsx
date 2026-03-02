@@ -44,7 +44,7 @@ export default function Programs() {
       <div className="absolute top-20 right-10 w-32 h-32 bg-primary/10 rounded-full blur-2xl animate-float"></div>
       <div className="absolute bottom-20 left-10 w-40 h-40 bg-accent/10 rounded-full blur-2xl animate-float" style={{ animationDelay: '1s' }}></div>
       
-      <div className="container-custom relative z-10">
+      <div className="container-custom relative z-10" style={{ WebkitTransform: 'translate3d(0, 0, 0)', transform: 'translate3d(0, 0, 0)' }}>
         <div className="text-center mb-6">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             What We Do

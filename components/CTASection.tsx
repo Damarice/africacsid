@@ -12,7 +12,7 @@ export default function CTASection() {
       <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl animate-pulse-slow"></div>
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
       
-      <div ref={ref} className="container-custom text-center relative z-10">
+      <div ref={ref} className="container-custom text-center relative z-10" style={{ WebkitTransform: 'translate3d(0, 0, 0)', transform: 'translate3d(0, 0, 0)' }}>
         <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'} transition-all duration-700`}>
           Join Us in Creating Change
         </h2>

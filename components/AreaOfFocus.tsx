@@ -65,7 +65,7 @@ export default function AreaOfFocus() {
       <div className="absolute top-10 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse-slow will-change-transform"></div>
       <div className="absolute bottom-10 right-10 w-64 h-64 bg-accent/5 rounded-full blur-3xl animate-pulse-slow will-change-transform" style={{ animationDelay: '1.5s' }}></div>
       
-      <div className="container-custom relative z-10">
+      <div className="container-custom relative z-10" style={{ WebkitTransform: 'translate3d(0, 0, 0)', transform: 'translate3d(0, 0, 0)' }}>
         {/* Header */}
         <div className="text-center mb-8 max-w-3xl mx-auto">
           <p className="text-sm uppercase tracking-wider text-primary mb-2 font-semibold">Our Approach</p>

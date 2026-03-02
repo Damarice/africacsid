@@ -53,7 +53,7 @@ export default function Partners() {
       {/* Decorative background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5"></div>
       
-      <div className="container-custom relative z-10">
+      <div className="container-custom relative z-10" style={{ WebkitTransform: 'translate3d(0, 0, 0)', transform: 'translate3d(0, 0, 0)' }}>
         <div className="text-center mb-6">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Our Partners & Platforms
