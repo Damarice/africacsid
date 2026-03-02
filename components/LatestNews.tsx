@@ -12,14 +12,14 @@ export default function LatestNews() {
   const latestBlogs = blogs.slice(0, 3);
 
   return (
-    <section className="py-12 md:py-16 bg-gradient-to-br from-accent/5 to-primary/5 relative overflow-hidden">
+    <section className="py-8 md:py-10 bg-gradient-to-br from-accent/5 to-primary/5 relative overflow-hidden">
       {/* Floating background elements */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float"></div>
       <div className="absolute bottom-20 right-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }}></div>
       
       <div className="container-custom relative z-10">
-        <div className="text-center mb-10">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        <div className="text-center mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Latest News & Insights
           </h2>
           <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">

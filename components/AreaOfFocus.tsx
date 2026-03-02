@@ -39,15 +39,15 @@ export default function AreaOfFocus() {
   const { ref, isVisible } = useScrollAnimation(0.1);
 
   return (
-    <section className="py-12 md:py-16 bg-white relative overflow-hidden">
+    <section className="py-8 md:py-10 bg-white relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute top-10 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse-slow"></div>
       <div className="absolute bottom-10 right-10 w-64 h-64 bg-accent/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1.5s' }}></div>
       
       <div className="container-custom relative z-10">
-        <div className="mb-10">
+        <div className="mb-6">
           <p className="text-sm uppercase tracking-wider text-primary mb-3 font-semibold">Our Approach</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
             Area of Focus
           </h2>
           <div className="max-w-3xl">
@@ -60,7 +60,7 @@ export default function AreaOfFocus() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
           {/* Images side by side */}
           <div className="h-64 rounded-lg overflow-hidden shadow-md">
             <img

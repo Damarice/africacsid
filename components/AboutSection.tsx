@@ -7,7 +7,7 @@ export default function AboutSection() {
   const { ref, isVisible } = useScrollAnimation(0.1);
 
   return (
-    <section className="py-12 md:py-16 bg-gradient-to-br from-primary/5 to-accent/5 relative overflow-hidden">
+    <section className="py-8 md:py-10 bg-gradient-to-br from-primary/5 to-accent/5 relative overflow-hidden">
       {/* Animated decorative elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-float"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>

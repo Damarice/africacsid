@@ -41,7 +41,7 @@ export default function EventsPage() {
       {/* Upcoming Events */}
       <section className="py-12 md:py-16 bg-white">
         <div className="container-custom">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-12 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 text-center">
             Upcoming Events
           </h2>
           
@@ -106,7 +106,7 @@ export default function EventsPage() {
       {/* Past Events */}
       <section className="py-12 md:py-16 bg-gradient-to-br from-accent/5 to-primary/5">
         <div className="container-custom">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-12 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 text-center">
             Past Events
           </h2>
           

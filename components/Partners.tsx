@@ -48,13 +48,13 @@ export default function Partners() {
   const duplicatedPartners = [...partners, ...partners];
 
   return (
-    <section className="py-12 md:py-16 bg-white relative overflow-hidden">
+    <section className="py-8 md:py-10 bg-white relative overflow-hidden">
       {/* Decorative background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5"></div>
       
       <div className="container-custom relative z-10">
-        <div className="text-center mb-10">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        <div className="text-center mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Our Partners & Platforms
           </h2>
           <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">
