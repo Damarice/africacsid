@@ -1,4 +1,15 @@
-export const vacancies = [
+export interface Vacancy {
+  id: number;
+  title: string;
+  location: string;
+  type: string;
+  deadline: string;
+  description: string;
+  requirements: string[];
+  slug: string;
+}
+
+export const vacancies: Vacancy[] = [
   // When you have vacancies from WordPress, add them here in this format:
   // {
   //   id: 1,
