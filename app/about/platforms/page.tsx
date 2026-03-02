@@ -113,12 +113,11 @@ export default function PlatformsPage() {
             {platforms.map((platform, index) => (
               <div
                 key={index}
-                className={`group relative bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden cursor-pointer transform transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-2 ${
+                className={`group relative bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden transform transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-2 ${
                   hoveredCard === index ? 'scale-[1.02]' : ''
                 } ${expandedCard === index ? 'ring-2 ring-primary/20' : ''}`}
                 onMouseEnter={() => setHoveredCard(index)}
                 onMouseLeave={() => setHoveredCard(null)}
-                onClick={() => toggleExpanded(index)}
               >
                 {/* Animated Background */}
                 <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -164,13 +163,6 @@ export default function PlatformsPage() {
                           </span>
                         </div>
                       </div>
-                      <div className={`w-8 h-8 flex items-center justify-center transform transition-transform duration-300 ${
-                        expandedCard === index ? 'rotate-180' : 'group-hover:rotate-90'
-                      }`}>
-                        <svg className="w-5 h-5 text-gray-400 group-hover:text-primary transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
                     </div>
                     <div>
                       <span className="inline-block px-4 py-2 bg-secondary/20 text-secondary-dark rounded-full text-sm font-medium group-hover:bg-secondary/30 transition-colors duration-300">
@@ -183,16 +175,34 @@ export default function PlatformsPage() {
                 {/* Platform Preview Content */}
                 <div className="relative p-6">
                   <div className="prose prose-base max-w-none">
-                    <p className="text-gray-700 leading-relaxed group-hover:text-gray-900 transition-colors duration-300 text-base md:text-lg">
+                    <p className="text-gray-700 leading-relaxed text-base md:text-lg line-clamp-3">
                       {platform.description}
                     </p>
                     
-                    {/* Hover Indicator */}
-                    <div className={`mt-4 text-sm text-primary font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform ${
-                      hoveredCard === index ? 'translate-y-0' : 'translate-y-2'
-                    }`}>
-                      Click to {expandedCard === index ? 'collapse' : 'expand'} full details →
-                    </div>
+                    {/* Read More Button */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        toggleExpanded(index);
+                      }}
+                      className="mt-4 inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-dark transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+                    >
+                      {expandedCard === index ? (
+                        <>
+                          Show Less
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                          </svg>
+                        </>
+                      ) : (
+                        <>
+                          Read More
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </>
+                      )}
+                    </button>
                   </div>
                 </div>
 
