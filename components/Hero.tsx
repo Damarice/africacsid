@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 
 const slides = [
@@ -24,41 +24,94 @@ const slides = [
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [scrollY, setScrollY] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const nextSlide = useCallback(() => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setTimeout(() => setIsAnimating(false), 1000);
+  }, [isAnimating]);
+
+  const prevSlide = useCallback(() => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    setTimeout(() => setIsAnimating(false), 1000);
+  }, [isAnimating]);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      nextSlide();
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [nextSlide]);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const goToSlide = (index: number) => {
+    if (isAnimating) return;
+    setIsAnimating(true);
     setCurrentSlide(index);
+    setTimeout(() => setIsAnimating(false), 1000);
+  };
+
+  // Touch handlers for mobile swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    }
+    if (isRightSwipe) {
+      prevSlide();
+    }
+
+    setTouchStart(0);
+    setTouchEnd(0);
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section 
+      className="relative h-screen w-full overflow-hidden touch-pan-y"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       {slides.map((slide, index) => (
         <div
           key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === currentSlide ? "opacity-100" : "opacity-0"
+          className={`absolute inset-0 transition-opacity duration-1000 will-change-opacity ${
+            index === currentSlide ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
-          {/* Background Image with Parallax */}
+          {/* Background Image with Parallax - disabled on mobile for performance */}
           <div
-            className="absolute inset-0 bg-cover bg-center transform scale-110"
+            className="absolute inset-0 bg-cover bg-center will-change-transform"
             style={{ 
               backgroundImage: `url(${slide.image})`,
-              transform: `translateY(${scrollY * 0.5}px) scale(1.1)`
+              transform: window.innerWidth > 768 ? `translate3d(0, ${scrollY * 0.5}px, 0) scale(1.1)` : 'scale(1.1)'
             }}
           />
           
@@ -75,7 +128,11 @@ export default function Hero() {
                 {slide.description}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-400">
-                <Link href="/about" className="bg-secondary hover:bg-secondary-dark text-neutral font-semibold py-3 px-8 rounded transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                <Link 
+                  href="/about" 
+                  className="bg-secondary hover:bg-secondary-dark text-neutral font-semibold py-3 px-8 rounded transition-all duration-300 transform active:scale-95 md:hover:scale-105 md:hover:shadow-lg will-change-transform"
+                  style={{ WebkitTapHighlightColor: 'transparent' }}
+                >
                   Click Here
                 </Link>
               </div>
@@ -90,11 +147,12 @@ export default function Hero() {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+            className={`w-3 h-3 rounded-full transition-all duration-300 touch-manipulation ${
               index === currentSlide
                 ? "bg-white w-8"
-                : "bg-white/50 hover:bg-white/75"
+                : "bg-white/50 active:bg-white/75 md:hover:bg-white/75"
             }`}
+            style={{ WebkitTapHighlightColor: 'transparent' }}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}

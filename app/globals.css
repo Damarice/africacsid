@@ -5,6 +5,8 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* iOS Safari smooth scrolling */
+    -webkit-overflow-scrolling: touch;
   }
   
   html[data-scroll-behavior="smooth"] {
@@ -13,6 +15,11 @@
   
   body {
     @apply bg-white text-gray-900;
+    /* Prevent text size adjustment on iOS */
+    -webkit-text-size-adjust: 100%;
+    /* Improve font rendering on iOS */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   /* Typography Scale - Consistent large sizes */
@@ -58,20 +65,29 @@
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
   
+  /* Touch-friendly buttons */
   .btn-primary {
     @apply bg-gold hover:bg-secondary-dark text-neutral font-semibold text-lg md:text-xl py-4 px-10 rounded transition-all duration-300 transform hover:scale-105 hover:shadow-lg;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
   
   .btn-secondary {
     @apply bg-transparent border-2 border-white text-white hover:bg-gold hover:text-neutral hover:border-gold font-semibold text-lg md:text-xl py-4 px-10 rounded transition-all duration-300 transform hover:scale-105;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
   
   .btn-accent {
     @apply bg-accent hover:bg-accent-dark text-white font-semibold text-lg md:text-xl py-4 px-10 rounded transition-all duration-300 transform hover:scale-105 hover:shadow-lg;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
   
   .btn-green {
     @apply bg-primary hover:bg-primary-dark text-white font-semibold text-lg md:text-xl py-4 px-10 rounded transition-all duration-300 transform hover:scale-105 hover:shadow-lg;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
   
   .section-padding {
@@ -164,6 +180,42 @@
   transition-duration: 150ms;
 }
 
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+  /* Disable hover effects on touch devices */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Optimize animations for mobile performance */
+  .animate-float,
+  .animate-pulse-slow,
+  .animate-rotate-slow {
+    animation-duration: 4s;
+  }
+}
+
+/* iOS-specific fixes */
+@supports (-webkit-touch-callout: none) {
+  /* Fix for iOS Safari momentum scrolling */
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevent zoom on input focus */
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+  
+  /* Fix for iOS Safari transform issues */
+  .will-change-transform {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
+
   /* Bounce animation */
   @keyframes bounce {
     0%, 100% {
@@ -178,34 +230,36 @@
     animation: bounce 2s ease-in-out infinite;
   }
   
-  /* Pulse animation */
+  /* Pulse animation - optimized for mobile */
   @keyframes pulse {
     0%, 100% {
       opacity: 1;
-      transform: scale(1);
+      transform: scale3d(1, 1, 1);
     }
     50% {
       opacity: 0.8;
-      transform: scale(1.05);
+      transform: scale3d(1.05, 1.05, 1);
     }
   }
   
   .animate-pulse-slow {
     animation: pulse 3s ease-in-out infinite;
+    will-change: transform, opacity;
   }
   
-  /* Float animation */
+  /* Float animation - optimized for mobile */
   @keyframes float {
     0%, 100% {
-      transform: translateY(0px);
+      transform: translate3d(0, 0, 0);
     }
     50% {
-      transform: translateY(-20px);
+      transform: translate3d(0, -20px, 0);
     }
   }
   
   .animate-float {
     animation: float 3s ease-in-out infinite;
+    will-change: transform;
   }
   
   /* Rotate animation */

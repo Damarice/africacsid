@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuoteLeft, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
@@ -38,36 +38,67 @@ const testimonials = [
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
   const testimonialsPerSlide = 2;
   const totalSlides = Math.ceil(testimonials.length / testimonialsPerSlide);
 
+  const nextSlide = useCallback(() => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentIndex((prev) => (prev + 1) % totalSlides);
+    setTimeout(() => setIsAnimating(false), 500);
+  }, [isAnimating, totalSlides]);
+
+  const prevSlide = useCallback(() => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
+    setTimeout(() => setIsAnimating(false), 500);
+  }, [isAnimating, totalSlides]);
+
+  const goToSlide = useCallback((index: number) => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrentIndex(index);
+    setTimeout(() => setIsAnimating(false), 500);
+  }, [isAnimating]);
+
+  // Auto-advance slideshow
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
     }, 3000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [nextSlide]);
 
-  const nextSlide = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentIndex((prev) => (prev + 1) % totalSlides);
-    setTimeout(() => setIsAnimating(false), 500);
+  // Touch handlers for mobile swipe - improved for iOS
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+    setTouchEnd(e.targetTouches[0].clientX);
   };
 
-  const prevSlide = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
-    setTimeout(() => setIsAnimating(false), 500);
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
   };
 
-  const goToSlide = (index: number) => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentIndex(index);
-    setTimeout(() => setIsAnimating(false), 500);
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    }
+    if (isRightSwipe) {
+      prevSlide();
+    }
+
+    setTouchStart(0);
+    setTouchEnd(0);
   };
 
   const getCurrentTestimonials = () => {
@@ -77,9 +108,9 @@ export default function Testimonials() {
 
   return (
     <section className="py-8 md:py-10 bg-gradient-to-br from-accent/5 to-secondary/5 relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute top-10 left-10 w-32 h-32 bg-primary/10 rounded-full animate-float"></div>
-      <div className="absolute bottom-10 right-10 w-40 h-40 bg-secondary/10 rounded-full animate-float animation-delay-300"></div>
+      {/* Animated background elements - optimized for mobile */}
+      <div className="absolute top-10 left-10 w-32 h-32 bg-primary/10 rounded-full animate-float will-change-transform"></div>
+      <div className="absolute bottom-10 right-10 w-40 h-40 bg-secondary/10 rounded-full animate-float animation-delay-300 will-change-transform"></div>
       
       <div className="container-custom relative z-10">
         <div className="mb-8 text-center">
@@ -92,10 +123,11 @@ export default function Testimonials() {
         </div>
 
         <div className="max-w-4xl mx-auto relative">
-          {/* Navigation Buttons */}
+          {/* Navigation Buttons - Hidden on mobile */}
           <button
             onClick={prevSlide}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 z-10 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110"
+            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-12 z-10 w-12 h-12 bg-white rounded-full shadow-lg items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110 active:scale-95 will-change-transform"
+            style={{ WebkitTapHighlightColor: 'transparent' }}
             aria-label="Previous testimonial"
           >
             <FontAwesomeIcon icon={faChevronLeft} />
@@ -103,20 +135,28 @@ export default function Testimonials() {
           
           <button
             onClick={nextSlide}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 z-10 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110"
+            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-12 z-10 w-12 h-12 bg-white rounded-full shadow-lg items-center justify-center text-primary hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-110 active:scale-95 will-change-transform"
+            style={{ WebkitTapHighlightColor: 'transparent' }}
             aria-label="Next testimonial"
           >
             <FontAwesomeIcon icon={faChevronRight} />
           </button>
 
           {/* Testimonial Cards */}
-          <div className="relative min-h-[450px]">
-            <div className={`transition-all duration-500 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
+          <div 
+            className="relative min-h-[450px] touch-pan-y select-none"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            style={{ WebkitUserSelect: 'none', userSelect: 'none' }}
+          >
+            <div className={`transition-opacity duration-500 will-change-opacity ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {getCurrentTestimonials().map((testimonial, index) => (
                   <div
                     key={currentIndex * testimonialsPerSlide + index}
-                    className={`bg-white rounded-2xl p-8 shadow-xl border-l-4 ${testimonial.borderColor} flex flex-col justify-between transform transition-all duration-500 hover:scale-105 hover:shadow-2xl`}
+                    className={`bg-white rounded-2xl p-8 shadow-xl border-l-4 ${testimonial.borderColor} flex flex-col justify-between transform transition-all duration-500 active:scale-95 md:hover:scale-105 md:hover:shadow-2xl will-change-transform`}
+                    style={{ WebkitTapHighlightColor: 'transparent' }}
                   >
                     <div>
                       <FontAwesomeIcon
@@ -151,11 +191,12 @@ export default function Testimonials() {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                className={`h-3 rounded-full transition-all duration-300 touch-manipulation ${
                   index === currentIndex
                     ? 'bg-primary w-8'
-                    : 'bg-gray-300 hover:bg-gray-400'
+                    : 'bg-gray-300 active:bg-gray-400 md:hover:bg-gray-400 w-3'
                 }`}
+                style={{ WebkitTapHighlightColor: 'transparent' }}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}

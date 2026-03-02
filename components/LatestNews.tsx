@@ -13,9 +13,9 @@ export default function LatestNews() {
 
   return (
     <section className="py-8 md:py-10 bg-gradient-to-br from-accent/5 to-primary/5 relative overflow-hidden">
-      {/* Floating background elements */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float"></div>
-      <div className="absolute bottom-20 right-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }}></div>
+      {/* Floating background elements - optimized for mobile */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float will-change-transform"></div>
+      <div className="absolute bottom-20 right-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl animate-float will-change-transform" style={{ animationDelay: '1.5s' }}></div>
       
       <div className="container-custom relative z-10">
         <div className="text-center mb-6">
@@ -31,12 +31,13 @@ export default function LatestNews() {
           {latestBlogs.map((item, index) => (
             <article
               key={item.id}
-              className={`bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-t-4 ${item.categoryColor} ${
+              className={`bg-white rounded-2xl overflow-hidden shadow-lg active:shadow-2xl md:hover:shadow-2xl transition-all duration-500 transform active:scale-95 md:hover:-translate-y-2 border-t-4 ${item.categoryColor} will-change-transform ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{ 
                 transitionDelay: `${index * 150}ms`,
-                transition: 'all 0.6s ease-out'
+                transition: 'all 0.6s ease-out',
+                WebkitTapHighlightColor: 'transparent'
               }}
             >
               <div className="relative h-56 overflow-hidden group">
@@ -45,12 +46,12 @@ export default function LatestNews() {
                   alt={item.title}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="object-cover transition-transform duration-700 md:group-hover:scale-110 will-change-transform"
                 />
               </div>
               <div className="p-8">
                 <div className="text-base md:text-lg text-gray-500 mb-3">{item.date}</div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4 line-clamp-2 hover:text-primary transition-colors duration-300">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 line-clamp-2 md:hover:text-primary transition-colors duration-300">
                   {item.title}
                 </h3>
                 <p className="text-lg md:text-xl text-gray-600 mb-6 line-clamp-3 leading-relaxed">
@@ -58,11 +59,12 @@ export default function LatestNews() {
                 </p>
                 <Link
                   href={`/resources/blogs/${item.slug}`}
-                  className="inline-flex items-center text-primary font-semibold text-lg md:text-xl hover:text-primary-dark transition-colors group"
+                  className="inline-flex items-center text-primary font-semibold text-lg md:text-xl active:text-primary-dark md:hover:text-primary-dark transition-colors group"
+                  style={{ WebkitTapHighlightColor: 'transparent' }}
                 >
                   Read More
                   <svg
-                    className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300"
+                    className="w-5 h-5 ml-2 md:group-hover:translate-x-2 transition-transform duration-300 will-change-transform"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -83,7 +85,8 @@ export default function LatestNews() {
         <div className="text-center mt-10">
           <Link
             href="/resources/blogs"
-            className="inline-flex items-center bg-gold hover:bg-secondary-dark text-neutral font-semibold text-xl px-10 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+            className="inline-flex items-center bg-gold hover:bg-secondary-dark text-neutral font-semibold text-xl px-10 py-4 rounded-lg transition-all duration-300 transform active:scale-95 md:hover:scale-105 md:hover:shadow-lg will-change-transform"
+            style={{ WebkitTapHighlightColor: 'transparent' }}
           >
             View All News
             <svg

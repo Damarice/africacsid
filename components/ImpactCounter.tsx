@@ -67,9 +67,9 @@ function Counter({ end, duration = 2000, suffix = "", color = "text-primary" }: 
 export default function ImpactCounter() {
   return (
     <section className="py-8 md:py-10 bg-cream relative overflow-hidden">
-      {/* Subtle decorative elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+      {/* Subtle decorative elements - optimized for mobile */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl will-change-transform"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl will-change-transform"></div>
       
       <div className="container-custom relative z-10">
         <div className="text-center mb-6">
@@ -85,16 +85,16 @@ export default function ImpactCounter() {
           {metrics.map((metric, index) => (
             <div
               key={index}
-              className={`bg-white rounded-2xl p-10 text-center shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-t-4 ${metric.borderColor} group`}
-              style={{ animationDelay: `${index * 100}ms` }}
+              className={`bg-white rounded-2xl p-10 text-center shadow-lg active:shadow-2xl md:hover:shadow-2xl transition-all duration-500 transform active:scale-95 md:hover:-translate-y-2 border-t-4 ${metric.borderColor} group will-change-transform`}
+              style={{ animationDelay: `${index * 100}ms`, WebkitTapHighlightColor: 'transparent' }}
             >
-              <div className={`${metric.color} text-5xl mb-6 transform transition-all duration-300 group-hover:scale-110`}>
+              <div className={`${metric.color} text-5xl mb-6 transform transition-all duration-300 md:group-hover:scale-110 will-change-transform`}>
                 <FontAwesomeIcon icon={metric.icon} />
               </div>
               <div className="mb-5 transform transition-transform duration-300">
                 <Counter end={metric.value} suffix={metric.suffix} color={metric.color} />
               </div>
-              <div className={`text-lg md:text-xl font-semibold text-gray-700 group-hover:${metric.color} transition-colors duration-300`}>
+              <div className={`text-lg md:text-xl font-semibold text-gray-700 md:group-hover:${metric.color} transition-colors duration-300`}>
                 {metric.label}
               </div>
             </div>

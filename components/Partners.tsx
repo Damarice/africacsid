@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -14,6 +14,7 @@ const partners = [
 
 export default function Partners() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
@@ -24,7 +25,7 @@ export default function Partners() {
     const gap = 32; // gap between items in pixels
 
     const scroll = () => {
-      if (!scrollContainer) return;
+      if (!scrollContainer || isPaused) return;
       
       scrollAmount += scrollSpeed;
       
@@ -36,13 +37,13 @@ export default function Partners() {
         scrollAmount = 0;
       }
       
-      scrollContainer.style.transform = `translateX(-${scrollAmount}px)`;
+      scrollContainer.style.transform = `translate3d(-${scrollAmount}px, 0, 0)`;
     };
 
     const intervalId = setInterval(scroll, 30);
 
     return () => clearInterval(intervalId);
-  }, []);
+  }, [isPaused]);
 
   // Duplicate partners array for seamless loop
   const duplicatedPartners = [...partners, ...partners];
@@ -63,23 +64,30 @@ export default function Partners() {
         </div>
 
         {/* Slideshow Container */}
-        <div className="relative overflow-hidden py-8">
+        <div 
+          className="relative overflow-hidden py-8"
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setIsPaused(false)}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
           {/* Gradient overlays for fade effect */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
           
           {/* Scrolling content */}
           <div 
             ref={scrollRef}
-            className="flex gap-8 transition-transform"
+            className="flex gap-8"
             style={{ willChange: 'transform' }}
           >
             {duplicatedPartners.map((partner, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-64 flex flex-col items-center justify-center p-8 bg-white rounded-2xl hover:bg-gradient-to-br hover:from-primary/10 hover:to-secondary/10 transition-all duration-500 group transform hover:-translate-y-2 hover:shadow-xl border-2 border-gray-100 hover:border-primary/30"
+                className="flex-shrink-0 w-64 flex flex-col items-center justify-center p-8 bg-white rounded-2xl active:bg-gradient-to-br active:from-primary/10 active:to-secondary/10 md:hover:bg-gradient-to-br md:hover:from-primary/10 md:hover:to-secondary/10 transition-all duration-500 group transform active:scale-95 md:hover:-translate-y-2 md:hover:shadow-xl border-2 border-gray-100 active:border-primary/30 md:hover:border-primary/30 will-change-transform"
+                style={{ WebkitTapHighlightColor: 'transparent' }}
               >
-                <div className="relative w-full h-24 mb-4 transition-all duration-500 transform group-hover:scale-110">
+                <div className="relative w-full h-24 mb-4 transition-all duration-500 transform md:group-hover:scale-110 will-change-transform">
                   <Image
                     src={partner.logo}
                     alt={partner.acronym}
@@ -88,7 +96,7 @@ export default function Partners() {
                     className="object-contain"
                   />
                 </div>
-                <div className="text-base md:text-lg font-semibold text-gray-700 text-center group-hover:text-primary transition-colors duration-300">
+                <div className="text-base md:text-lg font-semibold text-gray-700 text-center md:group-hover:text-primary transition-colors duration-300">
                   {partner.name}
                 </div>
               </div>
@@ -99,11 +107,12 @@ export default function Partners() {
         <div className="text-center mt-10">
           <Link
             href="/about/platforms"
-            className="inline-flex items-center text-primary font-semibold text-xl hover:text-primary-dark transition-colors group"
+            className="inline-flex items-center text-primary font-semibold text-xl active:text-primary-dark md:hover:text-primary-dark transition-colors group"
+            style={{ WebkitTapHighlightColor: 'transparent' }}
           >
             View All Partners
             <svg
-              className="w-6 h-6 ml-2 group-hover:translate-x-2 transition-transform duration-300"
+              className="w-6 h-6 ml-2 md:group-hover:translate-x-2 transition-transform duration-300 will-change-transform"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
