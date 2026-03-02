@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import LoadingBar from "@/components/LoadingBar";
 
 const montserrat = Montserrat({ 
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
   variable: "--font-montserrat",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -28,8 +30,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={montserrat.className}>{children}</body>
+    <html lang="en" data-scroll-behavior="smooth">
+      <body className={montserrat.className}>
+        <LoadingBar />
+        {children}
+      </body>
     </html>
   );
 }

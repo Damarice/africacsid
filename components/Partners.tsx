@@ -84,6 +84,7 @@ export default function Partners() {
                     src={partner.logo}
                     alt={partner.acronym}
                     fill
+                    sizes="(max-width: 768px) 100vw, 256px"
                     className="object-contain"
                   />
                 </div>
