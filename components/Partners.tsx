@@ -15,17 +15,20 @@ const partners = [
 export default function Partners() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
+  const animationFrameRef = useRef<number>();
 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
 
     let scrollAmount = 0;
-    const scrollSpeed = 1; // pixels per frame
-    const gap = 32; // gap between items in pixels
+    const scrollSpeed = 0.5; // Reduced speed for smoother iOS performance
 
     const scroll = () => {
-      if (!scrollContainer || isPaused) return;
+      if (!scrollContainer || isPaused) {
+        animationFrameRef.current = requestAnimationFrame(scroll);
+        return;
+      }
       
       scrollAmount += scrollSpeed;
       
@@ -37,12 +40,20 @@ export default function Partners() {
         scrollAmount = 0;
       }
       
+      // Use translate3d for better iOS performance
       scrollContainer.style.transform = `translate3d(-${scrollAmount}px, 0, 0)`;
+      scrollContainer.style.webkitTransform = `translate3d(-${scrollAmount}px, 0, 0)`;
+      
+      animationFrameRef.current = requestAnimationFrame(scroll);
     };
 
-    const intervalId = setInterval(scroll, 30);
+    animationFrameRef.current = requestAnimationFrame(scroll);
 
-    return () => clearInterval(intervalId);
+    return () => {
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
   }, [isPaused]);
 
   // Duplicate partners array for seamless loop
@@ -53,7 +64,7 @@ export default function Partners() {
       {/* Decorative background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5"></div>
       
-      <div className="container-custom relative z-10" style={{ WebkitTransform: 'translate3d(0, 0, 0)', transform: 'translate3d(0, 0, 0)' }}>
+      <div className="container-custom relative z-10" style={{ WebkitTransform: 'translate3d(0, 0, 0)', transform: 'translate3d(0, 0, 0)', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}>
         <div className="text-center mb-6">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Our Partners & Platforms
@@ -70,6 +81,12 @@ export default function Partners() {
           onTouchEnd={() => setIsPaused(false)}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
+          style={{ 
+            WebkitTransform: 'translate3d(0, 0, 0)',
+            transform: 'translate3d(0, 0, 0)',
+            WebkitBackfaceVisibility: 'hidden',
+            backfaceVisibility: 'hidden'
+          }}
         >
           {/* Gradient overlays for fade effect */}
           <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
@@ -84,22 +101,40 @@ export default function Partners() {
               WebkitBackfaceVisibility: 'hidden',
               backfaceVisibility: 'hidden',
               WebkitTransform: 'translate3d(0, 0, 0)',
-              transform: 'translate3d(0, 0, 0)'
+              transform: 'translate3d(0, 0, 0)',
+              WebkitPerspective: '1000px',
+              perspective: '1000px'
             }}
           >
             {duplicatedPartners.map((partner, index) => (
               <div
                 key={index}
                 className="flex-shrink-0 w-64 flex flex-col items-center justify-center p-8 bg-white rounded-2xl active:bg-gradient-to-br active:from-primary/10 active:to-secondary/10 md:hover:bg-gradient-to-br md:hover:from-primary/10 md:hover:to-secondary/10 transition-all duration-500 group transform active:scale-95 md:hover:-translate-y-2 md:hover:shadow-xl border-2 border-gray-100 active:border-primary/30 md:hover:border-primary/30 will-change-transform"
-                style={{ WebkitTapHighlightColor: 'transparent' }}
+                style={{ 
+                  WebkitTapHighlightColor: 'transparent',
+                  WebkitBackfaceVisibility: 'hidden',
+                  backfaceVisibility: 'hidden',
+                  WebkitTransform: 'translate3d(0, 0, 0)',
+                  transform: 'translate3d(0, 0, 0)'
+                }}
               >
-                <div className="relative w-full h-24 mb-4 transition-all duration-500 transform md:group-hover:scale-110 will-change-transform">
+                <div 
+                  className="relative w-full h-24 mb-4 transition-all duration-500 transform md:group-hover:scale-110 will-change-transform"
+                  style={{ 
+                    WebkitBackfaceVisibility: 'hidden',
+                    backfaceVisibility: 'hidden'
+                  }}
+                >
                   <Image
                     src={partner.logo}
                     alt={partner.acronym}
                     fill
                     sizes="(max-width: 768px) 100vw, 256px"
                     className="object-contain"
+                    style={{ 
+                      WebkitBackfaceVisibility: 'hidden',
+                      backfaceVisibility: 'hidden'
+                    }}
                   />
                 </div>
                 <div className="text-base md:text-lg font-semibold text-gray-700 text-center md:group-hover:text-primary transition-colors duration-300">
