@@ -88,10 +88,10 @@ export default function StatsSlideshow() {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-secondary/5 to-primary/5 relative overflow-hidden" style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden', WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}>
-      {/* Animated background elements - hidden on mobile to prevent shaking */}
-      <div className="hidden md:block absolute top-10 right-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-float will-change-transform" style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}></div>
-      <div className="hidden md:block absolute bottom-10 left-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-float will-change-transform" style={{ animationDelay: '1.5s', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}></div>
+    <section className="py-20 bg-gradient-to-br from-secondary/5 to-primary/5 relative overflow-hidden">
+      {/* Animated background elements - reduced for mobile performance */}
+      <div className="absolute top-10 right-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-float will-change-transform"></div>
+      <div className="absolute bottom-10 left-10 w-64 h-64 bg-accent/10 rounded-full blur-3xl animate-float will-change-transform" style={{ animationDelay: '1.5s' }}></div>
       
       <div className="container-custom relative z-10">
         {/* Content */}
@@ -101,7 +101,12 @@ export default function StatsSlideshow() {
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
-          style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden', WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}
+          style={{ 
+            WebkitTransform: 'translate3d(0, 0, 0)',
+            transform: 'translate3d(0, 0, 0)',
+            WebkitBackfaceVisibility: 'hidden',
+            backfaceVisibility: 'hidden'
+          }}
         >
           {statsSlides.map((slide, slideIndex) => (
             <div
@@ -109,7 +114,12 @@ export default function StatsSlideshow() {
               className={`transition-opacity duration-700 will-change-opacity ${
                 slideIndex === currentSlide ? "opacity-100" : "opacity-0 absolute inset-0 pointer-events-none"
               }`}
-              style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
+              style={{ 
+                WebkitBackfaceVisibility: 'hidden',
+                backfaceVisibility: 'hidden',
+                WebkitTransform: 'translate3d(0, 0, 0)',
+                transform: 'translate3d(0, 0, 0)'
+              }}
             >
               <h3 className="text-3xl font-bold text-center text-gray-900 mb-12">
                 {slide.title}

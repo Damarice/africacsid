@@ -60,10 +60,10 @@ export default function AreaOfFocus() {
   };
 
   return (
-    <section className="py-8 md:py-10 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden" style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden', WebkitTransform: 'translateZ(0)', transform: 'translateZ(0)' }}>
-      {/* Animated background elements - hidden on mobile to prevent shaking */}
-      <div className="hidden md:block absolute top-10 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse-slow will-change-transform" style={{ WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}></div>
-      <div className="hidden md:block absolute bottom-10 right-10 w-64 h-64 bg-accent/5 rounded-full blur-3xl animate-pulse-slow will-change-transform" style={{ animationDelay: '1.5s', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}></div>
+    <section className="py-8 md:py-10 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+      {/* Animated background elements - optimized for mobile */}
+      <div className="absolute top-10 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse-slow will-change-transform"></div>
+      <div className="absolute bottom-10 right-10 w-64 h-64 bg-accent/5 rounded-full blur-3xl animate-pulse-slow will-change-transform" style={{ animationDelay: '1.5s' }}></div>
       
       <div className="container-custom relative z-10">
         {/* Header */}

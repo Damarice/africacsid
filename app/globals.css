@@ -187,13 +187,9 @@
     -webkit-tap-highlight-color: transparent;
   }
   
-  /* Disable floating animations on mobile to prevent shaking */
+  /* Optimize animations for mobile performance */
   .animate-float,
-  .animate-pulse-slow {
-    animation: none !important;
-  }
-  
-  /* Optimize remaining animations for mobile performance */
+  .animate-pulse-slow,
   .animate-rotate-slow {
     animation-duration: 4s;
   }
@@ -215,29 +211,39 @@
   
   /* Fix for iOS Safari transform issues and shaking */
   .will-change-transform {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    -webkit-perspective: 1000px;
-    perspective: 1000px;
   }
   
-  /* Stabilize animated sections */
+  /* Stabilize sections with animations on iOS */
   section {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
+    -webkit-transform: translate3d(0, 0, 0);
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }
   
-  /* Fix for floating animations */
+  /* Fix slideshow shaking on iOS */
+  .transition-opacity {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  
+  /* Stabilize animated backgrounds on iOS */
   .animate-float,
   .animate-pulse-slow {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+  
+  /* Fix for absolute positioned elements */
+  .absolute {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 }
 
@@ -270,8 +276,6 @@
   .animate-pulse-slow {
     animation: pulse 3s ease-in-out infinite;
     will-change: transform, opacity;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
   }
   
   /* Float animation - optimized for mobile */
@@ -287,8 +291,6 @@
   .animate-float {
     animation: float 3s ease-in-out infinite;
     will-change: transform;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
   }
   
   /* Rotate animation */

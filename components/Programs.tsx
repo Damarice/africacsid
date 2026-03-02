@@ -40,8 +40,8 @@ export default function Programs() {
 
   return (
     <section className="py-8 md:py-10 bg-white relative overflow-hidden">
-      {/* Floating background elements - hidden on mobile */}
-      <div className="hidden md:block absolute top-20 right-10 w-32 h-32 bg-primary/10 rounded-full blur-2xl animate-float"></div>
+      {/* Floating background elements */}
+      <div className="absolute top-20 right-10 w-32 h-32 bg-primary/10 rounded-full blur-2xl animate-float"></div>
       <div className="absolute bottom-20 left-10 w-40 h-40 bg-accent/10 rounded-full blur-2xl animate-float" style={{ animationDelay: '1s' }}></div>
       
       <div className="container-custom relative z-10">

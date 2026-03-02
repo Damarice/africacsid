@@ -79,7 +79,13 @@ export default function Partners() {
           <div 
             ref={scrollRef}
             className="flex gap-8"
-            style={{ willChange: 'transform', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}
+            style={{ 
+              willChange: 'transform',
+              WebkitBackfaceVisibility: 'hidden',
+              backfaceVisibility: 'hidden',
+              WebkitTransform: 'translate3d(0, 0, 0)',
+              transform: 'translate3d(0, 0, 0)'
+            }}
           >
             {duplicatedPartners.map((partner, index) => (
               <div
