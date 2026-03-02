@@ -50,8 +50,8 @@ export default function GetInvolvedPage() {
         />
         <div className="absolute inset-0 bg-primary/60" />
         
-        <div className="relative h-full flex items-center justify-start px-8 md:px-16">
-          <div className="max-w-2xl">
+        <div className="relative h-full flex items-center justify-center text-center px-4">
+          <div className="max-w-3xl">
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
               Get Involved
             </h1>
@@ -62,35 +62,28 @@ export default function GetInvolvedPage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-12 md:py-16 bg-white">
         <div className="container-custom">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Ways to Get Involved
-            </h2>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-              There are many ways you can support our mission and make a difference
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {ways.map((way, index) => (
-              <div
+              <Link
                 key={index}
-                className="bg-gradient-to-br from-white to-gray-50 rounded-2xl p-10 shadow-lg hover:shadow-2xl transition-all duration-300 border-t-4 border-primary"
+                href={way.link}
+                className="group bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-gray-100 hover:border-primary text-center transform hover:-translate-y-2"
               >
-                <div className={`${way.color} text-6xl mb-6`}>
+                <div className={`${way.color} text-5xl mb-4 transform transition-transform duration-300 group-hover:scale-110`}>
                   <FontAwesomeIcon icon={way.icon} />
                 </div>
-                <h3 className="text-3xl font-bold text-gray-900 mb-4">{way.title}</h3>
-                <p className="text-lg text-gray-600 mb-6 leading-relaxed">{way.description}</p>
-                <Link
-                  href={way.link}
-                  className="inline-flex items-center text-primary font-semibold text-lg hover:text-primary-dark transition-colors group"
-                >
-                  Learn More
+                <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors">
+                  {way.title}
+                </h3>
+                <p className="text-base text-gray-600 leading-relaxed mb-4">
+                  {way.description}
+                </p>
+                <span className="inline-flex items-center text-primary font-semibold group-hover:text-primary-dark transition-colors">
+                  Get Started
                   <svg
-                    className="w-6 h-6 ml-2 group-hover:translate-x-2 transition-transform duration-300"
+                    className="w-5 h-5 ml-2 group-hover:translate-x-2 transition-transform duration-300"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -102,24 +95,24 @@ export default function GetInvolvedPage() {
                       d="M9 5l7 7-7 7"
                     />
                   </svg>
-                </Link>
-              </div>
+                </span>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-gradient-to-br from-primary/5 to-accent/5">
+      <section className="py-10 md:py-12 bg-primary text-white">
         <div className="container-custom text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Ready to Make a Difference?
           </h2>
-          <p className="text-xl text-gray-700 mb-10 max-w-2xl mx-auto">
+          <p className="text-xl mb-10 max-w-2xl mx-auto opacity-95">
             Contact us today to learn more about how you can get involved
           </p>
           <Link
             href="/contact"
-            className="bg-gold hover:bg-secondary-dark text-neutral font-semibold py-4 px-10 rounded-lg text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg inline-block"
+            className="bg-secondary hover:bg-secondary-dark text-neutral font-semibold py-4 px-10 rounded-lg text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg inline-block"
           >
             Contact Us
           </Link>

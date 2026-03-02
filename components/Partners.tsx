@@ -48,12 +48,12 @@ export default function Partners() {
   const duplicatedPartners = [...partners, ...partners];
 
   return (
-    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+    <section className="py-12 md:py-16 bg-white relative overflow-hidden">
       {/* Decorative background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5"></div>
       
       <div className="container-custom relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Our Partners & Platforms
           </h2>
@@ -87,7 +87,7 @@ export default function Partners() {
                     className="object-contain"
                   />
                 </div>
-                <div className="text-base font-semibold text-gray-700 text-center group-hover:text-primary transition-colors duration-300">
+                <div className="text-base md:text-lg font-semibold text-gray-700 text-center group-hover:text-primary transition-colors duration-300">
                   {partner.name}
                 </div>
               </div>
@@ -95,7 +95,7 @@ export default function Partners() {
           </div>
         </div>
 
-        <div className="text-center mt-16">
+        <div className="text-center mt-10">
           <Link
             href="/about/platforms"
             className="inline-flex items-center text-primary font-semibold text-xl hover:text-primary-dark transition-colors group"

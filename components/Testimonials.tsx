@@ -44,10 +44,10 @@ export default function Testimonials() {
   useEffect(() => {
     const timer = setInterval(() => {
       nextSlide();
-    }, 5000);
+    }, 3000);
 
     return () => clearInterval(timer);
-  }, [currentIndex]);
+  }, []);
 
   const nextSlide = () => {
     if (isAnimating) return;
@@ -76,17 +76,17 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-br from-accent/5 to-secondary/5 relative overflow-hidden">
+    <section className="py-12 md:py-16 bg-gradient-to-br from-accent/5 to-secondary/5 relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute top-10 left-10 w-32 h-32 bg-primary/10 rounded-full animate-float"></div>
       <div className="absolute bottom-10 right-10 w-40 h-40 bg-secondary/10 rounded-full animate-float animation-delay-300"></div>
       
       <div className="container-custom relative z-10">
-        <div className="mb-12 text-center">
+        <div className="mb-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 animate-fade-in-up">
             Voices from the Field
           </h2>
-          <p className="text-lg text-gray-700 animate-fade-in-up animation-delay-100">
+          <p className="text-lg md:text-xl text-gray-700 animate-fade-in-up animation-delay-100">
             Stories of impact and transformation
           </p>
         </div>
@@ -133,10 +133,10 @@ export default function Testimonials() {
                         style={{ backgroundImage: `url(${testimonial.image})` }}
                       />
                       <div>
-                        <div className="font-bold text-base text-gray-900">
+                        <div className="font-bold text-base md:text-lg text-gray-900">
                           {testimonial.author}
                         </div>
-                        <div className="text-sm text-gray-600">{testimonial.location}</div>
+                        <div className="text-base md:text-lg text-gray-600">{testimonial.location}</div>
                       </div>
                     </div>
                   </div>

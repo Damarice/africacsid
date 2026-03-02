@@ -3,45 +3,22 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-
-const news = [
-  {
-    title: "Seeds of Change in Nyatike",
-    excerpt: "Agroecology training builds climate resilience and food sovereignty in local communities.",
-    date: "Jan 8, 2026",
-    image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&h=600&fit=crop&q=80",
-    slug: "seeds-of-change-nyatike",
-    accentColor: "border-primary",
-  },
-  {
-    title: "Bridging the Gap at COP30",
-    excerpt: "Africa CSID's participation in global climate discussions and the fight for inclusion.",
-    date: "Oct 14, 2025",
-    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&h=600&fit=crop&q=80",
-    slug: "bridging-gap-cop30",
-    accentColor: "border-accent",
-  },
-  {
-    title: "KAIROS Canada Partnership",
-    excerpt: "Africa CSID joins solidarity partners meeting to strengthen collaborative efforts.",
-    date: "Feb 1, 2025",
-    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=600&fit=crop&q=80",
-    slug: "kairos-partnership",
-    accentColor: "border-secondary",
-  },
-];
+import { blogs } from "@/data/blogs";
 
 export default function LatestNews() {
   const { ref, isVisible } = useScrollAnimation(0.1);
+  
+  // Get only the first 3 blogs for homepage
+  const latestBlogs = blogs.slice(0, 3);
 
   return (
-    <section className="py-20 md:py-28 bg-gradient-to-br from-accent/5 to-primary/5 relative overflow-hidden">
+    <section className="py-12 md:py-16 bg-gradient-to-br from-accent/5 to-primary/5 relative overflow-hidden">
       {/* Floating background elements */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-float"></div>
       <div className="absolute bottom-20 right-10 w-72 h-72 bg-accent/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1.5s' }}></div>
       
       <div className="container-custom relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Latest News & Insights
           </h2>
@@ -51,10 +28,10 @@ export default function LatestNews() {
         </div>
 
         <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-10">
-          {news.map((item, index) => (
+          {latestBlogs.map((item, index) => (
             <article
-              key={index}
-              className={`bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-t-4 ${item.accentColor} ${
+              key={item.id}
+              className={`bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-t-4 ${item.categoryColor} ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
               }`}
               style={{ 
@@ -71,16 +48,16 @@ export default function LatestNews() {
                 />
               </div>
               <div className="p-8">
-                <div className="text-base text-gray-500 mb-3">{item.date}</div>
+                <div className="text-base md:text-lg text-gray-500 mb-3">{item.date}</div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4 line-clamp-2 hover:text-primary transition-colors duration-300">
                   {item.title}
                 </h3>
-                <p className="text-lg text-gray-600 mb-6 line-clamp-3 leading-relaxed">
+                <p className="text-lg md:text-xl text-gray-600 mb-6 line-clamp-3 leading-relaxed">
                   {item.excerpt}
                 </p>
                 <Link
-                  href={`/resources/blog/${item.slug}`}
-                  className="inline-flex items-center text-primary font-semibold text-lg hover:text-primary-dark transition-colors group"
+                  href={`/resources/blogs/${item.slug}`}
+                  className="inline-flex items-center text-primary font-semibold text-lg md:text-xl hover:text-primary-dark transition-colors group"
                 >
                   Read More
                   <svg
@@ -102,7 +79,7 @@ export default function LatestNews() {
           ))}
         </div>
 
-        <div className="text-center mt-16">
+        <div className="text-center mt-10">
           <Link
             href="/resources/blogs"
             className="inline-flex items-center bg-gold hover:bg-secondary-dark text-neutral font-semibold text-xl px-10 py-4 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg"

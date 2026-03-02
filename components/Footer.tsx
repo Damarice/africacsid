@@ -22,14 +22,14 @@ export default function Footer() {
               height={80}
               className="mb-4 h-20 w-auto"
             />
-            <p className="text-gray-400 text-sm leading-relaxed">
+            <p className="text-gray-400 text-base md:text-lg leading-relaxed">
               Supporting marginalized communities across Africa through sustainable and inclusive development.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-bold text-lg mb-4 text-white">Quick Links</h3>
+            <h3 className="font-bold text-lg md:text-xl mb-4 text-white">Quick Links</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/about" className="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center group">
@@ -60,7 +60,7 @@ export default function Footer() {
 
           {/* Programs */}
           <div>
-            <h3 className="font-bold text-lg mb-4 text-white">Our Programs</h3>
+            <h3 className="font-bold text-lg md:text-xl mb-4 text-white">Our Programs</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/programs/peace-conflict" className="text-gray-400 hover:text-primary transition-colors duration-300 flex items-center group">
@@ -85,8 +85,8 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-bold text-lg mb-4 text-white">Contact Us</h3>
-            <ul className="space-y-3 text-gray-400 text-sm">
+            <h3 className="font-bold text-lg md:text-xl mb-4 text-white">Contact Us</h3>
+            <ul className="space-y-3 text-gray-400 text-base md:text-lg">
               <li className="flex items-start group hover:text-white transition-colors duration-300">
                 <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-3 mt-1 text-gold" />
                 <span>Kenya</span>
@@ -119,7 +119,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-700 pt-8 text-center text-gray-400 text-sm">
+        <div className="border-t border-gray-700 pt-8 text-center text-gray-400 text-base md:text-lg">
           <p>&copy; {new Date().getFullYear()} Africa CSID. All rights reserved.</p>
         </div>
       </div>

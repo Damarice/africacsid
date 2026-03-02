@@ -17,8 +17,8 @@ export default function ProjectsPage() {
         />
         <div className="absolute inset-0 bg-primary/60" />
         
-        <div className="relative h-full flex items-center justify-start px-8 md:px-16">
-          <div className="max-w-2xl">
+        <div className="relative h-full flex items-center justify-center text-center px-4">
+          <div className="max-w-3xl">
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
               Our Programs & Projects
             </h1>
@@ -32,7 +32,7 @@ export default function ProjectsPage() {
       <section className="py-20 bg-white">
         <div className="container-custom">
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-12 text-center">
               Programs & Projects Coming Soon
             </h2>
             <p className="text-lg text-gray-700">

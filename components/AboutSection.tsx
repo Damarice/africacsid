@@ -7,7 +7,7 @@ export default function AboutSection() {
   const { ref, isVisible } = useScrollAnimation(0.1);
 
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-br from-primary/5 to-accent/5 relative overflow-hidden">
+    <section className="py-12 md:py-16 bg-gradient-to-br from-primary/5 to-accent/5 relative overflow-hidden">
       {/* Animated decorative elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-float"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
@@ -21,7 +21,7 @@ export default function AboutSection() {
               Africa Centre for Sustainable and Inclusive Development
             </h2>
 
-            <div className="space-y-4 text-gray-700 leading-relaxed text-lg">
+            <div className="space-y-4 text-gray-700 leading-relaxed text-lg md:text-xl">
               <p>
                 The Africa Centre for Sustainable and Inclusive Development (Africa CSID) is a leading African 
                 NGO registered in Kenya, dedicated to supporting marginalized communities across the continent.

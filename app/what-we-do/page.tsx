@@ -100,12 +100,12 @@ export default function WhatWeDoPage() {
         />
         <div className="absolute inset-0 bg-primary/60" />
         
-        <div className="relative h-full flex items-center justify-start px-6 md:px-12">
-          <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 animate-fade-in-up">
+        <div className="relative h-full flex items-center justify-center text-center px-4">
+          <div className="max-w-3xl">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-3 animate-fade-in-up">
               What We Do
             </h1>
-            <p className="text-lg text-white/95 animate-fade-in-up animation-delay-200">
+            <p className="text-lg md:text-xl text-white/95 animate-fade-in-up animation-delay-200">
               Transforming communities through sustainable development, climate resilience, 
               and inclusive approaches that center equity and environmental stewardship.
             </p>
@@ -117,10 +117,10 @@ export default function WhatWeDoPage() {
       <section className="py-12 md:py-16 bg-white">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6 animate-fade-in-up">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6 animate-fade-in-up">
               Our Mission in Action
             </h2>
-            <p className="text-base md:text-lg text-gray-700 leading-relaxed mb-6 animate-fade-in-up animation-delay-100">
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6 animate-fade-in-up animation-delay-100">
               Africa CSID works at the intersection of climate action, food systems transformation, 
               and social justice. We believe that sustainable development must be inclusive, 
               community-driven, and rooted in both scientific evidence and traditional knowledge.
@@ -130,22 +130,22 @@ export default function WhatWeDoPage() {
                 <div className="bg-primary rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110">
                   <FontAwesomeIcon icon={faBullseye} className="text-2xl text-white" />
                 </div>
-                <h3 className="text-lg font-semibold text-primary mb-2 group-hover:text-primary-dark transition-colors duration-300">Targeted Impact</h3>
-                <p className="text-gray-600 text-sm">Focused interventions that address root causes of inequality and environmental degradation.</p>
+                <h3 className="text-lg md:text-xl font-semibold text-primary mb-2 group-hover:text-primary-dark transition-colors duration-300">Targeted Impact</h3>
+                <p className="text-gray-600 text-base md:text-lg">Focused interventions that address root causes of inequality and environmental degradation.</p>
               </div>
               <div className="text-center group hover:transform hover:-translate-y-2 transition-all duration-300">
                 <div className="bg-secondary rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110">
                   <FontAwesomeIcon icon={faSeedling} className="text-2xl text-neutral" />
                 </div>
-                <h3 className="text-lg font-semibold text-secondary mb-2 group-hover:text-secondary-dark transition-colors duration-300">Sustainable Solutions</h3>
-                <p className="text-gray-600 text-sm">Long-term approaches that build resilience and promote regenerative practices.</p>
+                <h3 className="text-lg md:text-xl font-semibold text-secondary mb-2 group-hover:text-secondary-dark transition-colors duration-300">Sustainable Solutions</h3>
+                <p className="text-gray-600 text-base md:text-lg">Long-term approaches that build resilience and promote regenerative practices.</p>
               </div>
               <div className="text-center group hover:transform hover:-translate-y-2 transition-all duration-300">
                 <div className="bg-accent rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110">
                   <FontAwesomeIcon icon={faBalanceScale} className="text-2xl text-white" />
                 </div>
-                <h3 className="text-lg font-semibold text-accent mb-2 group-hover:text-accent-dark transition-colors duration-300">Justice-Centered</h3>
-                <p className="text-gray-600 text-sm">Ensuring marginalized communities have equal access to resources and opportunities.</p>
+                <h3 className="text-lg md:text-xl font-semibold text-accent mb-2 group-hover:text-accent-dark transition-colors duration-300">Justice-Centered</h3>
+                <p className="text-gray-600 text-base md:text-lg">Ensuring marginalized communities have equal access to resources and opportunities.</p>
               </div>
             </div>
           </div>
@@ -156,10 +156,10 @@ export default function WhatWeDoPage() {
       <section className="py-12 md:py-16 bg-gray-50">
         <div className="container-custom">
           <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4 animate-fade-in-up">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4 animate-fade-in-up">
               Our Areas of Focus
             </h2>
-            <p className="text-base text-gray-700 max-w-3xl mx-auto animate-fade-in-up animation-delay-100">
+            <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto animate-fade-in-up animation-delay-100">
               We work across three interconnected areas that address the complex challenges 
               facing marginalized communities in Africa and beyond.
             </p>
@@ -208,7 +208,7 @@ export default function WhatWeDoPage() {
                             />
                           </div>
                           <div className="flex-1 min-w-0">
-                            <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors duration-300 leading-tight">
+                            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors duration-300 leading-tight">
                               {area.title}
                             </h3>
                             <span className="inline-block px-3 py-1 bg-secondary/20 text-secondary-dark rounded-full text-xs font-medium group-hover:bg-secondary/30 transition-colors duration-300">
@@ -217,7 +217,7 @@ export default function WhatWeDoPage() {
                           </div>
                         </div>
                         
-                        <p className="text-gray-700 leading-relaxed text-sm lg:text-base mb-3">
+                        <p className="text-gray-700 leading-relaxed text-lg md:text-xl mb-3">
                           {area.description}
                         </p>
                         
@@ -248,16 +248,16 @@ export default function WhatWeDoPage() {
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         {/* Full Description */}
                         <div className="bg-white rounded-lg p-4 shadow-sm">
-                          <h4 className="text-lg font-semibold text-primary mb-3 flex items-center gap-2">
+                          <h4 className="text-lg md:text-xl font-semibold text-primary mb-3 flex items-center gap-2">
                             <div className="w-2 h-2 bg-primary rounded-full"></div>
                             Our Approach
                           </h4>
-                          <p className="text-gray-700 leading-relaxed text-sm">{area.fullDescription}</p>
+                          <p className="text-gray-700 leading-relaxed text-base md:text-lg">{area.fullDescription}</p>
                         </div>
 
                         {/* Key Principles */}
                         <div className="bg-white rounded-lg p-4 shadow-sm">
-                          <h4 className="text-lg font-semibold text-secondary-dark mb-3 flex items-center gap-2">
+                          <h4 className="text-lg md:text-xl font-semibold text-secondary-dark mb-3 flex items-center gap-2">
                             <div className="w-2 h-2 bg-secondary rounded-full"></div>
                             Key Principles & Methods
                           </h4>
@@ -267,7 +267,7 @@ export default function WhatWeDoPage() {
                                 <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                                   <span className="text-white text-xs font-bold">{idx + 1}</span>
                                 </div>
-                                <span className="text-gray-700 font-medium leading-relaxed text-sm">{principle}</span>
+                                <span className="text-gray-700 font-medium leading-relaxed text-base md:text-lg">{principle}</span>
                               </div>
                             ))}
                           </div>
@@ -286,10 +286,10 @@ export default function WhatWeDoPage() {
       <section className="py-12 md:py-16 bg-white">
         <div className="container-custom">
           <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4 animate-fade-in-up">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4 animate-fade-in-up">
               How We Work
             </h2>
-            <p className="text-base text-gray-700 max-w-3xl mx-auto animate-fade-in-up animation-delay-100">
+            <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto animate-fade-in-up animation-delay-100">
               Our methodology is grounded in participatory development principles, 
               ensuring sustainable and locally-owned solutions.
             </p>
@@ -311,7 +311,7 @@ export default function WhatWeDoPage() {
                     index === 1 ? 'text-neutral' : 'text-white'
                   }`} />
                 </div>
-                <h3 className={`text-lg font-semibold mb-3 transition-colors duration-300 ${
+                <h3 className={`text-lg md:text-xl font-semibold mb-3 transition-colors duration-300 ${
                   index === 0 ? 'text-primary group-hover:text-primary-dark' :
                   index === 1 ? 'text-secondary group-hover:text-secondary-dark' :
                   index === 2 ? 'text-accent group-hover:text-accent-dark' :
@@ -319,7 +319,7 @@ export default function WhatWeDoPage() {
                 }`}>
                   {approach.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed text-sm">
+                <p className="text-gray-600 leading-relaxed text-base md:text-lg">
                   {approach.description}
                 </p>
               </div>
@@ -332,10 +332,10 @@ export default function WhatWeDoPage() {
       <section className="py-12 md:py-16 bg-primary">
         <div className="container-custom">
           <div className="text-center text-white">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Ready to Make a Difference?
             </h2>
-            <p className="text-base mb-6 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl mb-6 max-w-2xl mx-auto">
               Join us in creating sustainable, inclusive communities that thrive in harmony with nature.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">

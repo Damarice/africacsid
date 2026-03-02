@@ -84,8 +84,8 @@ export default function PlatformsPage() {
         />
         <div className="absolute inset-0 bg-primary/60" />
         
-        <div className="relative h-full flex items-center justify-start px-6 md:px-12">
-          <div className="max-w-2xl">
+        <div className="relative h-full flex items-center justify-center text-center px-4">
+          <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 animate-fade-in-up">
               Our Platforms & Partnerships
             </h1>
@@ -100,7 +100,7 @@ export default function PlatformsPage() {
       <section className="py-12 md:py-16 bg-gray-50">
         <div className="container-custom">
           <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-primary mb-4 animate-fade-in-up">
+            <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4 animate-fade-in-up">
               Strategic Collaborative Platforms
             </h2>
             <p className="text-base text-gray-700 max-w-3xl mx-auto leading-relaxed animate-fade-in-up animation-delay-100">
@@ -183,7 +183,7 @@ export default function PlatformsPage() {
                 {/* Platform Preview Content */}
                 <div className="relative p-6">
                   <div className="prose prose-base max-w-none">
-                    <p className="text-gray-700 leading-relaxed group-hover:text-gray-900 transition-colors duration-300 text-sm lg:text-base">
+                    <p className="text-gray-700 leading-relaxed group-hover:text-gray-900 transition-colors duration-300 text-base md:text-lg">
                       {platform.description}
                     </p>
                     

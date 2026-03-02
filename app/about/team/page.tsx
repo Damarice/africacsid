@@ -46,8 +46,8 @@ export default function TeamPage() {
         />
         <div className="absolute inset-0 bg-primary/60" />
         
-        <div className="relative h-full flex items-center justify-start px-8 md:px-16">
-          <div className="max-w-2xl">
+        <div className="relative h-full flex items-center justify-center text-center px-4">
+          <div className="max-w-3xl">
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
               Our Team
             </h1>
@@ -70,7 +70,7 @@ export default function TeamPage() {
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-2">{member.name}</h3>
                   <p className="text-primary font-semibold mb-3">{member.position}</p>
-                  <p className="text-gray-600 text-sm mb-4">{member.bio}</p>
+                  <p className="text-gray-600 text-base md:text-lg mb-4">{member.bio}</p>
                   <div className="flex space-x-3">
                     <a href="#" className="text-gray-400 hover:text-primary transition-colors">
                       <FontAwesomeIcon icon={faLinkedin} className="w-5 h-5" />

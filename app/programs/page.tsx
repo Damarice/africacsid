@@ -20,8 +20,8 @@ export default function ProgramsPage() {
         />
         <div className="absolute inset-0 bg-primary/60" />
         
-        <div className="relative h-full flex items-center justify-start px-8 md:px-16">
-          <div className="max-w-2xl">
+        <div className="relative h-full flex items-center justify-center text-center px-4">
+          <div className="max-w-3xl">
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
               Our Programs
             </h1>

@@ -19,8 +19,8 @@ export default function ContactPage() {
         />
         <div className="absolute inset-0 bg-primary/60" />
         
-        <div className="relative h-full flex items-center justify-start px-8 md:px-16">
-          <div className="max-w-2xl">
+        <div className="relative h-full flex items-center justify-center text-center px-4">
+          <div className="max-w-3xl">
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
               Contact Us
             </h1>
@@ -36,7 +36,7 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Send Us a Message</h2>
               <form className="space-y-6">
                 <div>
                   <label className="block text-gray-700 font-semibold mb-2">Name</label>
@@ -81,7 +81,7 @@ export default function ContactPage() {
 
             {/* Contact Information */}
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Contact Information</h2>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Contact Information</h2>
               
               <div className="space-y-6 mb-10">
                 <div className="flex items-start">

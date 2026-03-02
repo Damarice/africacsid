@@ -39,7 +39,7 @@ export default function AreaOfFocus() {
   const { ref, isVisible } = useScrollAnimation(0.1);
 
   return (
-    <section className="py-16 md:py-20 bg-white relative overflow-hidden">
+    <section className="py-12 md:py-16 bg-white relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute top-10 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse-slow"></div>
       <div className="absolute bottom-10 right-10 w-64 h-64 bg-accent/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1.5s' }}></div>
@@ -47,11 +47,11 @@ export default function AreaOfFocus() {
       <div className="container-custom relative z-10">
         <div className="mb-10">
           <p className="text-sm uppercase tracking-wider text-primary mb-3 font-semibold">Our Approach</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
             Area of Focus
           </h2>
           <div className="max-w-3xl">
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
               At the Africa Centre for Sustainable and Inclusive Development (Africa CSID), our work is centered 
               around three core pillars: Peace and Conflict Transformation, Economic Empowerment, 
               and Climate Change. These pillars are supported by two critical enablers—governance and 
@@ -93,15 +93,15 @@ export default function AreaOfFocus() {
               <div className={`${area.iconColor} text-4xl mb-4`}>
                 <FontAwesomeIcon icon={area.icon} />
               </div>
-              <h3 className={`text-xl font-bold ${area.textColor} mb-3 leading-tight`}>
+              <h3 className={`text-xl md:text-2xl font-bold ${area.textColor} mb-3 leading-tight`}>
                 {area.title}
               </h3>
-              <p className={`${area.textColor} mb-4 leading-relaxed text-base opacity-90`}>
+              <p className={`${area.textColor} mb-4 leading-relaxed text-base md:text-lg opacity-90`}>
                 {area.description}
               </p>
               <Link
                 href={area.link}
-                className={`inline-flex items-center ${area.textColor} font-semibold hover:opacity-80 transition-opacity`}
+                className={`inline-flex items-center ${area.textColor} font-semibold text-base md:text-lg hover:opacity-80 transition-opacity`}
               >
                 Learn More
                 <svg

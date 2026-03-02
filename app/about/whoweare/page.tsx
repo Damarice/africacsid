@@ -20,8 +20,8 @@ export default function WhoWeArePage() {
         />
         <div className="absolute inset-0 bg-primary/60" />
         
-        <div className="relative h-full flex items-center justify-start px-8 md:px-16">
-          <div className="max-w-2xl">
+        <div className="relative h-full flex items-center justify-center text-center px-4">
+          <div className="max-w-3xl">
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
               Who We Are
             </h1>
@@ -35,17 +35,17 @@ export default function WhoWeArePage() {
       {/* About with Image and Text Side by Side */}
       <section className="py-20 bg-white">
         <div className="container-custom max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
             <div>
               <img
                 src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&h=800&fit=crop&q=80"
                 alt="Community work"
-                className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
+                className="w-full h-full object-cover rounded-2xl shadow-2xl"
               />
             </div>
             
-            <div>
-              <h2 className="text-4xl font-bold text-gray-900 mb-8">
+            <div className="flex flex-col justify-center">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
                 About the Organization
               </h2>
               <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
@@ -118,7 +118,7 @@ export default function WhoWeArePage() {
       {/* Objectives - Simple List with Image Background */}
       <section className="py-20 bg-white">
         <div className="container-custom max-w-5xl">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-12 text-center">
             Our Objectives
           </h2>
           
@@ -145,7 +145,7 @@ export default function WhoWeArePage() {
       {/* Core Values - Image Grid */}
       <section className="py-20 bg-gray-50">
         <div className="container-custom max-w-6xl">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-12 text-center">
             Our Core Values
           </h2>
           

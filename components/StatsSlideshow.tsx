@@ -80,7 +80,7 @@ export default function StatsSlideshow() {
                     <div className="text-4xl font-bold text-gray-900 mb-2">
                       {stat.value}
                     </div>
-                    <div className="text-base text-gray-600 font-medium">
+                    <div className="text-base md:text-lg text-gray-600 font-medium">
                       {stat.label}
                     </div>
                   </div>

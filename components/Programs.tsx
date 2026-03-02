@@ -39,13 +39,13 @@ export default function Programs() {
   const { ref, isVisible } = useScrollAnimation(0.1);
 
   return (
-    <section className="py-20 md:py-28 bg-white relative overflow-hidden">
+    <section className="py-12 md:py-16 bg-white relative overflow-hidden">
       {/* Floating background elements */}
       <div className="absolute top-20 right-10 w-32 h-32 bg-primary/10 rounded-full blur-2xl animate-float"></div>
       <div className="absolute bottom-20 left-10 w-40 h-40 bg-accent/10 rounded-full blur-2xl animate-float" style={{ animationDelay: '1s' }}></div>
       
       <div className="container-custom relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             What We Do
           </h2>
@@ -71,15 +71,15 @@ export default function Programs() {
                 <div className={`text-6xl mb-8 transform transition-all duration-300 group-hover:scale-110 ${program.color === 'bg-gold' ? 'text-secondary' : program.color === 'bg-accent' ? 'text-accent' : 'text-primary'}`}>
                   <FontAwesomeIcon icon={program.icon} />
                 </div>
-                <h3 className={`text-3xl font-bold text-gray-900 mb-5 transition-colors duration-300 ${program.hoverColor}`}>
+                <h3 className={`text-2xl md:text-3xl font-bold text-gray-900 mb-5 transition-colors duration-300 ${program.hoverColor}`}>
                   {program.title}
                 </h3>
-                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                <p className="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed">
                   {program.description}
                 </p>
                 <Link
                   href={program.link}
-                  className={`inline-flex items-center font-semibold text-lg transition-colors group/link ${program.color === 'bg-gold' ? 'text-secondary hover:text-secondary-dark' : program.color === 'bg-accent' ? 'text-accent hover:text-accent-dark' : 'text-primary hover:text-primary-dark'}`}
+                  className={`inline-flex items-center font-semibold text-lg md:text-xl transition-colors group/link ${program.color === 'bg-gold' ? 'text-secondary hover:text-secondary-dark' : program.color === 'bg-accent' ? 'text-accent hover:text-accent-dark' : 'text-primary hover:text-primary-dark'}`}
                 >
                   Learn More
                   <svg
