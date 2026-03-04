@@ -167,11 +167,11 @@ export default function Hero() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-400">
                 <Link 
-                  href="/about" 
+                  href="/about/whoweare" 
                   className="bg-secondary hover:bg-secondary-dark text-neutral font-semibold py-3 px-8 rounded transition-all duration-300 transform active:scale-95 md:hover:scale-105 md:hover:shadow-lg will-change-transform"
                   style={{ WebkitTapHighlightColor: 'transparent' }}
                 >
-                  Click Here
+                  Read More
                 </Link>
               </div>
             </div>

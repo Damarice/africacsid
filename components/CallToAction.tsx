@@ -52,16 +52,16 @@ export default function CallToAction() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-400">
           <Link
-            href="/get-involved/partner"
+            href="/get-involved"
             className="bg-gold hover:bg-secondary-dark text-neutral font-semibold py-4 px-10 rounded-lg text-lg md:text-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
           >
-            Partner With Us
+            Get Involved
           </Link>
           <Link
-            href="/get-involved"
+            href="/contact"
             className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary font-semibold py-4 px-10 rounded-lg text-lg md:text-xl transition-all duration-300 transform hover:scale-105"
           >
-            Get Involved
+            Contact Us
           </Link>
         </div>
       </div>

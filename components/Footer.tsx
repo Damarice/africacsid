@@ -32,7 +32,7 @@ export default function Footer() {
             <h3 className="font-bold text-lg md:text-xl mb-4 text-white">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/about" className="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center group">
+                <Link href="/about/whoweare" className="text-gray-400 hover:text-gold transition-colors duration-300 flex items-center group">
                   <span className="w-0 group-hover:w-2 h-0.5 bg-gold transition-all duration-300 mr-0 group-hover:mr-2"></span>
                   About Us
                 </Link>
