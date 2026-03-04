@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuoteLeft, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
@@ -9,28 +10,28 @@ const testimonials = [
     quote: "Africa CSID's work in our community has transformed lives. Their approach to sustainable development is truly remarkable.",
     author: "Community Leader",
     location: "Nyatike, Kenya",
-    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=400&fit=crop&q=80",
+    image: "/Seeds of Change.JPG",
     borderColor: "border-primary",
   },
   {
     quote: "The climate resilience training provided by Africa CSID has empowered our farmers to adapt to changing weather patterns.",
     author: "Agricultural Coordinator",
     location: "Zanzibar, Tanzania",
-    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=400&fit=crop&q=80",
+    image: "/Climate Change.JPG",
     borderColor: "border-accent",
   },
   {
     quote: "Through their economic empowerment programs, we've seen real change in our community's self-sufficiency.",
     author: "Women's Group Leader",
     location: "Migori County, Kenya",
-    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=400&fit=crop&q=80",
+    image: "/Economic Empowerment.JPG",
     borderColor: "border-gold",
   },
   {
     quote: "The peace-building initiatives have brought our divided communities together and created lasting harmony.",
     author: "Peace Ambassador",
     location: "Migori, Kenya",
-    image: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400&h=400&fit=crop&q=80",
+    image: "/Peace and Conflict Transformation.JPG",
     borderColor: "border-secondary",
   },
 ];
@@ -183,10 +184,17 @@ export default function Testimonials() {
                       </p>
                     </div>
                     <div className="flex items-center gap-4">
-                      <div
-                        className={`w-14 h-14 rounded-full bg-cover bg-center border-4 ${testimonial.borderColor} flex-shrink-0`}
-                        style={{ backgroundImage: `url(${testimonial.image})` }}
-                      />
+                      <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-4 flex-shrink-0" style={{ borderColor: testimonial.borderColor.replace('border-', '') }}>
+                        <Image
+                          src={testimonial.image}
+                          alt={testimonial.author}
+                          fill
+                          sizes="96px"
+                          className="object-cover"
+                          quality={70}
+                          loading="lazy"
+                        />
+                      </div>
                       <div>
                         <div className="font-bold text-base md:text-lg text-gray-900">
                           {testimonial.author}

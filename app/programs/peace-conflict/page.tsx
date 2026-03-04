@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CTASection from "@/components/CTASection";
@@ -8,10 +9,14 @@ export default function PeaceConflictPage() {
       <Navbar />
       
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1200&h=600&fit=crop&q=60"
+        <Image
+          src="/Peace and Conflict Transformation.JPG"
           alt="Peace and Conflict Transformation"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          quality={75}
+          priority
         />
         <div className="absolute inset-0 bg-primary/60" />
         

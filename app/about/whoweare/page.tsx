@@ -3,6 +3,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CTASection from "@/components/CTASection";
+import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faBullseye } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,10 +14,14 @@ export default function WhoWeArePage() {
       
       {/* Hero with Image */}
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&h=1080&fit=crop&q=80"
+        <Image
+          src="/hero.JPG"
           alt="Community"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          quality={75}
+          priority
         />
         <div className="absolute inset-0 bg-primary/60" />
         
@@ -36,11 +41,15 @@ export default function WhoWeArePage() {
       <section className="py-20 bg-white">
         <div className="container-custom max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
-            <div>
-              <img
-                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&h=800&fit=crop&q=80"
+            <div className="relative h-[400px] lg:h-auto">
+              <Image
+                src="/community-work-1.JPG"
                 alt="Community work"
-                className="w-full h-full object-cover rounded-2xl shadow-2xl"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover rounded-2xl shadow-2xl"
+                quality={75}
+                loading="lazy"
               />
             </div>
             
@@ -80,10 +89,14 @@ export default function WhoWeArePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Vision */}
             <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl group">
-              <img
-                src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=800&fit=crop&q=80"
+              <Image
+                src="/community-work-2.JPG"
                 alt="Vision"
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                quality={75}
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-accent/95 via-accent/80 to-accent/60" />
               <div className="relative h-full flex flex-col justify-end p-10 text-white">
@@ -97,10 +110,14 @@ export default function WhoWeArePage() {
 
             {/* Mission */}
             <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl group">
-              <img
-                src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=800&h=800&fit=crop&q=80"
+              <Image
+                src="/community-work-4.JPG"
                 alt="Mission"
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-700"
+                quality={75}
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-gold/95 via-gold/80 to-gold/60" />
               <div className="relative h-full flex flex-col justify-end p-10 text-neutral">
@@ -151,22 +168,26 @@ export default function WhoWeArePage() {
           
           <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {[
-              { name: "Integrity and ethics", img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=400&fit=crop&q=80" },
-              { name: "Respect", img: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=400&h=400&fit=crop&q=80" },
-              { name: "Innovation", img: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=400&h=400&fit=crop&q=80" },
-              { name: "Trust", img: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=400&h=400&fit=crop&q=80" },
-              { name: "Ingenuity", img: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=400&h=400&fit=crop&q=80" },
-              { name: "Accountability", img: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=400&h=400&fit=crop&q=80" },
-              { name: "Value-centricity", img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=400&fit=crop&q=80" }
+              { name: "Integrity and ethics", img: "/community-work-3.JPG" },
+              { name: "Respect", img: "/community-work-5.JPG" },
+              { name: "Innovation", img: "/community-work-6.JPG" },
+              { name: "Trust", img: "/community-work-7.JPG" },
+              { name: "Ingenuity", img: "/community-work-9.JPG" },
+              { name: "Accountability", img: "/community-work-10.JPG" },
+              { name: "Value-centricity", img: "/community-work-11.JPG" }
             ].map((value, index) => (
               <div
                 key={index}
                 className="relative h-64 rounded-2xl overflow-hidden shadow-lg group cursor-pointer"
               >
-                <img
+                <Image
                   src={value.img}
                   alt={value.name}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  fill
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  quality={70}
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 to-primary/40 group-hover:from-primary to-primary/60 transition-all duration-300" />
                 <div className="relative h-full flex items-end p-6">

@@ -2,20 +2,21 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const slides = [
   {
-    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&h=1080&fit=crop&q=80",
+    image: "/homehero1.JPG",
     title: "Kawino Women Group in Nyatike, Migori County",
     description: "We are excited about what lies ahead and deeply grateful for the opportunity to co-create change. The Seeds of Change project begins, rooted in community and driven by purpose."
   },
   {
-    image: "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1920&h=1080&fit=crop&q=80",
+    image: "/homehero2.JPG",
     title: "Why gender-responsive action must anchor Africa's Climate Summit",
     description: "Advancing gender equality and climate action through inclusive policy and community engagement"
   },
   {
-    image: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=1920&h=1080&fit=crop&q=80",
+    image: "/homehero3.JPG",
     title: "Learning, Growing, and Sowing Seeds of Change",
     description: "The Africa CSID team had the privilege of visiting the Grow Biointensive Agriculture Center of Kenya model farm in Thika, a vibrant hub of agroecological innovation and grassroots resilience."
   },
@@ -131,16 +132,26 @@ export default function Hero() {
             transform: 'translate3d(0, 0, 0)'
           }}
         >
-          {/* Background Image with Parallax - disabled on mobile for performance */}
+          {/* Background Image with Parallax - optimized with Next.js Image */}
           <div
-            className="absolute inset-0 bg-cover bg-center will-change-transform"
+            className="absolute inset-0 will-change-transform"
             style={{ 
-              backgroundImage: `url(${slide.image})`,
               transform: isMobile ? 'scale(1.1)' : `translate3d(0, ${scrollY * 0.5}px, 0) scale(1.1)`,
               WebkitBackfaceVisibility: 'hidden',
               backfaceVisibility: 'hidden'
             }}
-          />
+          >
+            <Image
+              src={slide.image}
+              alt={slide.title}
+              fill
+              sizes="100vw"
+              className="object-cover"
+              quality={80}
+              priority={index === 0}
+              loading={index === 0 ? "eager" : "lazy"}
+            />
+          </div>
           
           {/* Overlay */}
           <div className="absolute inset-0 bg-primary/60" />

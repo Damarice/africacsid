@@ -13,7 +13,7 @@ export default function WorkWithUsPage() {
       
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&h=1080&fit=crop&q=80"
+          src="/hero.JPG"
           alt="Work With Us"
           className="absolute inset-0 w-full h-full object-cover"
         />

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CTASection from "@/components/CTASection";
@@ -8,10 +9,14 @@ export default function ClimatePage() {
       <Navbar />
       
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1200&h=600&fit=crop&q=60"
+        <Image
+          src="/Climate Change.JPG"
           alt="Climate Change"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          quality={75}
+          priority
         />
         <div className="absolute inset-0 bg-secondary/60" />
         

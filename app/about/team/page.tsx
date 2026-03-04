@@ -10,25 +10,25 @@ const teamMembers = [
   {
     name: "Dr. Jane Doe",
     position: "Executive Director",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop&q=80",
+    image: "/community-work-3.JPG",
     bio: "Leading Africa CSID with over 15 years of experience in sustainable development.",
   },
   {
     name: "John Smith",
     position: "Program Director",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop&q=80",
+    image: "/community-work-5.JPG",
     bio: "Overseeing program implementation across peace, economic, and climate initiatives.",
   },
   {
     name: "Mary Johnson",
     position: "Finance Manager",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&q=80",
+    image: "/community-work-6.JPG",
     bio: "Managing financial operations and ensuring transparency in all projects.",
   },
   {
     name: "David Brown",
     position: "Communications Lead",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop&q=80",
+    image: "/community-work-7.JPG",
     bio: "Building partnerships and amplifying our impact through strategic communications.",
   },
 ];
@@ -40,7 +40,7 @@ export default function TeamPage() {
       
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&h=1080&fit=crop&q=80"
+          src="/hero.JPG"
           alt="Our Team"
           className="absolute inset-0 w-full h-full object-cover"
         />

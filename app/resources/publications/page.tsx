@@ -15,11 +15,14 @@ export default function PublicationsPage() {
       <Navbar />
       
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1200&h=600&fit=crop&q=60"
+        <Image
+          src="/hero.JPG"
           alt="Publications"
-          className="absolute inset-0 w-full h-full object-cover"
-          loading="eager"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          quality={75}
+          priority
         />
         <div className="absolute inset-0 bg-primary/60" />
         

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export default function AboutSection() {
@@ -37,18 +38,23 @@ export default function AboutSection() {
                 tirelessly to uplift underserved communities and create lasting change.
               </p>
 
-              <button className="mt-6 bg-gold hover:bg-secondary-dark text-neutral font-semibold px-8 py-3 rounded transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
-                Learn More
-              </button>
+              <Link href="/about/whoweare">
+                <button className="mt-6 bg-gold hover:bg-secondary-dark text-neutral font-semibold px-8 py-3 rounded transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                  Learn More
+                </button>
+              </Link>
             </div>
           </div>
 
           {/* Image */}
           <div className={`relative h-[400px] rounded-lg overflow-hidden shadow-lg group ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'} transition-all duration-700 ease-out delay-300`}>
-            <img
-              src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&h=600&fit=crop&q=80"
-              alt="Community gathering"
-              className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+            <Image
+              src="/homeabout.JPG"
+              alt="Africa CSID community work"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover transform group-hover:scale-110 transition-transform duration-700"
+              priority
             />
           </div>
         </div>

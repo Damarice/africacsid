@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 
 export default function CallToAction() {
@@ -15,20 +16,26 @@ export default function CallToAction() {
   }, []);
 
   return (
-    <section
-      className="relative py-16 md:py-20 bg-cover bg-center overflow-hidden"
-      style={{
-        backgroundImage: "url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&h=600&fit=crop&q=80')",
-      }}
-    >
-      {/* Parallax background */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&h=600&fit=crop&q=80')",
-          transform: `translateY(${scrollY * 0.3}px)`
-        }}
-      />
+    <section className="relative py-16 md:py-20 overflow-hidden">
+      {/* Background Image with Parallax */}
+      <div className="absolute inset-0">
+        <div 
+          className="absolute inset-0"
+          style={{
+            transform: `translateY(${scrollY * 0.3}px)`
+          }}
+        >
+          <Image
+            src="/community-work-12.JPG"
+            alt="Join us"
+            fill
+            sizes="100vw"
+            className="object-cover"
+            quality={75}
+            priority={false}
+          />
+        </div>
+      </div>
       
       <div className="absolute inset-0 bg-gradient-to-r from-primary/95 to-primary-dark/95" />
       
@@ -36,7 +43,7 @@ export default function CallToAction() {
       <div className="absolute top-10 right-10 w-32 h-32 bg-white/10 rounded-full blur-2xl animate-float"></div>
       <div className="absolute bottom-10 left-10 w-40 h-40 bg-secondary/20 rounded-full blur-2xl animate-float" style={{ animationDelay: '1s' }}></div>
       
-      <div className="relative container-custom text-center text-white">
+      <div className="relative container-custom text-center text-white z-10">
         <h2 className="text-3xl md:text-5xl font-bold mb-6 animate-fade-in-up leading-tight">
           Join Us in Building a Better Africa
         </h2>

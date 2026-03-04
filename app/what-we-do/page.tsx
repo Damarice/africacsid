@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
   faHandshake, 
@@ -92,11 +93,15 @@ export default function WhatWeDoPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[350px] w-full overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1920&h=1080&fit=crop&q=80"
+      <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
+        <Image
+          src="/hero.JPG"
           alt="What We Do"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          quality={75}
+          priority
         />
         <div className="absolute inset-0 bg-primary/60" />
         
@@ -185,16 +190,20 @@ export default function WhatWeDoPage() {
                   <div className="p-4 lg:p-6 border-b border-gray-100 group-hover:border-primary/20 transition-colors duration-300">
                     <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
                       {/* Image */}
-                      <div className="w-full lg:w-64 h-40 lg:h-48 flex-shrink-0 rounded-lg overflow-hidden">
-                        <img 
+                      <div className="w-full lg:w-64 h-40 lg:h-48 flex-shrink-0 rounded-lg overflow-hidden relative">
+                        <Image
                           src={index === 0 ? 
-                            "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&h=600&fit=crop&q=80" : 
+                            "/community-work-5.JPG" : 
                             index === 1 ? 
-                            "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&h=600&fit=crop&q=80" :
-                            "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop&q=80"
+                            "/community-work-6.JPG" :
+                            "/community-work-7.JPG"
                           }
                           alt={area.title}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          fill
+                          sizes="(max-width: 1024px) 100vw, 256px"
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          quality={70}
+                          loading="lazy"
                         />
                       </div>
                       

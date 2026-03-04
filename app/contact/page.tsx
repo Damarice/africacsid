@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,10 +13,14 @@ export default function ContactPage() {
       <Navbar />
       
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&h=1080&fit=crop&q=80"
+        <Image
+          src="/hero.JPG"
           alt="Contact"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          quality={75}
+          priority
         />
         <div className="absolute inset-0 bg-primary/60" />
         

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CTASection from "@/components/CTASection";
@@ -76,11 +77,15 @@ export default function PlatformsPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[350px] w-full overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1920&h=1080&fit=crop&q=80"
+      <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
+        <Image
+          src="/hero.JPG"
           alt="Our Platforms & Partnerships"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          quality={75}
+          priority
         />
         <div className="absolute inset-0 bg-primary/60" />
         
@@ -124,16 +129,20 @@ export default function PlatformsPage() {
                 
                 {/* Platform Image */}
                 <div className="relative h-48 overflow-hidden">
-                  <img 
+                  <Image
                     src={
-                      index === 0 ? "https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&h=600&fit=crop&q=80" :
-                      index === 1 ? "https://images.unsplash.com/photo-1593113598332-cd288d649433?w=800&h=600&fit=crop&q=80" :
-                      index === 2 ? "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&h=600&fit=crop&q=80" :
-                      index === 3 ? "https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=800&h=600&fit=crop&q=80" :
-                      "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=800&h=600&fit=crop&q=80"
+                      index === 0 ? "/community-work-8.JPG" :
+                      index === 1 ? "/community-work-9.JPG" :
+                      index === 2 ? "/community-work-10.JPG" :
+                      index === 3 ? "/community-work-11.JPG" :
+                      "/community-work-12.JPG"
                     }
                     alt={platform.name}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    quality={70}
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                   

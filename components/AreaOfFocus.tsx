@@ -12,7 +12,7 @@ const areas = [
     shortDescription: "Promoting resilience in conflict-affected communities through comprehensive peacebuilding approaches.",
     fullDescription: "The primary objective of this component is to promote and enhance resilience in conflict-affected communities by leveraging relevant architectures for peacebuilding. This will be achieved by adopting a comprehensive and integrated approach that prioritizes the identification and resolution of conflict drivers that exist within these communities.",
     icon: faDove,
-    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&h=400&fit=crop&q=60",
+    image: "/Peace and Conflict Transformation.JPG",
     bgColor: "bg-primary",
     activities: [
       "Community dialogue and reconciliation programs",
@@ -26,7 +26,7 @@ const areas = [
     shortDescription: "Improving well-being and self-sufficiency of marginalized communities through sustainable economic solutions.",
     fullDescription: "The Economic Empowerment component of our program is an integral part of our efforts towards improving the well-being, productivity and self-sufficiency of marginalized communities across different regions. Through our comprehensive approach, we aim to address the root causes of poverty and guide our communities towards a more prosperous future.",
     icon: faUsers,
-    image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&h=400&fit=crop&q=60",
+    image: "/Economic Empowerment.JPG",
     bgColor: "bg-accent",
     activities: [
       "Skills training and capacity building",
@@ -40,7 +40,7 @@ const areas = [
     shortDescription: "Enhancing resilience and advocating for climate justice, biodiversity conservation, and sustainable food systems.",
     fullDescription: "One of our objectives is to address the escalating impacts of climate change, particularly on marginalized communities, by enhancing their overall resilience and advocating for climate justice, biodiversity conservation, and sustainable food systems. We work closely with these communities to boost their capacity to adapt to the impacts of climate change.",
     icon: faTree,
-    image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&h=400&fit=crop&q=60",
+    image: "/Climate Change.JPG",
     bgColor: "bg-secondary",
     activities: [
       "Climate resilience training and agroecology",
@@ -100,9 +100,11 @@ export default function AreaOfFocus() {
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover transition-transform duration-700 md:group-hover:scale-110 will-change-transform"
+                    quality={75}
+                    loading="lazy"
                   />
                   {/* Gradient Overlay */}
-                  <div className={`absolute inset-0 ${area.bgColor} ${expandedCard === index ? 'opacity-60' : 'opacity-85'} transition-opacity duration-300`}></div>
+                  <div className={`absolute inset-0 ${area.bgColor} ${expandedCard === index ? 'opacity-40' : 'opacity-60'} transition-opacity duration-300`}></div>
                   
                   {/* Icon and Title on Image (when collapsed) */}
                   {expandedCard !== index && (

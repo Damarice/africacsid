@@ -45,7 +45,7 @@ export default function VolunteerPage() {
       
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1920&h=1080&fit=crop&q=80"
+          src="/hero.JPG"
           alt="Volunteer With Us"
           className="absolute inset-0 w-full h-full object-cover"
         />
