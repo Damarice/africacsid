@@ -100,7 +100,7 @@ export const galleryImages: GalleryImage[] = [
     image: "/community-work-1.JPG",
     description: "Watch Emmy's inspiring story and journey",
     isVideo: true,
-    videoUrl: "/Emmy Clip.mp4"
+    videoUrl: "https://your-blob-url.vercel-storage.com/Emmy%20Clip.mp4" // Replace with actual Vercel Blob URL after upload
   },
   {
     id: 14,
@@ -109,6 +109,6 @@ export const galleryImages: GalleryImage[] = [
     image: "/community-work-2.JPG",
     description: "Hear from Janet about the impact of our programs",
     isVideo: true,
-    videoUrl: "/Janet.mp4"
+    videoUrl: "https://your-blob-url.vercel-storage.com/Janet.mp4" // Replace with actual Vercel Blob URL after upload
   }
 ];
