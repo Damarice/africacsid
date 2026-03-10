@@ -18,8 +18,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ 
       url: blob.url,
       pathname: blob.pathname,
-      contentType: blob.contentType,
-      size: blob.size
+      contentType: blob.contentType
     });
   } catch (error) {
     console.error('Upload error:', error);
