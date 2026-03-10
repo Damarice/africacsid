@@ -82,13 +82,6 @@ export default function GalleryPage() {
                     >
                       Your browser does not support the video tag.
                     </video>
-                    <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 to-transparent text-white">
-                      <span className="inline-block bg-primary px-3 py-1 rounded-full text-sm font-semibold mb-2">
-                        {image.category}
-                      </span>
-                      <h3 className="text-xl font-bold mb-2">{image.title}</h3>
-                      <p className="text-sm text-white/90">{image.description}</p>
-                    </div>
                   </div>
                 ) : (
                   <div className="relative h-80 overflow-hidden">
@@ -100,15 +93,6 @@ export default function GalleryPage() {
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       loading={index < 6 ? "eager" : "lazy"}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                        <span className="inline-block bg-primary px-3 py-1 rounded-full text-sm font-semibold mb-2">
-                          {image.category}
-                        </span>
-                        <h3 className="text-xl font-bold mb-2">{image.title}</h3>
-                        <p className="text-sm text-white/90">{image.description}</p>
-                      </div>
-                    </div>
                   </div>
                 )}
               </div>
