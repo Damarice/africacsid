@@ -3,6 +3,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandshake, faDonate, faUsers, faBullhorn } from "@fortawesome/free-solid-svg-icons";
 
@@ -43,19 +44,23 @@ export default function GetInvolvedPage() {
       <Navbar />
       
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
-        <img
+        <Image
           src="/hero.JPG"
           alt="Get Involved"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          quality={75}
+          priority
         />
         <div className="absolute inset-0 bg-primary/60" />
         
         <div className="relative h-full flex items-center justify-center text-center px-4">
           <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
               Get Involved
             </h1>
-            <p className="text-xl text-white/95">
+            <p className="text-xl md:text-2xl text-white/95">
               Join us in creating lasting change across Africa
             </p>
           </div>

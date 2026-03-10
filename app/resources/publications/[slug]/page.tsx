@@ -43,10 +43,6 @@ export default function PublicationDetailPage() {
             Back to Publications
           </Link>
           
-          <div className={`inline-block ${publication.typeColor} text-white px-4 py-2 rounded-full text-base md:text-lg font-semibold mb-4`}>
-            {publication.type}
-          </div>
-          
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
             {publication.title}
           </h1>
@@ -62,10 +58,6 @@ export default function PublicationDetailPage() {
               <span className="flex items-center gap-2">
                 <FontAwesomeIcon icon={faCalendar} className="text-primary" />
                 {publication.date}
-              </span>
-              <span className="flex items-center gap-2">
-                <FontAwesomeIcon icon={faFileAlt} className="text-primary" />
-                {publication.pages}
               </span>
             </div>
             

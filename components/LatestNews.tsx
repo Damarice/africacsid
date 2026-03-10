@@ -20,7 +20,7 @@ export default function LatestNews() {
       <div className="container-custom relative z-10" style={{ WebkitTransform: 'translate3d(0, 0, 0)', transform: 'translate3d(0, 0, 0)' }}>
         <div className="text-center mb-6">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Latest News & Insights
+            Latest Blogs & Articles
           </h2>
           <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">
             Stay updated with our latest stories and impact
@@ -88,7 +88,7 @@ export default function LatestNews() {
             className="inline-flex items-center bg-gold hover:bg-secondary-dark text-neutral font-semibold text-xl px-10 py-4 rounded-lg transition-all duration-300 transform active:scale-95 md:hover:scale-105 md:hover:shadow-lg will-change-transform"
             style={{ WebkitTapHighlightColor: 'transparent' }}
           >
-            View All News
+            View All Articles
             <svg
               className="w-6 h-6 ml-2"
               fill="none"

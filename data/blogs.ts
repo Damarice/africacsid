@@ -14,7 +14,7 @@ export const blogs = [
     id: 2,
     title: "Bridging the Gap: Africa CSID at COP30",
     excerpt: "Our participation in global climate discussions highlights the urgent need for inclusive climate action and the voices of marginalized communities in policy-making.",
-    image: "/Bridging the Gap.JPG",
+    image: "/COP30 LOGO.png",
     date: "October 14, 2025",
     author: "Policy Team",
     category: "Advocacy",

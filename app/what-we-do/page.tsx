@@ -107,10 +107,10 @@ export default function WhatWeDoPage() {
         
         <div className="relative h-full flex items-center justify-center text-center px-4">
           <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-3 animate-fade-in-up">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
               What We Do
             </h1>
-            <p className="text-lg md:text-xl text-white/95 animate-fade-in-up animation-delay-200">
+            <p className="text-xl md:text-2xl text-white/95">
               Transforming communities through sustainable development, climate resilience, 
               and inclusive approaches that center equity and environmental stewardship.
             </p>
@@ -189,25 +189,7 @@ export default function WhatWeDoPage() {
                   {/* Header Section */}
                   <div className="p-4 lg:p-6 border-b border-gray-100 group-hover:border-primary/20 transition-colors duration-300">
                     <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
-                      {/* Image */}
-                      <div className="w-full lg:w-64 h-40 lg:h-48 flex-shrink-0 rounded-lg overflow-hidden relative">
-                        <Image
-                          src={index === 0 ? 
-                            "/community-work-5.JPG" : 
-                            index === 1 ? 
-                            "/community-work-6.JPG" :
-                            "/community-work-7.JPG"
-                          }
-                          alt={area.title}
-                          fill
-                          sizes="(max-width: 1024px) 100vw, 256px"
-                          className="object-cover transition-transform duration-300 group-hover:scale-105"
-                          quality={70}
-                          loading="lazy"
-                        />
-                      </div>
-                      
-                      {/* Content */}
+                      {/* Icon and Content */}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start gap-3 mb-3">
                           <div className="w-12 h-12 flex-shrink-0 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 group-hover:shadow-lg transition-all duration-300 transform group-hover:scale-105">

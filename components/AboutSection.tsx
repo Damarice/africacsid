@@ -49,7 +49,7 @@ export default function AboutSection() {
           {/* Image */}
           <div className={`relative h-[400px] rounded-lg overflow-hidden shadow-lg group ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'} transition-all duration-700 ease-out delay-300`}>
             <Image
-              src="/homeabout.JPG"
+              src="/HomeAbout Us.JPG"
               alt="Africa CSID community work"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"

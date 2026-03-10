@@ -43,10 +43,6 @@ export default function EventDetailPage() {
             Back to Events
           </Link>
           
-          <div className={`inline-block ${event.typeColor} text-white px-4 py-2 rounded-full text-base md:text-lg font-semibold mb-4`}>
-            {event.type}
-          </div>
-          
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">
             {event.title}
           </h1>

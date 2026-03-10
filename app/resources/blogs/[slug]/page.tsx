@@ -43,10 +43,6 @@ export default function BlogDetailPage() {
             Back to Blogs
           </Link>
           
-          <div className={`inline-block ${blog.categoryColor} text-white px-4 py-2 rounded-full text-base md:text-lg font-semibold mb-4`}>
-            {blog.category}
-          </div>
-          
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             {blog.title}
           </h1>

@@ -154,11 +154,25 @@ export default function Navbar() {
                     Publications
                   </Link>
                   <Link 
+                    href="/resources/newsletters" 
+                    className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
+                    onClick={() => setResourcesDropdownOpen(false)}
+                  >
+                    Newsletters
+                  </Link>
+                  <Link 
                     href="/resources/blogs" 
                     className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
                     onClick={() => setResourcesDropdownOpen(false)}
                   >
-                    News & Blogs
+                    Blogs & Articles
+                  </Link>
+                  <Link 
+                    href="/resources/gallery" 
+                    className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
+                    onClick={() => setResourcesDropdownOpen(false)}
+                  >
+                    Gallery
                   </Link>
                   <Link 
                     href="/resources/events" 
@@ -309,11 +323,25 @@ export default function Navbar() {
                     Publications
                   </Link>
                   <Link 
+                    href="/resources/newsletters" 
+                    className="block px-8 py-3 text-gray-600 hover:bg-primary/10 hover:text-primary"
+                    onClick={closeMobileMenu}
+                  >
+                    Newsletters
+                  </Link>
+                  <Link 
                     href="/resources/blogs" 
                     className="block px-8 py-3 text-gray-600 hover:bg-primary/10 hover:text-primary"
                     onClick={closeMobileMenu}
                   >
-                    News & Blogs
+                    Blogs & Articles
+                  </Link>
+                  <Link 
+                    href="/resources/gallery" 
+                    className="block px-8 py-3 text-gray-600 hover:bg-primary/10 hover:text-primary"
+                    onClick={closeMobileMenu}
+                  >
+                    Gallery
                   </Link>
                   <Link 
                     href="/resources/events" 

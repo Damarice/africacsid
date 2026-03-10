@@ -91,10 +91,10 @@ export default function PlatformsPage() {
         
         <div className="relative h-full flex items-center justify-center text-center px-4">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 animate-fade-in-up">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
               Our Platforms & Partnerships
             </h1>
-            <p className="text-lg text-white/95 animate-fade-in-up animation-delay-200">
+            <p className="text-xl md:text-2xl text-white/95">
               Collaborating across networks to transform food systems and build climate resilience
             </p>
           </div>
@@ -127,41 +127,21 @@ export default function PlatformsPage() {
                 {/* Animated Background */}
                 <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
-                {/* Platform Image */}
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={
-                      index === 0 ? "/community-work-8.JPG" :
-                      index === 1 ? "/community-work-9.JPG" :
-                      index === 2 ? "/community-work-10.JPG" :
-                      index === 3 ? "/community-work-11.JPG" :
-                      "/community-work-12.JPG"
-                    }
-                    alt={platform.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                    quality={70}
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                  
-                  {/* Logo Overlay on Image */}
-                  {platform.logo && (
-                    <div className="absolute bottom-4 left-4 w-16 h-16 bg-white rounded-lg p-2 shadow-lg">
-                      <img 
-                        src={platform.logo} 
-                        alt={`${platform.acronym} Logo`}
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                  )}
-                </div>
-                
-                {/* Platform Header */}
+                {/* Platform Header - Logo Only */}
                 <div className="relative p-6 border-b border-gray-100 group-hover:border-primary/20 transition-colors duration-300">
-                  <div className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-4">
                     <div className="flex items-start justify-between gap-4">
+                      {/* Logo */}
+                      {platform.logo && (
+                        <div className="w-20 h-20 bg-white rounded-lg p-2 shadow-md flex-shrink-0">
+                          <img 
+                            src={platform.logo} 
+                            alt={`${platform.acronym} Logo`}
+                            className="w-full h-full object-contain"
+                          />
+                        </div>
+                      )}
+                      
                       <div className="flex-1 min-w-0">
                         <h3 className="text-lg lg:text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors duration-300 leading-tight">
                           {platform.name}

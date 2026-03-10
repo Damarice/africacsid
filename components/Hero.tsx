@@ -6,19 +6,19 @@ import Image from "next/image";
 
 const slides = [
   {
-    image: "/homehero1.JPG",
+    image: "/Kawino Women Group_Agroecology project.jpg",
     title: "Kawino Women Group in Nyatike, Migori County",
     description: "We are excited about what lies ahead and deeply grateful for the opportunity to co-create change. The Seeds of Change project begins, rooted in community and driven by purpose."
   },
   {
-    image: "/homehero2.JPG",
-    title: "Why gender-responsive action must anchor Africa's Climate Summit",
-    description: "Advancing gender equality and climate action through inclusive policy and community engagement"
+    image: "/Youth Climate Peace & Security Project, Kajiado.JPG",
+    title: "Youth Climate Peace & Security Project",
+    description: "Empowering young leaders in Kajiado to drive climate action and build peaceful, resilient communities through innovative solutions."
   },
   {
-    image: "/homehero3.JPG",
-    title: "Learning, Growing, and Sowing Seeds of Change",
-    description: "The Africa CSID team had the privilege of visiting the Grow Biointensive Agriculture Center of Kenya model farm in Thika, a vibrant hub of agroecological innovation and grassroots resilience."
+    image: "/Women, Peace and Security Report.JPG",
+    title: "Women, Peace and Security",
+    description: "Advancing gender equality and climate action through inclusive policy and community engagement across marginalized regions."
   },
 ];
 

@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CTASection from "@/components/CTASection";
 import Link from "next/link";
+import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faUsers, faHandshake, faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 
@@ -44,10 +45,14 @@ export default function VolunteerPage() {
       <Navbar />
       
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
-        <img
+        <Image
           src="/hero.JPG"
           alt="Volunteer With Us"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          sizes="100vw"
+          className="object-cover"
+          quality={75}
+          priority
         />
         <div className="absolute inset-0 bg-primary/60" />
         
@@ -56,7 +61,7 @@ export default function VolunteerPage() {
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
               Volunteer With Us
             </h1>
-            <p className="text-lg md:text-xl text-white/95">
+            <p className="text-xl md:text-2xl text-white/95">
               Make a difference by sharing your time, skills, and passion for sustainable development
             </p>
           </div>

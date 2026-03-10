@@ -63,9 +63,6 @@ export default function EventsPage() {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     loading={index < 3 ? "eager" : "lazy"}
                   />
-                  <div className={`absolute top-4 left-4 ${event.typeColor} text-white px-4 py-2 rounded-full text-base md:text-lg font-semibold`}>
-                    {event.type}
-                  </div>
                 </div>
                 
                 <div className="p-8">
@@ -128,9 +125,6 @@ export default function EventsPage() {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     loading="lazy"
                   />
-                  <div className="absolute top-4 left-4 bg-gray-600 text-white px-4 py-2 rounded-full text-base md:text-lg font-semibold">
-                    {event.type}
-                  </div>
                 </div>
                 
                 <div className="p-8">

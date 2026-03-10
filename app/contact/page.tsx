@@ -26,10 +26,10 @@ export default function ContactPage() {
         
         <div className="relative h-full flex items-center justify-center text-center px-4">
           <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
               Contact Us
             </h1>
-            <p className="text-xl text-white/95">
+            <p className="text-xl md:text-2xl text-white/95">
               Get in touch with our team
             </p>
           </div>

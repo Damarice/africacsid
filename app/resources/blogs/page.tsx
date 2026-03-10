@@ -17,7 +17,7 @@ export default function BlogsPage() {
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
         <Image
           src="/hero.JPG"
-          alt="News & Blogs"
+          alt="Blogs & Articles"
           fill
           sizes="100vw"
           className="object-cover"
@@ -29,7 +29,7 @@ export default function BlogsPage() {
         <div className="relative h-full flex items-center justify-center text-center px-4">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              News & Blogs
+              Blogs & Articles
             </h1>
             <p className="text-xl md:text-2xl text-white/95">
               Latest stories, insights, and updates from the field
@@ -55,9 +55,6 @@ export default function BlogsPage() {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     loading={index < 3 ? "eager" : "lazy"}
                   />
-                  <div className={`absolute top-4 left-4 ${blog.categoryColor} text-white px-4 py-2 rounded-full text-base md:text-lg font-semibold`}>
-                    {blog.category}
-                  </div>
                 </div>
                 
                 <div className="p-8">
