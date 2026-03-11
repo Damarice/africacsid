@@ -28,7 +28,7 @@ const teamMembers = [
     bio: "Ensuring program effectiveness through comprehensive monitoring, evaluation, and learning frameworks.",
   },
   {
-    name: "Marylyne",
+    name: "Wasal Marylyne",
     position: "Communication & Programs Support Assistant",
     image: "/Marylyne.jpeg",
     bio: "Supporting communications and program activities to amplify our impact and reach.",
