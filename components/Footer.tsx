@@ -58,9 +58,9 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Programs */}
+          {/* Areas of Focus */}
           <div>
-            <h3 className="font-bold text-lg md:text-xl mb-4 text-white">Our Programs</h3>
+            <h3 className="font-bold text-lg md:text-xl mb-4 text-white">Areas of Focus</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="/programs/peace-conflict" className="text-gray-400 hover:text-primary transition-colors duration-300 flex items-center group">
@@ -90,10 +90,6 @@ export default function Footer() {
               <li className="flex items-start group hover:text-white transition-colors duration-300">
                 <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-3 mt-1 text-gold" />
                 <span>Kenya</span>
-              </li>
-              <li className="flex items-start group hover:text-white transition-colors duration-300">
-                <FontAwesomeIcon icon={faPhone} className="mr-3 mt-1 text-gold" />
-                <span>+254113909961</span>
               </li>
               <li className="flex items-start group hover:text-white transition-colors duration-300">
                 <FontAwesomeIcon icon={faEnvelope} className="mr-3 mt-1 text-gold" />

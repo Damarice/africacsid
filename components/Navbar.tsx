@@ -8,15 +8,18 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+  const [whatWeDoDropdownOpen, setWhatWeDoDropdownOpen] = useState(false);
   const [resourcesDropdownOpen, setResourcesDropdownOpen] = useState(false);
   const [workDropdownOpen, setWorkDropdownOpen] = useState(false);
   
   // Mobile dropdown states
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
+  const [mobileWhatWeDoOpen, setMobileWhatWeDoOpen] = useState(false);
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
   const [mobileWorkOpen, setMobileWorkOpen] = useState(false);
 
   const aboutRef = useRef<HTMLDivElement>(null);
+  const whatWeDoRef = useRef<HTMLDivElement>(null);
   const resourcesRef = useRef<HTMLDivElement>(null);
   const workRef = useRef<HTMLDivElement>(null);
 
@@ -34,6 +37,9 @@ export default function Navbar() {
       if (aboutRef.current && !aboutRef.current.contains(event.target as Node)) {
         setAboutDropdownOpen(false);
       }
+      if (whatWeDoRef.current && !whatWeDoRef.current.contains(event.target as Node)) {
+        setWhatWeDoDropdownOpen(false);
+      }
       if (resourcesRef.current && !resourcesRef.current.contains(event.target as Node)) {
         setResourcesDropdownOpen(false);
       }
@@ -49,6 +55,7 @@ export default function Navbar() {
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
     setMobileAboutOpen(false);
+    setMobileWhatWeDoOpen(false);
     setMobileResourcesOpen(false);
     setMobileWorkOpen(false);
   };
@@ -84,6 +91,7 @@ export default function Navbar() {
               <button 
                 onClick={() => {
                   setAboutDropdownOpen(!aboutDropdownOpen);
+                  setWhatWeDoDropdownOpen(false);
                   setResourcesDropdownOpen(false);
                   setWorkDropdownOpen(false);
                 }}
@@ -121,13 +129,41 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* What We Do Link */}
-            <Link
-              href="/what-we-do"
-              className="font-medium text-gray-700 hover:text-primary transition-colors"
-            >
-              What We Do
-            </Link>
+            {/* What We Do Dropdown */}
+            <div className="relative" ref={whatWeDoRef}>
+              <button 
+                onClick={() => {
+                  setWhatWeDoDropdownOpen(!whatWeDoDropdownOpen);
+                  setAboutDropdownOpen(false);
+                  setResourcesDropdownOpen(false);
+                  setWorkDropdownOpen(false);
+                }}
+                className="font-medium text-gray-700 hover:text-primary transition-colors flex items-center"
+              >
+                What We Do
+                <svg className={`w-4 h-4 ml-1 transition-transform ${whatWeDoDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {whatWeDoDropdownOpen && (
+                <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl py-2 z-50 border border-gray-100">
+                  <Link 
+                    href="/what-we-do" 
+                    className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
+                    onClick={() => setWhatWeDoDropdownOpen(false)}
+                  >
+                    Overview
+                  </Link>
+                  <Link 
+                    href="/programs/projects" 
+                    className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
+                    onClick={() => setWhatWeDoDropdownOpen(false)}
+                  >
+                    Our Projects
+                  </Link>
+                </div>
+              )}
+            </div>
 
             {/* Resources Dropdown */}
             <div className="relative" ref={resourcesRef}>
@@ -135,6 +171,7 @@ export default function Navbar() {
                 onClick={() => {
                   setResourcesDropdownOpen(!resourcesDropdownOpen);
                   setAboutDropdownOpen(false);
+                  setWhatWeDoDropdownOpen(false);
                   setWorkDropdownOpen(false);
                 }}
                 className="font-medium text-gray-700 hover:text-primary transition-colors flex items-center"
@@ -191,6 +228,7 @@ export default function Navbar() {
                 onClick={() => {
                   setWorkDropdownOpen(!workDropdownOpen);
                   setAboutDropdownOpen(false);
+                  setWhatWeDoDropdownOpen(false);
                   setResourcesDropdownOpen(false);
                 }}
                 className="font-medium text-gray-700 hover:text-primary transition-colors flex items-center"
@@ -294,13 +332,36 @@ export default function Navbar() {
               )}
             </div>
 
-            <Link 
-              href="/what-we-do" 
-              className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary text-lg"
-              onClick={closeMobileMenu}
-            >
-              What We Do
-            </Link>
+            {/* Mobile What We Do Dropdown */}
+            <div>
+              <button
+                onClick={() => setMobileWhatWeDoOpen(!mobileWhatWeDoOpen)}
+                className="w-full flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary text-lg"
+              >
+                What We Do
+                <svg className={`w-5 h-5 transition-transform ${mobileWhatWeDoOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {mobileWhatWeDoOpen && (
+                <div className="bg-gray-50">
+                  <Link 
+                    href="/what-we-do" 
+                    className="block px-8 py-3 text-gray-600 hover:bg-primary/10 hover:text-primary"
+                    onClick={closeMobileMenu}
+                  >
+                    Overview
+                  </Link>
+                  <Link 
+                    href="/programs/projects" 
+                    className="block px-8 py-3 text-gray-600 hover:bg-primary/10 hover:text-primary"
+                    onClick={closeMobileMenu}
+                  >
+                    Our Projects
+                  </Link>
+                </div>
+              )}
+            </div>
             
             {/* Mobile Resources Dropdown */}
             <div>
