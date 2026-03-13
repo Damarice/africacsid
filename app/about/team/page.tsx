@@ -18,7 +18,7 @@ const teamMembers = [
   {
     name: "Hezborn Ouma",
     position: "Programme and Operations Coordinator",
-    image: null, // Add photo later
+    image: "/Hesborn.png",
     bio: "Coordinating program implementation and operations across peace, economic, and climate initiatives.",
   },
   {
