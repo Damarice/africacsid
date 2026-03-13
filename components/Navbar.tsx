@@ -205,6 +205,13 @@ export default function Navbar() {
                     Blogs & Articles
                   </Link>
                   <Link 
+                    href="/resources/reports" 
+                    className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
+                    onClick={() => setResourcesDropdownOpen(false)}
+                  >
+                    Reports
+                  </Link>
+                  <Link 
                     href="/resources/gallery" 
                     className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
                     onClick={() => setResourcesDropdownOpen(false)}
@@ -396,6 +403,13 @@ export default function Navbar() {
                     onClick={closeMobileMenu}
                   >
                     Blogs & Articles
+                  </Link>
+                  <Link 
+                    href="/resources/reports" 
+                    className="block px-8 py-3 text-gray-600 hover:bg-primary/10 hover:text-primary"
+                    onClick={closeMobileMenu}
+                  >
+                    Reports
                   </Link>
                   <Link 
                     href="/resources/gallery" 
