@@ -1,11 +1,26 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CTASection from "@/components/CTASection";
 
 export default function ProjectsPage() {
+  const [showFullText, setShowFullText] = useState(false);
+
+  const fullProjectText = `In the pastoral landscapes of Baringo County and the fisheries of the Lake Victoria Basin, climate change has intensified resource scarcity, fueling conflict and straining social cohesion. Families are displaced, grazing lands are shrinking, and fish stocks are dwindling. Yet amid these challenges, women are leading informal reconciliation efforts through prayer, dialogue, and livelihood networks. They are stepping forward as powerful agents of peace and resilience.
+
+With support from KAIROS Canada, Africa CSID is building on this momentum through the project Women, Faith, and Climate Security: Strengthening the Gender-Conflict-Climate Nexus Across Kenya's Fragile Ecosystems. This initiative seeks to institutionalize women-led peace committees, foster interfaith solidarity, and advance climate-resilient livelihoods. Rooted in faith and cultural values, it bridges pastoral and fisher contexts under a common peace-climate framework, aligning with Kenya's Security Strategy, the National Climate Change Action Plan, and global Women, Peace, and Security commitments.
+
+Over the project's period, Africa CSID will strengthen existing Ilchamus-Pokot-Endorois peace committees in Baringo, establish fisherwomen peace committees in Migori and Homa Bay, and convene interfaith dialogues that weave together prayer, storytelling, and ecological justice. At the national level, the project hosted a Women, Faith & Climate Forum ahead of UNEA7, amplifying grassroots voices and showcasing community-driven models. Through multimedia campaigns under Justice and Renewal: Women, Faith, and Climate Peace, women's oral histories and peacebuilding journeys will be shared, linking local realities to global solidarity movements.
+
+The project seeks to directly benefit 600 women, children, and youth, while also expecting more than 3,000 community members will experience improved peace and ecological stability. By centering women's leadership and intergenerational inclusion, the project seeks to not only strengthen local resilience but also elevate women's priorities into national and international climate-peace frameworks.
+
+This partnership between Africa CSID and KAIROS embodies the Jubilee call for justice, renewal, and solidarity. It is a testament to the power of women, faith, and community in shaping a more peaceful and sustainable future for Kenya and beyond.`;
+
+  const shortText = fullProjectText.substring(0, 400) + "...";
+
   return (
     <>
       <Navbar />
@@ -62,30 +77,17 @@ export default function ProjectsPage() {
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
                   Women, Faith, and Climate Security: Strengthening the Gender-Conflict-Climate Nexus Across Kenya's Fragile Ecosystems
                 </h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  In the pastoral landscapes of Baringo County and the fisheries of the Lake Victoria Basin, climate change has intensified resource scarcity, fueling conflict and straining social cohesion. With support from KAIROS Canada, this initiative seeks to institutionalize women-led peace committees, foster interfaith solidarity, and advance climate-resilient livelihoods.
-                </p>
                 
-                <div className="space-y-4 mb-6">
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Key Focus Areas:</h4>
-                    <ul className="text-gray-600 space-y-1 ml-4">
-                      <li>• Strengthening Ilchamus-Pokot-Endorois peace committees in Baringo</li>
-                      <li>• Establishing fisherwomen peace committees in Migori and Homa Bay</li>
-                      <li>• Convening interfaith dialogues weaving prayer, storytelling, and ecological justice</li>
-                      <li>• Multimedia campaigns under "Justice and Renewal: Women, Faith, and Climate Peace"</li>
-                    </ul>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Expected Impact:</h4>
-                    <ul className="text-gray-600 space-y-1 ml-4">
-                      <li>• Directly benefit 600 women, children, and youth</li>
-                      <li>• Improve peace and ecological stability for 3,000+ community members</li>
-                      <li>• Elevate women's priorities into national and international climate-peace frameworks</li>
-                    </ul>
-                  </div>
+                <div className="text-gray-600 mb-6 leading-relaxed whitespace-pre-line">
+                  {showFullText ? fullProjectText : shortText}
                 </div>
+
+                <button
+                  onClick={() => setShowFullText(!showFullText)}
+                  className="text-primary hover:text-primary-dark font-semibold mb-6 transition-colors"
+                >
+                  {showFullText ? "Read Less" : "Read More"}
+                </button>
 
                 <div className="flex flex-wrap gap-2 mb-6">
                   <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">Climate Security</span>
