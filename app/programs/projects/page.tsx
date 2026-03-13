@@ -60,10 +60,10 @@ This partnership between Africa CSID and KAIROS embodies the Jubilee call for ju
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-1 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Women, Faith, and Climate Security Project */}
             <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-t-4 border-primary">
-              <div className="relative h-64">
+              <div className="relative h-56">
                 <Image
                   src="/Women, Faith, and Climate Security.jpeg"
                   alt="Women, Faith, and Climate Security Project"
@@ -73,27 +73,27 @@ This partnership between Africa CSID and KAIROS embodies the Jubilee call for ju
                   quality={75}
                 />
               </div>
-              <div className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
                   Women, Faith, and Climate Security: Strengthening the Gender-Conflict-Climate Nexus Across Kenya's Fragile Ecosystems
                 </h3>
                 
-                <div className="text-gray-600 mb-6 leading-relaxed whitespace-pre-line">
+                <div className="text-gray-600 mb-4 leading-relaxed whitespace-pre-line">
                   {showFullText ? fullProjectText : shortText}
                 </div>
 
                 <button
                   onClick={() => setShowFullText(!showFullText)}
-                  className="text-primary hover:text-primary-dark font-semibold mb-6 transition-colors"
+                  className="text-primary hover:text-primary-dark font-semibold mb-4 transition-colors"
                 >
                   {showFullText ? "Read Less" : "Read More"}
                 </button>
 
-                <div className="flex flex-wrap gap-2 mb-6">
-                  <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">Climate Security</span>
-                  <span className="px-3 py-1 bg-secondary/10 text-secondary rounded-full text-sm font-medium">Women's Leadership</span>
-                  <span className="px-3 py-1 bg-gold/10 text-gold rounded-full text-sm font-medium">Peace Building</span>
-                  <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">Interfaith Dialogue</span>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  <span className="px-2 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">Climate Security</span>
+                  <span className="px-2 py-1 bg-secondary/10 text-secondary rounded-full text-sm font-medium">Women's Leadership</span>
+                  <span className="px-2 py-1 bg-gold/10 text-gold rounded-full text-sm font-medium">Peace Building</span>
+                  <span className="px-2 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">Interfaith Dialogue</span>
                 </div>
 
                 <div className="text-sm text-gray-500">
