@@ -48,10 +48,16 @@ export default function ReportsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Women's Agency in Peacebuilding Report */}
             <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-t-4 border-primary">
-              <div className="relative h-48 bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-                <svg className="w-16 h-16 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
+              <div className="relative h-64 bg-gray-100">
+                <iframe
+                  src="/Women%E2%80%99s%20agency%20in%20peacebuilding%20amid%20climate%20induced%20conflict.pdf#toolbar=0&navpanes=0&scrollbar=0&page=1&zoom=75"
+                  className="w-full h-full border-0"
+                  title="Women's Agency in Peacebuilding Report Preview"
+                  loading="lazy"
+                />
+                <div className="absolute top-2 right-2 bg-black/70 text-white px-2 py-1 rounded text-xs">
+                  PDF Preview
+                </div>
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
@@ -71,16 +77,30 @@ export default function ReportsPage() {
                   <div className="text-sm text-gray-500">
                     <span className="font-medium">Format:</span> PDF
                   </div>
-                  <a
-                    href="/Women's agency in peacebuilding amid climate induced conflict.pdf"
-                    download="Womens_Agency_Peacebuilding_Climate_Conflict.pdf"
-                    className="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg transition-colors duration-300 flex items-center gap-2"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    Download
-                  </a>
+                  <div className="flex gap-2">
+                    <a
+                      href="/Women%E2%80%99s%20agency%20in%20peacebuilding%20amid%20climate%20induced%20conflict.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-secondary hover:bg-secondary-dark text-white px-4 py-2 rounded-lg transition-colors duration-300 flex items-center gap-2 text-sm"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                      </svg>
+                      View
+                    </a>
+                    <a
+                      href="/Women%E2%80%99s%20agency%20in%20peacebuilding%20amid%20climate%20induced%20conflict.pdf"
+                      download="Womens_Agency_Peacebuilding_Climate_Conflict.pdf"
+                      className="bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg transition-colors duration-300 flex items-center gap-2 text-sm"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                      Download
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
