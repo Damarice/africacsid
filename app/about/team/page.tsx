@@ -12,7 +12,7 @@ const teamMembers = [
   {
     name: "Salome Owuonda",
     position: "Executive Director",
-    image: null, // Add photo later
+    image: "/salome.jpeg",
     bio: "Leading Africa CSID's mission to support marginalized communities across Africa through sustainable and inclusive development.",
   },
   {
