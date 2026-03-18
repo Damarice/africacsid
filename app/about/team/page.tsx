@@ -17,9 +17,9 @@ const teamMembers = [
   },
   {
     name: "Hezborn Ouma",
-    position: "Programme and Operations Coordinator",
+    position: "Head of Programs",
     image: "/Hesborn.png",
-    bio: "Coordinating program implementation and operations across peace, economic, and climate initiatives.",
+    bio: "Leading program implementation and operations across peace, economic, and climate initiatives.",
   },
   {
     name: "Clifford Odero",
@@ -34,10 +34,10 @@ const teamMembers = [
     bio: "Supporting communications and program activities to amplify our impact and reach.",
   },
   {
-    name: "Eliakim",
-    position: "Accounts & Finance Officer",
-    image: null, // Add photo later
-    bio: "Managing financial operations and ensuring transparency and accountability in all projects.",
+    name: "Winnie Malombo",
+    position: "Operations Coordinator",
+    image: "/Winnie Malombo.jpeg",
+    bio: "Coordinating operational activities and ensuring smooth execution of organizational processes and initiatives.",
   },
 ];
 
