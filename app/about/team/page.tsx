@@ -85,7 +85,11 @@ export default function TeamPage() {
                       alt={member.name}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-cover"
+                      className={`${
+                        member.name === "Salome Owuonda" || member.name === "Hezborn Ouma" 
+                          ? "object-cover object-top" 
+                          : "object-cover"
+                      }`}
                       quality={75}
                     />
                   </div>
