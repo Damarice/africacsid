@@ -27,45 +27,51 @@ const platforms = [
 ];
 
 export default function Partners() {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const partnersScrollRef = useRef<HTMLDivElement>(null);
+  const platformsScrollRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
-  const animationFrameRef = useRef<number | undefined>(undefined);
+  const partnersAnimationRef = useRef<number | undefined>(undefined);
+  const platformsAnimationRef = useRef<number | undefined>(undefined);
 
   useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer) return;
+    const startAnimation = (scrollContainer: HTMLDivElement | null, items: any[], animationRef: React.MutableRefObject<number | undefined>) => {
+      if (!scrollContainer) return;
 
-    let scrollAmount = 0;
-    const scrollSpeed = 0.5; // Reduced speed for smoother iOS performance
+      let scrollAmount = 0;
+      const scrollSpeed = 0.5;
 
-    const scroll = () => {
-      if (!scrollContainer || isPaused) {
-        animationFrameRef.current = requestAnimationFrame(scroll);
-        return;
-      }
-      
-      scrollAmount += scrollSpeed;
-      
-      // Get the width of one item plus gap
-      const itemWidth = scrollContainer.scrollWidth / (partners.length * 2);
-      
-      // Reset when we've scrolled through half the items (since we duplicated them)
-      if (scrollAmount >= itemWidth * partners.length) {
-        scrollAmount = 0;
-      }
-      
-      // Use translate3d for better iOS performance
-      scrollContainer.style.transform = `translate3d(-${scrollAmount}px, 0, 0)`;
-      scrollContainer.style.webkitTransform = `translate3d(-${scrollAmount}px, 0, 0)`;
-      
-      animationFrameRef.current = requestAnimationFrame(scroll);
+      const scroll = () => {
+        if (!scrollContainer || isPaused) {
+          animationRef.current = requestAnimationFrame(scroll);
+          return;
+        }
+        
+        scrollAmount += scrollSpeed;
+        
+        const itemWidth = scrollContainer.scrollWidth / (items.length * 2);
+        
+        if (scrollAmount >= itemWidth * items.length) {
+          scrollAmount = 0;
+        }
+        
+        scrollContainer.style.transform = `translate3d(-${scrollAmount}px, 0, 0)`;
+        scrollContainer.style.webkitTransform = `translate3d(-${scrollAmount}px, 0, 0)`;
+        
+        animationRef.current = requestAnimationFrame(scroll);
+      };
+
+      animationRef.current = requestAnimationFrame(scroll);
     };
 
-    animationFrameRef.current = requestAnimationFrame(scroll);
+    startAnimation(partnersScrollRef.current, duplicatedPartners, partnersAnimationRef);
+    startAnimation(platformsScrollRef.current, duplicatedPlatforms, platformsAnimationRef);
 
     return () => {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
+      if (partnersAnimationRef.current) {
+        cancelAnimationFrame(partnersAnimationRef.current);
+      }
+      if (platformsAnimationRef.current) {
+        cancelAnimationFrame(platformsAnimationRef.current);
       }
     };
   }, [isPaused]);
@@ -74,7 +80,7 @@ export default function Partners() {
   const duplicatedPartners = [...partners, ...partners];
   const duplicatedPlatforms = [...platforms, ...platforms];
 
-  const renderScrollingSection = (items: any[], title: string) => (
+  const renderScrollingSection = (items: any[], title: string, scrollRef: React.RefObject<HTMLDivElement>) => (
     <div className="mb-16">
       <div className="text-center mb-8">
         <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
@@ -183,8 +189,8 @@ export default function Partners() {
           </p>
         </div>
 
-        {renderScrollingSection(duplicatedPartners, "Partners")}
-        {renderScrollingSection(duplicatedPlatforms, "Platforms")}
+        {renderScrollingSection(duplicatedPartners, "Partners", partnersScrollRef)}
+        {renderScrollingSection(duplicatedPlatforms, "Platforms", platformsScrollRef)}
 
         <div className="text-center mt-10">
           <Link
