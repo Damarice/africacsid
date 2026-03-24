@@ -80,7 +80,7 @@ export default function Partners() {
   const duplicatedPartners = [...partners, ...partners];
   const duplicatedPlatforms = [...platforms, ...platforms];
 
-  const renderScrollingSection = (items: any[], title: string, scrollRef: React.RefObject<HTMLDivElement>) => (
+  const renderScrollingSection = (items: any[], title: string, scrollRef: React.RefObject<HTMLDivElement | null>) => (
     <div className="mb-16">
       <div className="text-center mb-8">
         <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
