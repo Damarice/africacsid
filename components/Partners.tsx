@@ -5,25 +5,25 @@ import Link from "next/link";
 import Image from "next/image";
 
 const partners = [
-  { name: "Kairos Canada", logo: null, type: "partner" },
-  { name: "Agroecology Fund", logo: null, type: "partner" },
-  { name: "NDC Partnership", logo: null, type: "partner" },
-  { name: "Community Forest International", logo: null, type: "partner" },
+  { name: "Kairos Canada", logo: "/kairos canada.jfif.jpeg", type: "partner" },
+  { name: "Agroecology Fund", logo: "/Agroecolofy Fund logo.jfif.jpeg", type: "partner" },
+  { name: "NDC Partnership", logo: "/ndcpartnership_logo.jfif.jpeg", type: "partner" },
+  { name: "Community Forest International", logo: "/community_forests_international_logo.jfif.jpeg", type: "partner" },
   { name: "Community Forest Pemba", logo: null, type: "partner" },
-  { name: "Arid Lands Information Network (ALIN Kenya)", logo: null, type: "partner" },
-  { name: "ESSA Technologies", logo: null, type: "partner" },
-  { name: "State Department for Gender Affairs and Affirmative Action (SDGAAA)", logo: null, type: "partner" },
-  { name: "State Department for Environment and Climate Change (SDECC)", logo: null, type: "partner" },
+  { name: "Arid Lands Information Network (ALIN Kenya)", logo: "/arid_lands_information_network_logo.jfif.jpeg", type: "partner" },
+  { name: "ESSA Technologies", logo: "/ESSA Technologies logo.jfif.jpeg", type: "partner" },
+  { name: "State Department for Gender Affairs and Affirmative Action (SDGAAA)", logo: "/GOK Logo.jfif.jpeg", type: "partner" },
+  { name: "State Department for Environment and Climate Change (SDECC)", logo: "/GOK Logo.jfif.jpeg", type: "partner" },
   { name: "Actors in Community Empowerment and Environmental Sustainability (ACEES)", logo: null, type: "partner" },
   { name: "Agropastoral Climate Resilience Alliance (ACRA)", logo: null, type: "partner" },
 ];
 
 const platforms = [
-  { name: "JRT", logo: "/images/JRT.png", fullName: "Just Rural Transition", type: "platform" },
-  { name: "ISFAA", logo: "/images/ISFAA.png", fullName: "Intersectoral Forum on Agrobiodiversity and Agroecology", type: "platform" },
-  { name: "CSA MSP", logo: "/images/CSA MSP.png", fullName: "Kenya Climate Smart Agriculture Multi Stakeholder Platform", type: "platform" },
-  { name: "KCCWG", logo: "/images/KCCWG.jpeg", fullName: "Kenya Climate Change Working Group", type: "platform" },
-  { name: "AFSTC", logo: "/images/AFSTC.png", fullName: "African Food Systems Transformation Collective", type: "platform" },
+  { name: "Just Rural Transition", logo: "/images/JRT.png", type: "platform" },
+  { name: "Intersectoral Forum on Agrobiodiversity and Agroecology", logo: "/images/ISFAA.png", type: "platform" },
+  { name: "Kenya Climate Smart Agriculture Multi Stakeholder Platform", logo: "/images/CSA MSP.png", type: "platform" },
+  { name: "Kenya Climate Change Working Group", logo: "/images/KCCWG.jpeg", type: "platform" },
+  { name: "African Food Systems Transformation Collective", logo: "/images/AFSTC.png", type: "platform" },
 ];
 
 export default function Partners() {
@@ -81,16 +81,16 @@ export default function Partners() {
   const duplicatedPlatforms = [...platforms, ...platforms];
 
   const renderScrollingSection = (items: any[], title: string, scrollRef: React.RefObject<HTMLDivElement | null>) => (
-    <div className="mb-16">
-      <div className="text-center mb-8">
-        <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+    <div className="mb-10">
+      <div className="text-center mb-6">
+        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
           {title}
         </h3>
       </div>
 
       {/* Slideshow Container */}
       <div 
-        className="relative overflow-hidden py-8"
+        className="relative overflow-hidden py-6"
         onTouchStart={() => setIsPaused(true)}
         onTouchEnd={() => setIsPaused(false)}
         onMouseEnter={() => setIsPaused(true)}
@@ -109,7 +109,7 @@ export default function Partners() {
         {/* Scrolling content */}
         <div 
           ref={scrollRef}
-          className="flex gap-8"
+          className="flex gap-4"
           style={{ 
             willChange: 'transform',
             WebkitBackfaceVisibility: 'hidden',
@@ -123,7 +123,7 @@ export default function Partners() {
           {items.map((item, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-64 flex flex-col items-center justify-center p-8 bg-white rounded-2xl active:bg-gradient-to-br active:from-primary/10 active:to-secondary/10 md:hover:bg-gradient-to-br md:hover:from-primary/10 md:hover:to-secondary/10 transition-all duration-500 group transform active:scale-95 md:hover:-translate-y-2 md:hover:shadow-xl border-2 border-gray-100 active:border-primary/30 md:hover:border-primary/30 will-change-transform"
+              className="flex-shrink-0 w-48 flex flex-col items-center justify-center p-4 bg-white rounded-xl active:bg-gradient-to-br active:from-primary/10 active:to-secondary/10 md:hover:bg-gradient-to-br md:hover:from-primary/10 md:hover:to-secondary/10 transition-all duration-500 group transform active:scale-95 md:hover:-translate-y-1 md:hover:shadow-lg border border-gray-200 active:border-primary/30 md:hover:border-primary/30 will-change-transform"
               style={{ 
                 WebkitTapHighlightColor: 'transparent',
                 WebkitBackfaceVisibility: 'hidden',
@@ -134,7 +134,7 @@ export default function Partners() {
             >
               {item.logo ? (
                 <div 
-                  className="relative w-full h-24 mb-4 transition-all duration-500 transform md:group-hover:scale-110 will-change-transform"
+                  className="relative w-full h-20 mb-3 transition-all duration-500 transform md:group-hover:scale-105 will-change-transform"
                   style={{ 
                     WebkitBackfaceVisibility: 'hidden',
                     backfaceVisibility: 'hidden'
@@ -144,7 +144,7 @@ export default function Partners() {
                     src={item.logo}
                     alt={item.fullName || item.name}
                     fill
-                    sizes="(max-width: 768px) 100vw, 256px"
+                    sizes="(max-width: 768px) 100vw, 192px"
                     className="object-contain"
                     style={{ 
                       WebkitBackfaceVisibility: 'hidden',
@@ -153,17 +153,17 @@ export default function Partners() {
                   />
                 </div>
               ) : (
-                <div className="w-full h-24 mb-4 flex items-center justify-center bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg">
-                  <div className="text-2xl font-bold text-primary">
+                <div className="w-full h-20 mb-3 flex items-center justify-center bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg">
+                  <div className="text-xl font-bold text-primary">
                     {item.name.split(' ').map((word: string) => word[0]).join('').slice(0, 3)}
                   </div>
                 </div>
               )}
-              <div className="text-base md:text-lg font-semibold text-gray-700 text-center md:group-hover:text-primary transition-colors duration-300">
+              <div className="text-sm font-semibold text-gray-700 text-center md:group-hover:text-primary transition-colors duration-300 leading-tight px-2">
                 {item.name}
               </div>
               {item.fullName && (
-                <div className="text-sm text-gray-500 text-center mt-1">
+                <div className="text-xs text-gray-500 text-center mt-1 leading-tight px-2">
                   {item.fullName}
                 </div>
               )}
@@ -180,11 +180,11 @@ export default function Partners() {
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5"></div>
       
       <div className="container-custom relative z-10" style={{ WebkitTransform: 'translate3d(0, 0, 0)', transform: 'translate3d(0, 0, 0)', WebkitBackfaceVisibility: 'hidden', backfaceVisibility: 'hidden' }}>
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Our Partners & Platforms
           </h2>
-          <p className="text-xl md:text-2xl text-gray-700 leading-relaxed">
+          <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
             Collaborating for greater impact across Africa
           </p>
         </div>
@@ -192,15 +192,15 @@ export default function Partners() {
         {renderScrollingSection(duplicatedPartners, "Partners", partnersScrollRef)}
         {renderScrollingSection(duplicatedPlatforms, "Platforms", platformsScrollRef)}
 
-        <div className="text-center mt-10">
+        <div className="text-center mt-8">
           <Link
             href="/about/platforms"
-            className="inline-flex items-center text-primary font-semibold text-xl active:text-primary-dark md:hover:text-primary-dark transition-colors group"
+            className="inline-flex items-center text-primary font-semibold text-lg active:text-primary-dark md:hover:text-primary-dark transition-colors group"
             style={{ WebkitTapHighlightColor: 'transparent' }}
           >
             View All Partners & Platforms
             <svg
-              className="w-6 h-6 ml-2 md:group-hover:translate-x-2 transition-transform duration-300 will-change-transform"
+              className="w-5 h-5 ml-2 md:group-hover:translate-x-2 transition-transform duration-300 will-change-transform"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
