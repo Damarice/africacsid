@@ -3,21 +3,41 @@
 import { useState } from "react";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { 
-  faHandshake, 
-  faChartLine, 
-  faLeaf, 
-  faBullseye, 
-  faSeedling, 
+import {
+  faHandshake,
+  faChartLine,
+  faLeaf,
+  faBullseye,
+  faSeedling,
   faBalanceScale,
   faUsers,
   faHandHoldingHeart,
   faChartBar,
-  faGraduationCap
+  faGraduationCap,
+  faFlask,
+  faNetworkWired,
+  faMicrophone,
+  faArrowsAlt,
+  faBuilding,
+  faChevronDown,
 } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CTASection from "@/components/CTASection";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+
+function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
+  const { ref, isVisible } = useScrollAnimation(0.1);
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-700 ease-out ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"} ${className}`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
+  );
+}
 
 const focusAreas = [
   {
@@ -29,20 +49,20 @@ const focusAreas = [
       "Do No Harm (DNH) approach",
       "Conflict sensitivity in all interventions",
       "Community-driven peacebuilding",
-      "Sustainable conflict resolution"
-    ]
+      "Sustainable conflict resolution",
+    ],
   },
   {
     title: "Economic Empowerment",
     icon: faChartLine,
     description: "The Economic Empowerment component of our program is an integral part of our efforts towards improving the well-being, productivity and self-sufficiency of marginalized communities across different regions.",
-    fullDescription: "Through our comprehensive approach, we aim to address the root causes of poverty and guide our communities towards a more prosperous future. We achieve this by providing access to education, training, and skills development programs that equip individuals with the necessary tools and expertise to break the cycle of poverty. We also prioritize innovation and creativity in our approach, actively seeking out new and innovative ways to reduce poverty, create jobs and diversify income streams for our communities. Our programs are designed to target all levels of society, from children, to youth, women and the elderly, ensuring that no one is left behind. Together, through our Economic Empowerment component, we can build a more resilient, self-sufficient, and prosperous future for all.",
+    fullDescription: "Through our comprehensive approach, we aim to address the root causes of poverty and guide our communities towards a more prosperous future. We achieve this by providing access to education, training, and skills development programs that equip individuals with the necessary tools and expertise to break the cycle of poverty. We also prioritize innovation and creativity in our approach, actively seeking out new and innovative ways to reduce poverty, create jobs and diversify income streams for our communities. Our programs are designed to target all levels of society, from children, to youth, women and the elderly, ensuring that no one is left behind.",
     keyPrinciples: [
       "Education and skills development",
       "Innovation and creativity in poverty reduction",
       "Job creation and income diversification",
-      "Inclusive programming for all demographics"
-    ]
+      "Inclusive programming for all demographics",
+    ],
   },
   {
     title: "Climate Change",
@@ -53,32 +73,62 @@ const focusAreas = [
       "Climate justice advocacy",
       "Biodiversity conservation",
       "Sustainable food systems",
-      "Community-based adaptation and emission reduction"
-    ]
-  }
+      "Community-based adaptation and emission reduction",
+    ],
+  },
 ];
 
-const approaches = [
+const originalApproaches = [
   {
     title: "Community-Centered Approach",
     description: "We work directly with communities, ensuring their voices, knowledge, and needs are at the center of all our initiatives.",
-    icon: faUsers
+    icon: faUsers,
   },
   {
     title: "Collaborative Partnerships",
     description: "Building strategic alliances with local organizations, government agencies, and international partners to amplify impact.",
-    icon: faHandHoldingHeart
+    icon: faHandHoldingHeart,
   },
   {
     title: "Evidence-Based Solutions",
     description: "Using research, data, and traditional knowledge to develop effective and culturally appropriate interventions.",
-    icon: faChartBar
+    icon: faChartBar,
   },
   {
     title: "Capacity Building",
     description: "Strengthening local capabilities through training, mentorship, and institutional development programs.",
-    icon: faGraduationCap
-  }
+    icon: faGraduationCap,
+  },
+];
+
+const newApproaches = [
+  {
+    title: "Community-driven Action",
+    icon: faUsers,
+    color: "bg-primary/10 text-primary border-primary/20",
+    description: "We work directly with communities to co-create and deliver solutions that reflect their realities and strengthen their agency.",
+  },
+  {
+    title: "Evidence and Learning",
+    icon: faFlask,
+    color: "bg-accent/10 text-accent border-accent/20",
+    description: "We generate actionable evidence to ensure that our interventions are effective, adaptable, and scalable.",
+  },
+  {
+    title: "Systems Change",
+    icon: faNetworkWired,
+    color: "bg-gold/10 text-gold border-gold/20",
+    description: "We collaborate with communities, civil society, private sector, governments and academic institutions to translate community-proven solutions into broader policy and systems-level impact.",
+  },
+];
+
+const priorities = [
+  { icon: faBullseye, title: "Delivering Actionable Solutions", desc: "Designing, implementing, and scaling community-driven solutions that address drivers of conflict, economic exclusion, and climate vulnerability in marginalized communities." },
+  { icon: faFlask, title: "Strengthening Evidence for Impact", desc: "Generating and applying evidence that strengthens the effectiveness, adaptability, and scale of community-led development interventions." },
+  { icon: faMicrophone, title: "Voice and Co-Creation", desc: "Enabling marginalized communities to lead the design, implementation, and evaluation of development solutions that directly affect their lives." },
+  { icon: faArrowsAlt, title: "Driving Systems-level Change", desc: "Translating proven community-level solutions into policy, institutional, and market changes through advocacy, partnerships, and multi-stakeholder engagement." },
+  { icon: faBuilding, title: "Building Local Capacity for Sustainability", desc: "Strengthening community institutions, civil society organizations, and local actors to deliver, sustain, and scale development solutions." },
+  { icon: faGraduationCap, title: "Organizational Learning and Growth", desc: "Investing in systems for learning, accountability, and partnership that enable Africa CSID to adapt, grow, and sustain impact across diverse contexts." },
 ];
 
 export default function WhatWeDoPage() {
@@ -88,30 +138,20 @@ export default function WhatWeDoPage() {
   const toggleExpanded = (index: number) => {
     setExpandedCard(expandedCard === index ? null : index);
   };
+
   return (
     <>
       <Navbar />
-      
+
       {/* Hero Section */}
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
-        <Image
-          src="/hero.JPG"
-          alt="What We Do"
-          fill
-          sizes="100vw"
-          className="object-cover"
-          quality={75}
-          priority
-        />
+        <Image src="/hero.JPG" alt="What We Do" fill sizes="100vw" className="object-cover" quality={75} priority />
         <div className="absolute inset-0 bg-primary/60" />
-        
         <div className="relative h-full flex items-center justify-center text-center px-4">
           <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              What We Do
-            </h1>
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">What We Do</h1>
             <p className="text-xl md:text-2xl text-white/95">
-              Transforming communities through sustainable development, climate resilience, 
+              Transforming communities through sustainable development, climate resilience,
               and inclusive approaches that center equity and environmental stewardship.
             </p>
           </div>
@@ -126,8 +166,8 @@ export default function WhatWeDoPage() {
               Our Mission in Action
             </h2>
             <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6 animate-fade-in-up animation-delay-100">
-              Africa CSID works at the intersection of climate action, food systems transformation, 
-              and social justice. We believe that sustainable development must be inclusive, 
+              Africa CSID works at the intersection of climate action, food systems transformation,
+              and social justice. We believe that sustainable development must be inclusive,
               community-driven, and rooted in both scientific evidence and traditional knowledge.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
@@ -165,7 +205,7 @@ export default function WhatWeDoPage() {
               Our Areas of Focus
             </h2>
             <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto animate-fade-in-up animation-delay-100">
-              We work across three interconnected areas that address the complex challenges 
+              We work across three interconnected areas that address the complex challenges
               facing marginalized communities in Africa and beyond.
             </p>
           </div>
@@ -175,28 +215,20 @@ export default function WhatWeDoPage() {
               <div
                 key={index}
                 className={`group relative bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden cursor-pointer transform transition-all duration-500 ease-out hover:shadow-2xl hover:-translate-y-1 ${
-                  hoveredCard === index ? 'scale-[1.01]' : ''
-                } ${expandedCard === index ? 'ring-2 ring-primary/20' : ''}`}
+                  hoveredCard === index ? "scale-[1.01]" : ""
+                } ${expandedCard === index ? "ring-2 ring-primary/20" : ""}`}
                 onMouseEnter={() => setHoveredCard(index)}
                 onMouseLeave={() => setHoveredCard(null)}
                 onClick={() => toggleExpanded(index)}
               >
-                {/* Animated Background */}
                 <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                {/* Main Content Layout */}
                 <div className="relative">
-                  {/* Header Section */}
                   <div className="p-4 lg:p-6 border-b border-gray-100 group-hover:border-primary/20 transition-colors duration-300">
                     <div className="flex flex-col lg:flex-row gap-4 lg:gap-6">
-                      {/* Icon and Content */}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-start gap-3 mb-3">
                           <div className="w-12 h-12 flex-shrink-0 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 group-hover:shadow-lg transition-all duration-300 transform group-hover:scale-105">
-                            <FontAwesomeIcon 
-                              icon={area.icon} 
-                              className="text-lg text-primary transition-all duration-300 group-hover:scale-110" 
-                            />
+                            <FontAwesomeIcon icon={area.icon} className="text-lg text-primary transition-all duration-300 group-hover:scale-110" />
                           </div>
                           <div className="flex-1 min-w-0">
                             <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors duration-300 leading-tight">
@@ -207,21 +239,12 @@ export default function WhatWeDoPage() {
                             </span>
                           </div>
                         </div>
-                        
-                        <p className="text-gray-700 leading-relaxed text-lg md:text-xl mb-3">
-                          {area.description}
-                        </p>
-                        
-                        {/* Expand Indicator */}
+                        <p className="text-gray-700 leading-relaxed text-lg md:text-xl mb-3">{area.description}</p>
                         <div className="flex items-center justify-between">
-                          <div className={`text-xs text-primary font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform ${
-                            hoveredCard === index ? 'translate-y-0' : 'translate-y-2'
-                          }`}>
-                            Click to {expandedCard === index ? 'collapse' : 'expand'} full details →
+                          <div className={`text-xs text-primary font-medium opacity-0 group-hover:opacity-100 transition-all duration-300 transform ${hoveredCard === index ? "translate-y-0" : "translate-y-2"}`}>
+                            Click to {expandedCard === index ? "collapse" : "expand"} full details →
                           </div>
-                          <div className={`w-6 h-6 flex items-center justify-center transform transition-transform duration-300 ${
-                            expandedCard === index ? 'rotate-180' : 'group-hover:rotate-90'
-                          }`}>
+                          <div className={`w-6 h-6 flex items-center justify-center transform transition-transform duration-300 ${expandedCard === index ? "rotate-180" : "group-hover:rotate-90"}`}>
                             <svg className="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                             </svg>
@@ -231,13 +254,9 @@ export default function WhatWeDoPage() {
                     </div>
                   </div>
 
-                  {/* Expanded Content */}
-                  <div className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                    expandedCard === index ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'
-                  }`}>
+                  <div className={`overflow-hidden transition-all duration-500 ease-in-out ${expandedCard === index ? "max-h-[800px] opacity-100" : "max-h-0 opacity-0"}`}>
                     <div className="p-4 lg:p-6 border-t border-gray-100 bg-gray-50/50">
                       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                        {/* Full Description */}
                         <div className="bg-white rounded-lg p-4 shadow-sm">
                           <h4 className="text-lg md:text-xl font-semibold text-primary mb-3 flex items-center gap-2">
                             <div className="w-2 h-2 bg-primary rounded-full"></div>
@@ -245,8 +264,6 @@ export default function WhatWeDoPage() {
                           </h4>
                           <p className="text-gray-700 leading-relaxed text-base md:text-lg">{area.fullDescription}</p>
                         </div>
-
-                        {/* Key Principles */}
                         <div className="bg-white rounded-lg p-4 shadow-sm">
                           <h4 className="text-lg md:text-xl font-semibold text-secondary-dark mb-3 flex items-center gap-2">
                             <div className="w-2 h-2 bg-secondary rounded-full"></div>
@@ -254,7 +271,7 @@ export default function WhatWeDoPage() {
                           </h4>
                           <div className="space-y-2">
                             {area.keyPrinciples.map((principle, idx) => (
-                              <div key={idx} className="flex items-start gap-2 p-2 rounded-lg hover:bg-gray-50 transition-colors duration-200 group/item">
+                              <div key={idx} className="flex items-start gap-2 p-2 rounded-lg hover:bg-gray-50 transition-colors duration-200">
                                 <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                                   <span className="text-white text-xs font-bold">{idx + 1}</span>
                                 </div>
@@ -273,7 +290,7 @@ export default function WhatWeDoPage() {
         </div>
       </section>
 
-      {/* Our Approach */}
+      {/* How We Work (original) */}
       <section className="py-12 md:py-16 bg-white">
         <div className="container-custom">
           <div className="text-center mb-10">
@@ -281,65 +298,108 @@ export default function WhatWeDoPage() {
               How We Work
             </h2>
             <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto animate-fade-in-up animation-delay-100">
-              Our methodology is grounded in participatory development principles, 
+              Our methodology is grounded in participatory development principles,
               ensuring sustainable and locally-owned solutions.
             </p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {approaches.map((approach, index) => (
-              <div
-                key={index}
-                className="text-center group hover:transform hover:-translate-y-2 transition-all duration-300"
-              >
+            {originalApproaches.map((approach, index) => (
+              <div key={index} className="text-center group hover:transform hover:-translate-y-2 transition-all duration-300">
                 <div className={`rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-110 ${
-                  index === 0 ? 'bg-primary' :
-                  index === 1 ? 'bg-secondary' :
-                  index === 2 ? 'bg-accent' :
-                  'bg-primary-dark'
+                  index === 0 ? "bg-primary" : index === 1 ? "bg-secondary" : index === 2 ? "bg-accent" : "bg-primary-dark"
                 }`}>
-                  <FontAwesomeIcon icon={approach.icon} className={`text-lg ${
-                    index === 1 ? 'text-neutral' : 'text-white'
-                  }`} />
+                  <FontAwesomeIcon icon={approach.icon} className={`text-lg ${index === 1 ? "text-neutral" : "text-white"}`} />
                 </div>
                 <h3 className={`text-lg md:text-xl font-semibold mb-3 transition-colors duration-300 ${
-                  index === 0 ? 'text-primary group-hover:text-primary-dark' :
-                  index === 1 ? 'text-secondary group-hover:text-secondary-dark' :
-                  index === 2 ? 'text-accent group-hover:text-accent-dark' :
-                  'text-primary-dark group-hover:text-primary'
+                  index === 0 ? "text-primary group-hover:text-primary-dark" :
+                  index === 1 ? "text-secondary group-hover:text-secondary-dark" :
+                  index === 2 ? "text-accent group-hover:text-accent-dark" :
+                  "text-primary-dark group-hover:text-primary"
                 }`}>
                   {approach.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed text-base md:text-lg">
-                  {approach.description}
-                </p>
+                <p className="text-gray-600 leading-relaxed text-base md:text-lg">{approach.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
+      {/* Our Approaches (new) */}
+      <section className="py-14 bg-gray-50">
+        <div className="container-custom max-w-5xl">
+          <Reveal>
+            <p className="text-sm uppercase tracking-widest text-primary font-semibold mb-2">Our Approaches</p>
+            <h2 className="text-gray-900 mb-3">Three Mutually Reinforcing Approaches</h2>
+            <p className="text-gray-500 max-w-2xl mb-10">
+              Africa CSID&apos;s work is grounded in three approaches that work together to create lasting change.
+            </p>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
+            {newApproaches.map((a, i) => (
+              <Reveal key={i} delay={i * 100}>
+                <div className={`h-full rounded-2xl border p-6 hover:shadow-md transition-all duration-300 ${a.color}`}>
+                  <div className="w-10 h-10 rounded-xl bg-white/60 flex items-center justify-center mb-4">
+                    <FontAwesomeIcon icon={a.icon} className="text-lg" />
+                  </div>
+                  <h3 className="text-gray-900 mb-3">{a.title}</h3>
+                  <p className="text-gray-600">{a.description}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={300}>
+            <div className="rounded-2xl bg-white border border-gray-100 p-6 shadow-sm">
+              <p className="text-gray-700 font-medium text-center">
+                This integrated approach ensures that our work is people-centred, grounded in local knowledge,
+                and capable of delivering sustainable, long-term impact.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Strategic Priorities */}
+      <section className="py-14 bg-white">
+        <div className="container-custom max-w-5xl">
+          <Reveal>
+            <p className="text-sm uppercase tracking-widest text-primary font-semibold mb-2">Direction</p>
+            <h2 className="text-gray-900 mb-3">Our Strategic Priorities</h2>
+            <p className="text-gray-500 max-w-2xl mb-10">
+              Six priorities that guide how we invest our resources and partnerships.
+            </p>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {priorities.map((p, i) => (
+              <Reveal key={i} delay={i * 80}>
+                <div className="flex items-start gap-4 p-5 rounded-2xl border border-gray-100 bg-white hover:border-primary/30 hover:shadow-md transition-all duration-300 group h-full">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                    <FontAwesomeIcon icon={p.icon} className="text-primary text-sm" />
+                  </div>
+                  <div>
+                    <h3 className="text-gray-900 mb-2">{p.title}</h3>
+                    <p className="text-gray-500">{p.desc}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Original CTA */}
       <section className="py-12 md:py-16 bg-primary">
         <div className="container-custom">
           <div className="text-center text-white">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Ready to Make a Difference?
-            </h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Ready to Make a Difference?</h2>
             <p className="text-lg md:text-xl mb-6 max-w-2xl mx-auto">
               Join us in creating sustainable, inclusive communities that thrive in harmony with nature.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a
-                href="/get-involved"
-                className="bg-secondary text-neutral font-semibold py-3 px-6 rounded-lg hover:bg-secondary-dark transition-colors duration-300 inline-block transform hover:scale-105 hover:shadow-xl"
-              >
+              <a href="/get-involved" className="bg-secondary text-neutral font-semibold py-3 px-6 rounded-lg hover:bg-secondary-dark transition-colors duration-300 inline-block transform hover:scale-105 hover:shadow-xl">
                 Get Involved
               </a>
-              <a
-                href="/contact"
-                className="border-2 border-white text-white font-semibold py-3 px-6 rounded-lg hover:bg-white hover:text-primary transition-all duration-300 inline-block transform hover:scale-105"
-              >
+              <a href="/contact" className="border-2 border-white text-white font-semibold py-3 px-6 rounded-lg hover:bg-white hover:text-primary transition-all duration-300 inline-block transform hover:scale-105">
                 Contact Us
               </a>
             </div>
@@ -348,31 +408,6 @@ export default function WhatWeDoPage() {
       </section>
 
       <Footer />
-
-      <style jsx>{`
-        @keyframes fade-in-up {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-fade-in-up {
-          animation: fade-in-up 0.8s ease-out forwards;
-        }
-        
-        .animation-delay-100 {
-          animation-delay: 0.1s;
-        }
-        
-        .animation-delay-200 {
-          animation-delay: 0.2s;
-        }
-      `}</style>
     </>
   );
 }

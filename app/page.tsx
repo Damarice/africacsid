@@ -3,7 +3,6 @@ import Hero from "@/components/Hero";
 import AboutSection from "@/components/AboutSection";
 import AreaOfFocus from "@/components/AreaOfFocus";
 import ImpactCounter from "@/components/ImpactCounter";
-import LatestNews from "@/components/LatestNews";
 import Testimonials from "@/components/Testimonials";
 import Partners from "@/components/Partners";
 import CallToAction from "@/components/CallToAction";
@@ -17,7 +16,6 @@ export default function Home() {
       <AboutSection />
       <AreaOfFocus />
       <ImpactCounter />
-      <LatestNews />
       <Testimonials />
       <Partners />
       <CallToAction />

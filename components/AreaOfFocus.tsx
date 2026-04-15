@@ -8,46 +8,31 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const areas = [
   {
-    title: "Peace and Conflict Transformation",
-    shortDescription: "Promoting resilience in conflict-affected communities through comprehensive peacebuilding approaches.",
-    fullDescription: "The primary objective of this component is to promote and enhance resilience in conflict-affected communities by leveraging relevant architectures for peacebuilding. This will be achieved by adopting a comprehensive and integrated approach that prioritizes the identification and resolution of conflict drivers that exist within these communities.",
+    title: "Peace Building",
+    shortDescription: "Strengthening social cohesion, dialogue, and local capacities to prevent and address conflict.",
+    fullDescription: "Strengthening social cohesion, dialogue, and local capacities to prevent and address conflict.",
     icon: faDove,
     image: "/Peace and Conflict Transformation.JPG",
     bgColor: "bg-primary",
-    activities: [
-      "Community dialogue and reconciliation programs",
-      "Conflict early warning and response systems",
-      "Peace education and training",
-      "Support for local peace structures"
-    ]
+    activities: []
   },
   {
-    title: "Economic Empowerment",
-    shortDescription: "Improving well-being and self-sufficiency of marginalized communities through sustainable economic solutions.",
-    fullDescription: "The Economic Empowerment component of our program is an integral part of our efforts towards improving the well-being, productivity and self-sufficiency of marginalized communities across different regions. Through our comprehensive approach, we aim to address the root causes of poverty and guide our communities towards a more prosperous future.",
+    title: "Inclusive Economic Empowerment",
+    shortDescription: "Supporting pathways for livelihoods, resilience, and dignity, especially among marginalised groups.",
+    fullDescription: "Supporting pathways for livelihoods, resilience, and dignity, especially among marginalised groups.",
     icon: faUsers,
     image: "/Economic Empowerment.JPG",
     bgColor: "bg-accent",
-    activities: [
-      "Skills training and capacity building",
-      "Support for women-led cooperatives",
-      "Access to microfinance and savings groups",
-      "Market linkages and value chain development"
-    ]
+    activities: []
   },
   {
-    title: "Climate Change",
-    shortDescription: "Enhancing resilience and advocating for climate justice, biodiversity conservation, and sustainable food systems.",
-    fullDescription: "One of our objectives is to address the escalating impacts of climate change, particularly on marginalized communities, by enhancing their overall resilience and advocating for climate justice, biodiversity conservation, and sustainable food systems. We work closely with these communities to boost their capacity to adapt to the impacts of climate change.",
+    title: "Climate Action",
+    shortDescription: "Helping communities adapt to climate shocks, steward natural resources, and strengthen resilience.",
+    fullDescription: "Helping communities adapt to climate shocks, steward natural resources, and strengthen resilience. Africa CSID recognises that sustainable impact requires addressing these challenges together rather than in isolation, since social cohesion, resilient livelihoods, and climate adaptation are deeply linked in people's daily lives.",
     icon: faTree,
     image: "/Climate Change.JPG",
     bgColor: "bg-secondary",
-    activities: [
-      "Climate resilience training and agroecology",
-      "Sustainable food systems and biodiversity conservation",
-      "Climate justice advocacy and policy engagement",
-      "Community-based adaptation strategies"
-    ]
+    activities: []
   },
 ];
 
@@ -70,10 +55,10 @@ export default function AreaOfFocus() {
         <div className="text-center mb-8 max-w-3xl mx-auto">
           <p className="text-sm uppercase tracking-wider text-primary mb-2 font-semibold">Our Approach</p>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Areas of Focus
+            Our Pillars
           </h2>
           <p className="text-lg md:text-xl text-gray-700">
-            Three core pillars supported by governance and gender-responsive solutions
+            Africa CSID works across three interconnected pillars
           </p>
         </div>
 
@@ -153,16 +138,6 @@ export default function AreaOfFocus() {
                     <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
                       {area.fullDescription}
                     </p>
-                    
-                    <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">Key Activities</h4>
-                    <ul className="space-y-3 mb-6">
-                      {area.activities.map((activity, idx) => (
-                        <li key={idx} className="flex items-start text-base md:text-lg text-gray-700">
-                          <span className={`${area.bgColor.replace('bg-', 'text-')} mr-3 mt-1`}>•</span>
-                          {activity}
-                        </li>
-                      ))}
-                    </ul>
                   </div>
                 )}
               </div>
@@ -184,12 +159,7 @@ export default function AreaOfFocus() {
           ))}
         </div>
 
-        {/* Bottom Note */}
-        <div className="mt-8 text-center">
-          <p className="text-base md:text-lg text-gray-600 italic">
-            Guided by governance and gender-responsive frameworks
-          </p>
-        </div>
+
       </div>
     </section>
   );
