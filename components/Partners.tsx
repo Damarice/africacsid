@@ -9,13 +9,12 @@ const partners = [
   { name: "Agroecology Fund", logo: "/Agroecolofy Fund logo.jfif.jpeg", type: "partner" },
   { name: "NDC Partnership", logo: "/ndcpartnership_logo.jfif.jpeg", type: "partner" },
   { name: "Community Forest International", logo: "/community_forests_international_logo.jfif.jpeg", type: "partner" },
-  { name: "Community Forest Pemba", logo: null, type: "partner" },
+  { name: "Community Forest Pemba", logo: "/community forrest pemba.png", type: "partner" },
   { name: "Arid Lands Information Network (ALIN Kenya)", logo: "/arid_lands_information_network_logo.jfif.jpeg", type: "partner" },
   { name: "ESSA Technologies", logo: "/ESSA Technologies logo.jfif.jpeg", type: "partner" },
   { name: "State Department for Gender Affairs and Affirmative Action (SDGAAA)", logo: "/GOK Logo.jfif.jpeg", type: "partner" },
   { name: "State Department for Environment and Climate Change (SDECC)", logo: "/GOK Logo.jfif.jpeg", type: "partner" },
-  { name: "Actors in Community Empowerment and Environmental Sustainability (ACEES)", logo: null, type: "partner" },
-  { name: "Agropastoral Climate Resilience Alliance (ACRA)", logo: null, type: "partner" },
+  { name: "Netherlands Food Partnership", logo: "/netherlandsfoodpartnership_logo.jpg", type: "partner" },
 ];
 
 const platforms = [
@@ -134,7 +133,7 @@ export default function Partners() {
             >
               {item.logo ? (
                 <div 
-                  className="relative w-full h-20 mb-3 transition-all duration-500 transform md:group-hover:scale-105 will-change-transform"
+                  className="relative w-full h-28 mb-3 transition-all duration-500 transform md:group-hover:scale-105 will-change-transform"
                   style={{ 
                     WebkitBackfaceVisibility: 'hidden',
                     backfaceVisibility: 'hidden'
@@ -153,7 +152,7 @@ export default function Partners() {
                   />
                 </div>
               ) : (
-                <div className="w-full h-20 mb-3 flex items-center justify-center bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg">
+                <div className="w-full h-28 mb-3 flex items-center justify-center bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg">
                   <div className="text-xl font-bold text-primary">
                     {item.name.split(' ').map((word: string) => word[0]).join('').slice(0, 3)}
                   </div>
