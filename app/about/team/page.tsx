@@ -5,7 +5,6 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CTASection from "@/components/CTASection";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const teamMembers = [
@@ -13,31 +12,26 @@ const teamMembers = [
     name: "Salome Owuonda",
     position: "Executive Director",
     image: "/salome.jpeg",
-    bio: "Leading Africa CSID's mission to support marginalized communities across Africa through sustainable and inclusive development.",
   },
   {
     name: "Hezborn Ouma",
     position: "Head of Programs",
     image: "/Hesborn.png",
-    bio: "Leading program implementation and operations across peace, economic, and climate initiatives.",
   },
   {
     name: "Clifford Odero",
     position: "Monitoring, Evaluation, Accountability & Learning (MEAL) Officer",
     image: null, // Add photo later
-    bio: "Ensuring program effectiveness through comprehensive monitoring, evaluation, and learning frameworks.",
   },
   {
     name: "Wasal Marylyne",
     position: "Communication & Programs Support Assistant",
     image: "/Marylyne.jpeg",
-    bio: "Supporting communications and program activities to amplify our impact and reach.",
   },
   {
     name: "Winnie Malombo",
     position: "Operations Coordinator",
     image: "/Winnie Malombo.jpeg",
-    bio: "Coordinating operational activities and ensuring smooth execution of organizational processes and initiatives.",
   },
 ];
 
@@ -100,16 +94,7 @@ export default function TeamPage() {
                 )}
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-2">{member.name}</h3>
-                  <p className="text-primary font-semibold mb-3">{member.position}</p>
-                  <p className="text-gray-600 text-base md:text-lg mb-4">{member.bio}</p>
-                  <div className="flex space-x-3">
-                    <a href="#" className="text-gray-400 hover:text-primary transition-colors">
-                      <FontAwesomeIcon icon={faLinkedin} className="w-5 h-5" />
-                    </a>
-                    <a href="#" className="text-gray-400 hover:text-primary transition-colors">
-                      <FontAwesomeIcon icon={faTwitter} className="w-5 h-5" />
-                    </a>
-                  </div>
+                  <p className="text-primary font-semibold">{member.position}</p>
                 </div>
               </div>
             ))}

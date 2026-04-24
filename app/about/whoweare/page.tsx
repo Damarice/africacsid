@@ -199,40 +199,15 @@ export default function WhoWeArePage() {
               <h2 className="text-gray-900 mb-4">How We Create Impact</h2>
             </Reveal>
             <Reveal delay={150} className="lg:col-span-3">
-              <div className="space-y-4 text-gray-500 text-small">
-                <p>
-                  Africa CSID believes that meaningful and lasting change is
-                  strongest when it is rooted in the lived realities, leadership,
-                  and aspirations of the communities we serve — and when
-                  development challenges are addressed together rather than in
-                  isolation.
-                </p>
-                <p>
-                  Our work begins by working directly with communities to surface
-                  their priorities and co-design solutions that address the
-                  interconnected challenges they face: building peace and social
-                  cohesion, strengthening economic security, and enhancing climate
-                  resilience while also reducing greenhouse gas emissions. These
-                  locally led solutions are reinforced through gender-responsive
-                  practices, and strong local leadership and governance principles
-                  that strengthen participation, accountability, and trust.
-                </p>
-                <p>
-                  As community-led actions take shape, we generate evidence of
-                  what is changing and why. This learning helps us refine our work
-                  on an ongoing basis, deepen our understanding of what drives
-                  impact, and ensure that interventions remain relevant and
-                  effective. We partner with and engage state and non-state actors
-                  to embed resources, and scale approaches that have proven
-                  successful at community level.
-                </p>
-                <p>
-                  Through this process, local action becomes the foundation for
-                  stronger, more resilient communities — and over time, these
-                  community-driven gains contribute to broader system change that
-                  supports inclusive and sustainable development, for current and
-                  future generations.
-                </p>
+              <div className="space-y-4">
+                {objectives.map((obj, i) => (
+                  <div key={i} className="flex items-start gap-4 p-5 rounded-2xl border border-gray-100 bg-white hover:border-primary/30 hover:shadow-md transition-all duration-300 group">
+                    <span className="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-white text-xs font-bold">{i + 1}</span>
+                    </span>
+                    <p className="text-gray-500 text-small">{obj}</p>
+                  </div>
+                ))}
               </div>
             </Reveal>
           </div>
@@ -351,30 +326,6 @@ export default function WhoWeArePage() {
                 ]}
               />
             </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* Objectives */}
-      <section className="py-12 md:py-16 bg-gray-50">
-        <div className="container-custom max-w-5xl">
-          <Reveal>
-            <p className="text-sm uppercase tracking-widest text-primary font-semibold mb-2">
-              What We Aim For
-            </p>
-            <h2 className="text-gray-900 mb-8">Our Objectives</h2>
-          </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {objectives.map((obj, i) => (
-              <Reveal key={i} delay={i * 80}>
-                <div className="flex items-start gap-4 p-5 rounded-2xl border border-gray-100 bg-white hover:border-primary/30 hover:shadow-md transition-all duration-300 group h-full">
-                  <span className="w-8 h-8 rounded-full bg-primary flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    <span className="text-white text-xs font-bold">{i + 1}</span>
-                  </span>
-                  <p className="text-gray-500 text-small">{obj}</p>
-                </div>
-              </Reveal>
-            ))}
           </div>
         </div>
       </section>

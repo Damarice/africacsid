@@ -148,13 +148,6 @@ export default function Navbar() {
               {whatWeDoDropdownOpen && (
                 <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl py-2 z-50 border border-gray-100">
                   <Link 
-                    href="/what-we-do" 
-                    className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
-                    onClick={() => setWhatWeDoDropdownOpen(false)}
-                  >
-                    Overview
-                  </Link>
-                  <Link 
                     href="/programs/projects" 
                     className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
                     onClick={() => setWhatWeDoDropdownOpen(false)}
@@ -352,13 +345,6 @@ export default function Navbar() {
               </button>
               {mobileWhatWeDoOpen && (
                 <div className="bg-gray-50">
-                  <Link 
-                    href="/what-we-do" 
-                    className="block px-8 py-3 text-gray-600 hover:bg-primary/10 hover:text-primary"
-                    onClick={closeMobileMenu}
-                  >
-                    Overview
-                  </Link>
                   <Link 
                     href="/programs/projects" 
                     className="block px-8 py-3 text-gray-600 hover:bg-primary/10 hover:text-primary"
