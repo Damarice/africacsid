@@ -5,27 +5,23 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
-  const [whatWeDoDropdownOpen, setWhatWeDoDropdownOpen] = useState(false);
   const [resourcesDropdownOpen, setResourcesDropdownOpen] = useState(false);
   const [workDropdownOpen, setWorkDropdownOpen] = useState(false);
-  
+
   // Mobile dropdown states
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
-  const [mobileWhatWeDoOpen, setMobileWhatWeDoOpen] = useState(false);
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
   const [mobileWorkOpen, setMobileWorkOpen] = useState(false);
 
   const aboutRef = useRef<HTMLDivElement>(null);
-  const whatWeDoRef = useRef<HTMLDivElement>(null);
   const resourcesRef = useRef<HTMLDivElement>(null);
   const workRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      // kept for future use
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -36,9 +32,6 @@ export default function Navbar() {
     const handleClickOutside = (event: MouseEvent) => {
       if (aboutRef.current && !aboutRef.current.contains(event.target as Node)) {
         setAboutDropdownOpen(false);
-      }
-      if (whatWeDoRef.current && !whatWeDoRef.current.contains(event.target as Node)) {
-        setWhatWeDoDropdownOpen(false);
       }
       if (resourcesRef.current && !resourcesRef.current.contains(event.target as Node)) {
         setResourcesDropdownOpen(false);
@@ -55,7 +48,6 @@ export default function Navbar() {
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
     setMobileAboutOpen(false);
-    setMobileWhatWeDoOpen(false);
     setMobileResourcesOpen(false);
     setMobileWorkOpen(false);
   };
@@ -85,13 +77,12 @@ export default function Navbar() {
             >
               Home
             </Link>
-            
+
             {/* About Us Dropdown */}
             <div className="relative" ref={aboutRef}>
-              <button 
+              <button
                 onClick={() => {
                   setAboutDropdownOpen(!aboutDropdownOpen);
-                  setWhatWeDoDropdownOpen(false);
                   setResourcesDropdownOpen(false);
                   setWorkDropdownOpen(false);
                 }}
@@ -104,22 +95,22 @@ export default function Navbar() {
               </button>
               {aboutDropdownOpen && (
                 <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl py-2 z-50 border border-gray-100">
-                  <Link 
-                    href="/about/whoweare" 
+                  <Link
+                    href="/about/whoweare"
                     className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
                     onClick={() => setAboutDropdownOpen(false)}
                   >
                     Who We Are
                   </Link>
-                  <Link 
-                    href="/about/team" 
+                  <Link
+                    href="/about/team"
                     className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
                     onClick={() => setAboutDropdownOpen(false)}
                   >
                     Our Team
                   </Link>
-                  <Link 
-                    href="/about/platforms" 
+                  <Link
+                    href="/about/platforms"
                     className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
                     onClick={() => setAboutDropdownOpen(false)}
                   >
@@ -129,42 +120,20 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* What We Do Dropdown */}
-            <div className="relative" ref={whatWeDoRef}>
-              <button 
-                onClick={() => {
-                  setWhatWeDoDropdownOpen(!whatWeDoDropdownOpen);
-                  setAboutDropdownOpen(false);
-                  setResourcesDropdownOpen(false);
-                  setWorkDropdownOpen(false);
-                }}
-                className="font-medium text-gray-700 hover:text-primary transition-colors flex items-center"
-              >
-                What We Do
-                <svg className={`w-4 h-4 ml-1 transition-transform ${whatWeDoDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {whatWeDoDropdownOpen && (
-                <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl py-2 z-50 border border-gray-100">
-                  <Link 
-                    href="/programs/projects" 
-                    className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
-                    onClick={() => setWhatWeDoDropdownOpen(false)}
-                  >
-                    Our Projects
-                  </Link>
-                </div>
-              )}
-            </div>
+            {/* Our Projects — single link */}
+            <Link
+              href="/programs/projects"
+              className="font-medium text-gray-700 hover:text-primary transition-colors"
+            >
+              Our Projects
+            </Link>
 
             {/* Resources Dropdown */}
             <div className="relative" ref={resourcesRef}>
-              <button 
+              <button
                 onClick={() => {
                   setResourcesDropdownOpen(!resourcesDropdownOpen);
                   setAboutDropdownOpen(false);
-                  setWhatWeDoDropdownOpen(false);
                   setWorkDropdownOpen(false);
                 }}
                 className="font-medium text-gray-700 hover:text-primary transition-colors flex items-center"
@@ -176,43 +145,43 @@ export default function Navbar() {
               </button>
               {resourcesDropdownOpen && (
                 <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl py-2 z-50 border border-gray-100">
-                  <Link 
-                    href="/resources/publications" 
+                  <Link
+                    href="/resources/publications"
                     className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
                     onClick={() => setResourcesDropdownOpen(false)}
                   >
                     Publications
                   </Link>
-                  <Link 
-                    href="/resources/newsletters" 
+                  <Link
+                    href="/resources/newsletters"
                     className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
                     onClick={() => setResourcesDropdownOpen(false)}
                   >
                     Newsletters
                   </Link>
-                  <Link 
-                    href="/resources/blogs" 
+                  <Link
+                    href="/resources/blogs"
                     className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
                     onClick={() => setResourcesDropdownOpen(false)}
                   >
                     Blogs & Articles
                   </Link>
-                  <Link 
-                    href="/resources/reports" 
+                  <Link
+                    href="/resources/reports"
                     className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
                     onClick={() => setResourcesDropdownOpen(false)}
                   >
                     Reports
                   </Link>
-                  <Link 
-                    href="/resources/gallery" 
+                  <Link
+                    href="/resources/gallery"
                     className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
                     onClick={() => setResourcesDropdownOpen(false)}
                   >
                     Gallery
                   </Link>
-                  <Link 
-                    href="/resources/events" 
+                  <Link
+                    href="/resources/events"
                     className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
                     onClick={() => setResourcesDropdownOpen(false)}
                   >
@@ -224,11 +193,10 @@ export default function Navbar() {
 
             {/* Work With Us Dropdown */}
             <div className="relative" ref={workRef}>
-              <button 
+              <button
                 onClick={() => {
                   setWorkDropdownOpen(!workDropdownOpen);
                   setAboutDropdownOpen(false);
-                  setWhatWeDoDropdownOpen(false);
                   setResourcesDropdownOpen(false);
                 }}
                 className="font-medium text-gray-700 hover:text-primary transition-colors flex items-center"
@@ -240,15 +208,15 @@ export default function Navbar() {
               </button>
               {workDropdownOpen && (
                 <div className="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-xl py-2 z-50 border border-gray-100">
-                  <Link 
-                    href="/work-with-us" 
+                  <Link
+                    href="/work-with-us"
                     className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
                     onClick={() => setWorkDropdownOpen(false)}
                   >
                     Careers
                   </Link>
-                  <Link 
-                    href="/get-involved/volunteer" 
+                  <Link
+                    href="/get-involved/volunteer"
                     className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary transition-colors"
                     onClick={() => setWorkDropdownOpen(false)}
                   >
@@ -286,14 +254,14 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="lg:hidden bg-white py-4 border-t border-gray-100">
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary text-lg"
               onClick={closeMobileMenu}
             >
               Home
             </Link>
-            
+
             {/* Mobile About Us Dropdown */}
             <div>
               <button
@@ -307,22 +275,22 @@ export default function Navbar() {
               </button>
               {mobileAboutOpen && (
                 <div className="bg-gray-50">
-                  <Link 
-                    href="/about/whoweare" 
+                  <Link
+                    href="/about/whoweare"
                     className="block px-8 py-3 text-gray-600 hover:bg-primary/10 hover:text-primary"
                     onClick={closeMobileMenu}
                   >
                     Who We Are
                   </Link>
-                  <Link 
-                    href="/about/team" 
+                  <Link
+                    href="/about/team"
                     className="block px-8 py-3 text-gray-600 hover:bg-primary/10 hover:text-primary"
                     onClick={closeMobileMenu}
                   >
                     Our Team
                   </Link>
-                  <Link 
-                    href="/about/platforms" 
+                  <Link
+                    href="/about/platforms"
                     className="block px-8 py-3 text-gray-600 hover:bg-primary/10 hover:text-primary"
                     onClick={closeMobileMenu}
                   >
@@ -332,30 +300,15 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* Mobile What We Do Dropdown */}
-            <div>
-              <button
-                onClick={() => setMobileWhatWeDoOpen(!mobileWhatWeDoOpen)}
-                className="w-full flex items-center justify-between px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary text-lg"
-              >
-                What We Do
-                <svg className={`w-5 h-5 transition-transform ${mobileWhatWeDoOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {mobileWhatWeDoOpen && (
-                <div className="bg-gray-50">
-                  <Link 
-                    href="/programs/projects" 
-                    className="block px-8 py-3 text-gray-600 hover:bg-primary/10 hover:text-primary"
-                    onClick={closeMobileMenu}
-                  >
-                    Our Projects
-                  </Link>
-                </div>
-              )}
-            </div>
-            
+            {/* Mobile Our Projects — single link */}
+            <Link
+              href="/programs/projects"
+              className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary text-lg"
+              onClick={closeMobileMenu}
+            >
+              Our Projects
+            </Link>
+
             {/* Mobile Resources Dropdown */}
             <div>
               <button
@@ -369,43 +322,43 @@ export default function Navbar() {
               </button>
               {mobileResourcesOpen && (
                 <div className="bg-gray-50">
-                  <Link 
-                    href="/resources/publications" 
+                  <Link
+                    href="/resources/publications"
                     className="block px-8 py-3 text-gray-600 hover:bg-primary/10 hover:text-primary"
                     onClick={closeMobileMenu}
                   >
                     Publications
                   </Link>
-                  <Link 
-                    href="/resources/newsletters" 
+                  <Link
+                    href="/resources/newsletters"
                     className="block px-8 py-3 text-gray-600 hover:bg-primary/10 hover:text-primary"
                     onClick={closeMobileMenu}
                   >
                     Newsletters
                   </Link>
-                  <Link 
-                    href="/resources/blogs" 
+                  <Link
+                    href="/resources/blogs"
                     className="block px-8 py-3 text-gray-600 hover:bg-primary/10 hover:text-primary"
                     onClick={closeMobileMenu}
                   >
                     Blogs & Articles
                   </Link>
-                  <Link 
-                    href="/resources/reports" 
+                  <Link
+                    href="/resources/reports"
                     className="block px-8 py-3 text-gray-600 hover:bg-primary/10 hover:text-primary"
                     onClick={closeMobileMenu}
                   >
                     Reports
                   </Link>
-                  <Link 
-                    href="/resources/gallery" 
+                  <Link
+                    href="/resources/gallery"
                     className="block px-8 py-3 text-gray-600 hover:bg-primary/10 hover:text-primary"
                     onClick={closeMobileMenu}
                   >
                     Gallery
                   </Link>
-                  <Link 
-                    href="/resources/events" 
+                  <Link
+                    href="/resources/events"
                     className="block px-8 py-3 text-gray-600 hover:bg-primary/10 hover:text-primary"
                     onClick={closeMobileMenu}
                   >
@@ -428,15 +381,15 @@ export default function Navbar() {
               </button>
               {mobileWorkOpen && (
                 <div className="bg-gray-50">
-                  <Link 
-                    href="/work-with-us" 
+                  <Link
+                    href="/work-with-us"
                     className="block px-8 py-3 text-gray-600 hover:bg-primary/10 hover:text-primary"
                     onClick={closeMobileMenu}
                   >
                     Careers
                   </Link>
-                  <Link 
-                    href="/get-involved/volunteer" 
+                  <Link
+                    href="/get-involved/volunteer"
                     className="block px-8 py-3 text-gray-600 hover:bg-primary/10 hover:text-primary"
                     onClick={closeMobileMenu}
                   >
@@ -446,16 +399,16 @@ export default function Navbar() {
               )}
             </div>
 
-            <Link 
-              href="/contact" 
+            <Link
+              href="/contact"
               className="block px-4 py-3 text-gray-700 hover:bg-primary/10 hover:text-primary text-lg"
               onClick={closeMobileMenu}
             >
               Contact
             </Link>
-            
-            <Link 
-              href="/get-involved" 
+
+            <Link
+              href="/get-involved"
               className="block px-4 py-3 bg-gold text-neutral font-semibold rounded mx-4 mt-2 text-center hover:bg-secondary-dark transition-colors text-lg"
               onClick={closeMobileMenu}
             >

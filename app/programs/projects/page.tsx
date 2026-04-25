@@ -96,8 +96,12 @@ This partnership between Africa CSID and KAIROS embodies the Jubilee call for ju
                   <span className="px-2 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">Interfaith Dialogue</span>
                 </div>
 
-                <div className="text-sm text-gray-500">
-                  <strong>Partner:</strong> KAIROS Canada
+                <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500">
+                  <span><strong>Partner:</strong> KAIROS Canada</span>
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-100 text-green-700 font-semibold">
+                    <span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
+                    Ongoing
+                  </span>
                 </div>
               </div>
             </div>
