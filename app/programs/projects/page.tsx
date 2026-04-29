@@ -6,25 +6,108 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CTASection from "@/components/CTASection";
 
+const projects = [
+  {
+    id: 2,
+    title: "Women, Faith, and Climate Security Project",
+    image: "/KAIROS Canada Partnership.JPG",
+    alt: "Women Faith and Climate Security - KAIROS Canada",
+    tags: ["Gender-Conflict-Climate Nexus", "Women's Leadership", "Peace Building", "Climate Resilience"],
+    partner: "KAIROS Canada",
+    status: "Ongoing" as const,
+    fullText: `Africa CSID, with support from KAIROS Canada, is committed to strengthening the gender‑conflict‑climate nexus through the Women, Faith, and Climate Security Project. This is a transformative initiative supported by KAIROS Canada, aimed at strengthening the gender‑conflict‑climate nexus across Kenya's fragile ecosystems. Implemented in pastoral communities in Baringo and the fisher communities of the Lake Victoria Basin, the project seeks to empower women as agents of peace and resilience amid climate‑driven resource scarcity and conflict. By institutionalizing women‑led peace committees, fostering interfaith solidarity, and advancing climate‑resilient livelihoods, the project bridges pastoral and fisher contexts under a common peace‑climate framework. It aligns with Kenya's Security Strategy, the National Climate Change Action Plan, and global Women, Peace, and Security commitments. Directly benefiting 600 women, children, and youth, and reaching over 3,000 community members—the project seeks to elevate grassroot voices through forums, interfaith dialogues, and multimedia campaigns under Justice and Renewal: Women, Faith, and Climate Peace. Rooted in faith and cultural values, it showcases the power of women, faith, and community in shaping a more peaceful and sustainable future for Kenya and beyond.`,
+  },
+  {
+    id: 3,
+    title: "Capacity Building for Gender Mainstreaming in Climate Action and Dissemination of the NGCCAP 2025-2027 Report",
+    image: "/Climate Change.JPG",
+    alt: "NGCCAP Gender Mainstreaming Project",
+    tags: ["Gender Mainstreaming", "Climate Governance", "Capacity Building", "NDC Partnership"],
+    partner: "NDC Partnership, State Department for Gender and Affirmative Action, State Department for Environment and Climate Action",
+    status: "Completed" as const,
+    fullText: `Africa CSID is committed to advancing gender‑responsive climate governance. Implemented across five regions in Kenya - Pwani, LREB, Mount Kenya & Aberdares, North Rift, and South Eastern—the project reached 25 counties with support from the NDC Partnership, the State Department for Gender and Affirmative Action, and the State Department for Environment and Climate Action. The initiative directly engaged over 300 participants, including county gender officers, planners, and disaster risk reduction focal points. Through participatory workshops and training, stakeholders were equipped with updated tools and a Gender Mainstreaming Guideline tailored to county contexts. By embedding gender considerations into climate strategies and disaster frameworks, the NGCCAP Dissemination Project strengthens institutional capacity and fosters collaboration across sectors. It positions women, youth, and marginalized communities as central agents of resilience and sustainable development, ensuring that climate justice aligns with gender justice in Kenya.`,
+  },
+];
+
+function ProjectCard({ project }: { project: (typeof projects)[0] }) {
+  const [expanded, setExpanded] = useState(false);
+
+  // Extract just the first sentence for the preview
+  const firstSentence = project.fullText.split(/(?<=\.)\s/)[0];
+
+  const isOngoing = project.status === "Ongoing";
+
+  return (
+    <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-t-4 border-primary flex flex-col">
+      <div className="relative h-56">
+        <Image
+          src={project.image}
+          alt={project.alt}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover"
+          quality={75}
+        />
+      </div>
+      <div className="p-6 flex flex-col flex-1">
+        <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
+
+        <div className="text-gray-600 mb-4 leading-relaxed flex-1">
+          {expanded
+            ? project.fullText.split("\n\n").map((para, i) => (
+                <p key={i} className={i > 0 ? "mt-3" : ""}>{para}</p>
+              ))
+            : <p>{firstSentence}</p>
+          }
+        </div>
+
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="text-primary hover:text-primary-dark font-semibold mb-4 transition-colors text-left"
+        >
+          {expanded ? "Read Less" : "Read More"}
+        </button>
+
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className="px-2 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mt-auto">
+          <span>
+            <strong>Partner:</strong> {project.partner}
+          </span>
+          <span
+            className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-semibold ${
+              isOngoing
+                ? "bg-green-100 text-green-700"
+                : "bg-gray-100 text-gray-600"
+            }`}
+          >
+            <span
+              className={`w-2 h-2 rounded-full inline-block ${
+                isOngoing ? "bg-green-500" : "bg-gray-400"
+              }`}
+            />
+            {project.status}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function ProjectsPage() {
-  const [showFullText, setShowFullText] = useState(false);
-
-  const fullProjectText = `In the pastoral landscapes of Baringo County and the fisheries of the Lake Victoria Basin, climate change has intensified resource scarcity, fueling conflict and straining social cohesion. Families are displaced, grazing lands are shrinking, and fish stocks are dwindling. Yet amid these challenges, women are leading informal reconciliation efforts through prayer, dialogue, and livelihood networks. They are stepping forward as powerful agents of peace and resilience.
-
-With support from KAIROS Canada, Africa CSID is building on this momentum through the project Women, Faith, and Climate Security: Strengthening the Gender-Conflict-Climate Nexus Across Kenya's Fragile Ecosystems. This initiative seeks to institutionalize women-led peace committees, foster interfaith solidarity, and advance climate-resilient livelihoods. Rooted in faith and cultural values, it bridges pastoral and fisher contexts under a common peace-climate framework, aligning with Kenya's Security Strategy, the National Climate Change Action Plan, and global Women, Peace, and Security commitments.
-
-Over the project's period, Africa CSID will strengthen existing Ilchamus-Pokot-Endorois peace committees in Baringo, establish fisherwomen peace committees in Migori and Homa Bay, and convene interfaith dialogues that weave together prayer, storytelling, and ecological justice. At the national level, the project hosted a Women, Faith & Climate Forum ahead of UNEA7, amplifying grassroots voices and showcasing community-driven models. Through multimedia campaigns under Justice and Renewal: Women, Faith, and Climate Peace, women's oral histories and peacebuilding journeys will be shared, linking local realities to global solidarity movements.
-
-The project seeks to directly benefit 600 women, children, and youth, while also expecting more than 3,000 community members will experience improved peace and ecological stability. By centering women's leadership and intergenerational inclusion, the project seeks to not only strengthen local resilience but also elevate women's priorities into national and international climate-peace frameworks.
-
-This partnership between Africa CSID and KAIROS embodies the Jubilee call for justice, renewal, and solidarity. It is a testament to the power of women, faith, and community in shaping a more peaceful and sustainable future for Kenya and beyond.`;
-
-  const shortText = fullProjectText.substring(0, 400) + "...";
-
   return (
     <>
       <Navbar />
-      
+
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
         <Image
           src="/hero.JPG"
@@ -36,7 +119,7 @@ This partnership between Africa CSID and KAIROS embodies the Jubilee call for ju
           priority
         />
         <div className="absolute inset-0 bg-primary/60" />
-        
+
         <div className="relative h-full flex items-center justify-center text-center px-4">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
@@ -56,55 +139,14 @@ This partnership between Africa CSID and KAIROS embodies the Jubilee call for ju
               Our Projects
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover our ongoing initiatives that are making a real difference across Africa's communities
+              Discover our initiatives that are making a real difference across Africa's communities
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Women, Faith, and Climate Security Project */}
-            <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-t-4 border-primary">
-              <div className="relative h-56">
-                <Image
-                  src="/Women, Faith, and Climate Security.jpeg"
-                  alt="Women, Faith, and Climate Security Project"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
-                  quality={75}
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  Women, Faith, and Climate Security: Strengthening the Gender-Conflict-Climate Nexus Across Kenya's Fragile Ecosystems
-                </h3>
-                
-                <div className="text-gray-600 mb-4 leading-relaxed whitespace-pre-line">
-                  {showFullText ? fullProjectText : shortText}
-                </div>
-
-                <button
-                  onClick={() => setShowFullText(!showFullText)}
-                  className="text-primary hover:text-primary-dark font-semibold mb-4 transition-colors"
-                >
-                  {showFullText ? "Read Less" : "Read More"}
-                </button>
-
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-2 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">Climate Security</span>
-                  <span className="px-2 py-1 bg-secondary/10 text-secondary rounded-full text-sm font-medium">Women's Leadership</span>
-                  <span className="px-2 py-1 bg-gold/10 text-gold rounded-full text-sm font-medium">Peace Building</span>
-                  <span className="px-2 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">Interfaith Dialogue</span>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500">
-                  <span><strong>Partner:</strong> KAIROS Canada</span>
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-100 text-green-700 font-semibold">
-                    <span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
-                    Ongoing
-                  </span>
-                </div>
-              </div>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
           </div>
         </div>
       </section>
