@@ -15,7 +15,13 @@ const projects = [
     tags: ["Gender-Conflict-Climate Nexus", "Women's Leadership", "Peace Building", "Climate Resilience"],
     partner: "KAIROS Canada",
     status: "Ongoing" as const,
-    fullText: `Africa CSID, with support from KAIROS Canada, is committed to strengthening the gender‑conflict‑climate nexus through the Women, Faith, and Climate Security Project. This is a transformative initiative supported by KAIROS Canada, aimed at strengthening the gender‑conflict‑climate nexus across Kenya's fragile ecosystems. Implemented in pastoral communities in Baringo and the fisher communities of the Lake Victoria Basin, the project seeks to empower women as agents of peace and resilience amid climate‑driven resource scarcity and conflict. By institutionalizing women‑led peace committees, fostering interfaith solidarity, and advancing climate‑resilient livelihoods, the project bridges pastoral and fisher contexts under a common peace‑climate framework. It aligns with Kenya's Security Strategy, the National Climate Change Action Plan, and global Women, Peace, and Security commitments. Directly benefiting 600 women, children, and youth, and reaching over 3,000 community members—the project seeks to elevate grassroot voices through forums, interfaith dialogues, and multimedia campaigns under Justice and Renewal: Women, Faith, and Climate Peace. Rooted in faith and cultural values, it showcases the power of women, faith, and community in shaping a more peaceful and sustainable future for Kenya and beyond.`,
+    paragraphs: [
+      `Africa CSID, with support from KAIROS Canada, is committed to strengthening the gender‑conflict‑climate nexus through the Women, Faith, and Climate Security Project.`,
+      `This is a transformative initiative aimed at strengthening the gender‑conflict‑climate nexus across Kenya's fragile ecosystems. Implemented in pastoral communities in Baringo and the fisher communities of the Lake Victoria Basin, the project seeks to empower women as agents of peace and resilience amid climate‑driven resource scarcity and conflict.`,
+      `By institutionalizing women‑led peace committees, fostering interfaith solidarity, and advancing climate‑resilient livelihoods, the project bridges pastoral and fisher contexts under a common peace‑climate framework. It aligns with Kenya's Security Strategy, the National Climate Change Action Plan, and global Women, Peace, and Security commitments.`,
+      `Directly benefiting 600 women, children, and youth, and reaching over 3,000 community members—the project seeks to elevate grassroot voices through forums, interfaith dialogues, and multimedia campaigns under Justice and Renewal: Women, Faith, and Climate Peace.`,
+      `Rooted in faith and cultural values, it showcases the power of women, faith, and community in shaping a more peaceful and sustainable future for Kenya and beyond.`,
+    ],
   },
   {
     id: 3,
@@ -25,15 +31,16 @@ const projects = [
     tags: ["Gender Mainstreaming", "Climate Governance", "Capacity Building", "NDC Partnership"],
     partner: "NDC Partnership, State Department for Gender and Affirmative Action, State Department for Environment and Climate Action",
     status: "Completed" as const,
-    fullText: `Africa CSID is committed to advancing gender‑responsive climate governance. Implemented across five regions in Kenya - Pwani, LREB, Mount Kenya & Aberdares, North Rift, and South Eastern—the project reached 25 counties with support from the NDC Partnership, the State Department for Gender and Affirmative Action, and the State Department for Environment and Climate Action. The initiative directly engaged over 300 participants, including county gender officers, planners, and disaster risk reduction focal points. Through participatory workshops and training, stakeholders were equipped with updated tools and a Gender Mainstreaming Guideline tailored to county contexts. By embedding gender considerations into climate strategies and disaster frameworks, the NGCCAP Dissemination Project strengthens institutional capacity and fosters collaboration across sectors. It positions women, youth, and marginalized communities as central agents of resilience and sustainable development, ensuring that climate justice aligns with gender justice in Kenya.`,
+    paragraphs: [
+      `Africa CSID is committed to advancing gender‑responsive climate governance.`,
+      `Implemented across five regions in Kenya — Pwani, LREB, Mount Kenya & Aberdares, North Rift, and South Eastern — the project reached 25 counties with support from the NDC Partnership, the State Department for Gender and Affirmative Action, and the State Department for Environment and Climate Action.`,
+      `The initiative directly engaged over 300 participants, including county gender officers, planners, and disaster risk reduction focal points. Through participatory workshops and training, stakeholders were equipped with updated tools and a Gender Mainstreaming Guideline tailored to county contexts.`,
+    ],
   },
 ];
 
 function ProjectCard({ project }: { project: (typeof projects)[0] }) {
   const [expanded, setExpanded] = useState(false);
-
-  // Extract just the first sentence for the preview
-  const firstSentence = project.fullText.split(/(?<=\.)\s/)[0];
 
   const isOngoing = project.status === "Ongoing";
 
@@ -52,20 +59,21 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
       <div className="p-6 flex flex-col flex-1">
         <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
 
-        <div className="text-gray-600 mb-4 leading-relaxed flex-1">
-          {expanded
-            ? project.fullText.split("\n\n").map((para, i) => (
-                <p key={i} className={i > 0 ? "mt-3" : ""}>{para}</p>
-              ))
-            : <p>{firstSentence}</p>
-          }
+        <div className="text-gray-600 mb-4 leading-relaxed flex-1 text-sm">
+          {expanded ? (
+            project.paragraphs.map((para, i) => (
+              <p key={i} className={i > 0 ? "mt-3" : ""}>{para}</p>
+            ))
+          ) : (
+            <p>{project.paragraphs[0]}</p>
+          )}
         </div>
 
         <button
           onClick={() => setExpanded(!expanded)}
-          className="text-primary hover:text-primary-dark font-semibold mb-4 transition-colors text-left"
+          className="text-primary hover:text-primary-dark font-semibold mb-4 transition-colors text-left text-sm"
         >
-          {expanded ? "Read Less" : "Read More"}
+          {expanded ? "Read Less ↑" : "Read More ↓"}
         </button>
 
         <div className="flex flex-wrap gap-2 mb-4">
