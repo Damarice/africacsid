@@ -59,7 +59,7 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
       <div className="p-6 flex flex-col flex-1">
         <h3 className="text-xl font-bold text-gray-900 mb-3">{project.title}</h3>
 
-        <div className="text-gray-600 mb-4 leading-relaxed flex-1 text-sm">
+        <div className="text-gray-600 mb-4 leading-relaxed text-sm">
           {expanded ? (
             project.paragraphs.map((para, i) => (
               <p key={i} className={i > 0 ? "mt-3" : ""}>{para}</p>
