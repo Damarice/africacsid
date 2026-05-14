@@ -37,13 +37,6 @@ export default function NewsletterDetailPage() {
       }
     }
   }, [newsletter]);
-
-export default function NewsletterDetailPage() {
-  const params = useParams();
-  const slug = params.slug as string;
-  const [copied, setCopied] = useState(false);
-  
-  const newsletter = newsletters.find(n => n.slug === slug);
   
   if (!newsletter) {
     return (
