@@ -21,6 +21,8 @@ export const WP_CATEGORY_IDS = {
   events: 5,
   reports: 6,
   gallery: 7,
+  projects: 8,
+  platforms: 9,
 } as const;
 
 // ─── Raw WordPress types ──────────────────────────────────────────────────────
@@ -362,6 +364,126 @@ export async function getGallery(perPage = 50): Promise<WPGalleryItem[]> {
     }));
   } catch (err) {
     console.error("[WP] getGallery failed:", err);
+    return [];
+  }
+}
+
+// ─── Reports ──────────────────────────────────────────────────────────────────
+
+export interface WPReport {
+  id: number;
+  slug: string;
+  title: string;
+  description: string;
+  content: string;
+  date: string;
+  downloadUrl: string;
+  category: string;
+}
+
+export async function getReports(perPage = 20): Promise<WPReport[]> {
+  try {
+    const posts = await fetchPosts(WP_CATEGORY_IDS.reports, perPage);
+    return posts.map((p) => ({
+      id: p.id,
+      slug: p.slug,
+      title: stripHtml(p.title.rendered),
+      description: stripHtml(p.excerpt.rendered),
+      content: p.content.rendered,
+      date: formatDate(p.date),
+      downloadUrl: p.acf?.pdf_url || "#",
+      category: getPrimaryCategory(p),
+    }));
+  } catch (err) {
+    console.error("[WP] getReports failed:", err);
+    return [];
+  }
+}
+
+// ─── Gallery ─────────────────────────────────────────────────────────────────
+
+export async function getGallery(perPage = 50): Promise<WPGalleryItem[]> {
+  try {
+    const posts = await fetchPosts(WP_CATEGORY_IDS.gallery, perPage);
+    return posts.map((p) => ({
+      id: p.id,
+      title: stripHtml(p.title.rendered),
+      category: getPrimaryCategory(p),
+      image: getFeaturedImage(p),
+      description: stripHtml(p.excerpt.rendered),
+    }));
+  } catch (err) {
+    console.error("[WP] getGallery failed:", err);
+    return [];
+  }
+}
+
+// ─── Projects ─────────────────────────────────────────────────────────────────
+
+export interface WPProject {
+  id: number;
+  slug: string;
+  title: string;
+  description: string;
+  content: string;
+  date: string;
+  image: string;
+  programArea: string;
+  location: string;
+  status: string;
+  tags: string[];
+}
+
+export async function getProjects(perPage = 20): Promise<WPProject[]> {
+  try {
+    const posts = await fetchPosts(WP_CATEGORY_IDS.projects, perPage);
+    return posts.map((p) => ({
+      id: p.id,
+      slug: p.slug,
+      title: stripHtml(p.title.rendered),
+      description: stripHtml(p.excerpt.rendered),
+      content: p.content.rendered,
+      date: formatDate(p.date),
+      image: getFeaturedImage(p),
+      programArea: p.acf?.program_area || getPrimaryCategory(p),
+      location: p.acf?.location || "",
+      status: p.acf?.project_status || "Ongoing",
+      tags: p.acf?.program_area ? [p.acf.program_area] : [],
+    }));
+  } catch (err) {
+    console.error("[WP] getProjects failed:", err);
+    return [];
+  }
+}
+
+// ─── Platforms ────────────────────────────────────────────────────────────────
+
+export interface WPPlatform {
+  id: number;
+  slug: string;
+  name: string;
+  description: string;
+  content: string;
+  logo: string;
+  endorsementLink: string;
+  platformType: string;
+}
+
+export async function getPlatforms(perPage = 20): Promise<WPPlatform[]> {
+  try {
+    const posts = await fetchPosts(WP_CATEGORY_IDS.platforms, perPage);
+    return posts.map((p) => ({
+      id: p.id,
+      slug: p.slug,
+      name: stripHtml(p.title.rendered),
+      description: stripHtml(p.excerpt.rendered),
+      content: p.content.rendered,
+      logo: getFeaturedImage(p, ""),
+      endorsementLink: p.acf?.endorsement_link || "",
+      platformType: p.acf?.platform_type || "",
+    }));
+  } catch (err) {
+    console.error("[WP] getPlatforms failed:", err);
     return [];
   }
 }
