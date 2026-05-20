@@ -1,36 +1,20 @@
-"use client";
-
-import { useParams } from "next/navigation";
+import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CTASection from "@/components/CTASection";
 import Link from "next/link";
-import { blogs } from "@/data/blogs";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar, faUser, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { getBlogBySlug } from "@/lib/wordpress";
+import { blogs as staticBlogs } from "@/data/blogs";
 
-export default function BlogDetailPage() {
-  const params = useParams();
-  const slug = params.slug as string;
-  
-  const blog = blogs.find(b => b.slug === slug);
-  
-  if (!blog) {
-    return (
-      <>
-        <Navbar />
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Blog Not Found</h1>
-            <Link href="/resources/blogs" className="text-primary hover:text-primary-dark">
-              Back to Blogs
-            </Link>
-          </div>
-        </div>
-        <Footer />
-      </>
-    );
-  }
+export const revalidate = 60;
+
+export default async function BlogDetailPage({ params }: { params: { slug: string } }) {
+  const wpBlog = await getBlogBySlug(params.slug);
+  const blog = wpBlog ?? staticBlogs.find(b => b.slug === params.slug);
+
+  if (!blog) notFound();
 
   return (
     <>
@@ -65,13 +49,15 @@ export default function BlogDetailPage() {
           />
           
           <div className="prose prose-lg max-w-none">
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
-              {blog.excerpt}
-            </p>
-            
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-              This content will be populated from WordPress. The full article details, images, and formatting will appear here once integrated with your content management system.
-            </p>
+            {wpBlog ? (
+              // Render full WordPress content
+              <div dangerouslySetInnerHTML={{ __html: wpBlog.content }} />
+            ) : (
+              // Static fallback
+              <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+                {blog.excerpt}
+              </p>
+            )}
           </div>
         </div>
       </article>

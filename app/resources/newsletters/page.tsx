@@ -6,29 +6,32 @@ import CTASection from "@/components/CTASection";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar, faDownload, faEye, faFileText, faShare } from "@fortawesome/free-solid-svg-icons";
-import { newsletters } from "@/data/newsletters";
-import { useState } from "react";
+import { getNewsletters } from "@/lib/wordpress";
+import { newsletters as staticNewsletters } from "@/data/newsletters";
+import { useState, useEffect } from "react";
+import type { WPNewsletter } from "@/lib/wordpress";
 
 export default function NewslettersPage() {
+  const [newsletters, setNewsletters] = useState<(WPNewsletter | typeof staticNewsletters[0])[]>([]);
+  const [loading, setLoading] = useState(true);
   const [copiedId, setCopiedId] = useState<number | null>(null);
+
+  useEffect(() => {
+    fetch("/api/wp/newsletters")
+      .then(r => r.json())
+      .then(data => { setNewsletters(data); setLoading(false); })
+      .catch(() => { setNewsletters(staticNewsletters); setLoading(false); });
+  }, []);
 
   const handleShare = async (newsletter: any) => {
     const shareUrl = `${window.location.origin}/resources/newsletters/${newsletter.slug}`;
-    
     if (navigator.share) {
-      // Use native share API if available (mobile)
       try {
-        await navigator.share({
-          title: newsletter.title,
-          text: newsletter.description,
-          url: shareUrl,
-        });
-      } catch (err) {
-        // Fallback to copy to clipboard
+        await navigator.share({ title: newsletter.title, text: newsletter.description, url: shareUrl });
+      } catch {
         copyToClipboard(shareUrl, newsletter.id);
       }
     } else {
-      // Copy to clipboard
       copyToClipboard(shareUrl, newsletter.id);
     }
   };
@@ -39,9 +42,10 @@ export default function NewslettersPage() {
       setCopiedId(id);
       setTimeout(() => setCopiedId(null), 2000);
     } catch (err) {
-      console.error('Failed to copy: ', err);
+      console.error("Failed to copy:", err);
     }
   };
+
   return (
     <>
       <Navbar />
@@ -72,8 +76,15 @@ export default function NewslettersPage() {
 
       <section className="py-12 md:py-16 bg-white">
         <div className="container-custom">
+          {loading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[1,2,3].map(i => (
+                <div key={i} className="bg-gray-100 rounded-2xl h-80 animate-pulse" />
+              ))}
+            </div>
+          ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {newsletters.map((newsletter, index) => (
+            {newsletters.map((newsletter) => (
               <article
                 key={newsletter.id}
                 className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-t-4 border-accent group"
@@ -101,34 +112,32 @@ export default function NewslettersPage() {
                     </div>
                   )}
                 </div>
-                
+
                 {/* Content */}
                 <div className="p-6">
                   <div className="flex items-center gap-2 text-sm text-gray-500 mb-3">
                     <FontAwesomeIcon icon={faCalendar} className="text-accent" />
                     <span>{newsletter.date}</span>
                   </div>
-                  
+
                   <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 group-hover:text-accent transition-colors duration-300">
                     {newsletter.title}
                   </h3>
-                  
+
                   <p className="text-sm text-gray-600 mb-4 line-clamp-3 leading-relaxed">
                     {newsletter.description}
                   </p>
-                  
-                  {/* Type indicator */}
+
                   <div className="mb-4">
                     <span className="inline-flex items-center gap-2 px-2 py-1 rounded-full bg-accent/10 text-accent text-xs font-medium">
                       <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} 
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                           d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                       </svg>
                       Newsletter
                     </span>
                   </div>
-                  
-                  {/* Actions */}
+
                   <div className="flex gap-2">
                     <a
                       href={newsletter.downloadUrl}
@@ -152,13 +161,14 @@ export default function NewslettersPage() {
                       className="flex items-center justify-center gap-1 px-3 py-2 rounded-lg border border-accent text-accent font-semibold text-xs hover:bg-accent hover:text-white transition-all duration-300"
                     >
                       <FontAwesomeIcon icon={faShare} />
-                      {copiedId === newsletter.id ? 'Copied!' : 'Share'}
+                      {copiedId === newsletter.id ? "Copied!" : "Share"}
                     </button>
                   </div>
                 </div>
               </article>
             ))}
           </div>
+          )}
         </div>
       </section>
 

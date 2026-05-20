@@ -1,36 +1,20 @@
-"use client";
-
-import { useParams } from "next/navigation";
+import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CTASection from "@/components/CTASection";
 import Link from "next/link";
-import { events } from "@/data/events";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar, faMapMarkerAlt, faClock, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { getEventBySlug } from "@/lib/wordpress";
+import { events as staticEvents } from "@/data/events";
 
-export default function EventDetailPage() {
-  const params = useParams();
-  const slug = params.slug as string;
-  
-  const event = events.find(e => e.slug === slug);
-  
-  if (!event) {
-    return (
-      <>
-        <Navbar />
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Event Not Found</h1>
-            <Link href="/resources/events" className="text-primary hover:text-primary-dark">
-              Back to Events
-            </Link>
-          </div>
-        </div>
-        <Footer />
-      </>
-    );
-  }
+export const revalidate = 60;
+
+export default async function EventDetailPage({ params }: { params: { slug: string } }) {
+  const wpEvent = await getEventBySlug(params.slug);
+  const event = wpEvent ?? staticEvents.find(e => e.slug === params.slug);
+
+  if (!event) notFound();
 
   return (
     <>
@@ -71,13 +55,13 @@ export default function EventDetailPage() {
           </div>
           
           <div className="prose prose-lg max-w-none">
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
-              {event.description}
-            </p>
-            
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-              Additional event details will be populated from WordPress. Full event information, registration details, and agenda will appear here once integrated with your content management system.
-            </p>
+            {wpEvent ? (
+              <div dangerouslySetInnerHTML={{ __html: wpEvent.content }} />
+            ) : (
+              <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+                {event.description}
+              </p>
+            )}
           </div>
         </div>
       </article>

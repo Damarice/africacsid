@@ -1,5 +1,3 @@
-"use client";
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CTASection from "@/components/CTASection";
@@ -7,11 +5,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar, faMapMarkerAlt, faClock, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { events } from "@/data/events";
+import { getEvents } from "@/lib/wordpress";
+import { events as staticEvents } from "@/data/events";
 
-export default function EventsPage() {
-  const upcomingEvents = events.filter(e => e.status === "upcoming");
-  const pastEvents = events.filter(e => e.status === "past");
+export const revalidate = 60;
+
+export default async function EventsPage() {
+  const wpEvents = await getEvents(20);
+  const allEvents = wpEvents.length > 0 ? wpEvents : staticEvents;
+  const upcomingEvents = allEvents.filter(e => e.status === "upcoming");
+  const pastEvents = allEvents.filter(e => e.status === "past");
 
   return (
     <>

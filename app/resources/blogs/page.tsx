@@ -1,5 +1,3 @@
-"use client";
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CTASection from "@/components/CTASection";
@@ -7,9 +5,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar, faUser, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { blogs } from "@/data/blogs";
+import { getBlogs } from "@/lib/wordpress";
+import { blogs as staticBlogs } from "@/data/blogs";
 
-export default function BlogsPage() {
+export const revalidate = 60;
+
+export default async function BlogsPage() {
+  const wpBlogs = await getBlogs(12);
+  const blogs = wpBlogs.length > 0 ? wpBlogs : staticBlogs;
+
   return (
     <>
       <Navbar />

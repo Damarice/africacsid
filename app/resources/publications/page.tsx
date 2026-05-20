@@ -1,5 +1,3 @@
-"use client";
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CTASection from "@/components/CTASection";
@@ -7,9 +5,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileAlt, faDownload, faCalendar, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { publications } from "@/data/publications";
+import { getPublications } from "@/lib/wordpress";
+import { publications as staticPublications } from "@/data/publications";
 
-export default function PublicationsPage() {
+export const revalidate = 60;
+
+export default async function PublicationsPage() {
+  const wpPublications = await getPublications(12);
+  const publications = wpPublications.length > 0 ? wpPublications : staticPublications;
+
   return (
     <>
       <Navbar />

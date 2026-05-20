@@ -1,36 +1,20 @@
-"use client";
-
-import { useParams } from "next/navigation";
+import { notFound } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CTASection from "@/components/CTASection";
 import Link from "next/link";
-import { publications } from "@/data/publications";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendar, faFileAlt, faDownload, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faCalendar, faDownload, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { getPublicationBySlug } from "@/lib/wordpress";
+import { publications as staticPublications } from "@/data/publications";
 
-export default function PublicationDetailPage() {
-  const params = useParams();
-  const slug = params.slug as string;
-  
-  const publication = publications.find(p => p.slug === slug);
-  
-  if (!publication) {
-    return (
-      <>
-        <Navbar />
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">Publication Not Found</h1>
-            <Link href="/resources/publications" className="text-primary hover:text-primary-dark">
-              Back to Publications
-            </Link>
-          </div>
-        </div>
-        <Footer />
-      </>
-    );
-  }
+export const revalidate = 60;
+
+export default async function PublicationDetailPage({ params }: { params: { slug: string } }) {
+  const wpPublication = await getPublicationBySlug(params.slug);
+  const publication = wpPublication ?? staticPublications.find(p => p.slug === params.slug);
+
+  if (!publication) notFound();
 
   return (
     <>
@@ -72,13 +56,13 @@ export default function PublicationDetailPage() {
           </div>
           
           <div className="prose prose-lg max-w-none">
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-6">
-              {publication.description}
-            </p>
-            
-            <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-              Additional publication details will be populated from WordPress. Full document information, abstract, and download links will appear here once integrated with your content management system.
-            </p>
+            {wpPublication ? (
+              <div dangerouslySetInnerHTML={{ __html: wpPublication.content }} />
+            ) : (
+              <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+                {publication.description}
+              </p>
+            )}
           </div>
         </div>
       </article>
