@@ -10,7 +10,8 @@ export const revalidate = 60;
 
 export default async function WorkWithUsPage() {
   const wpVacancies = await getVacancies(20);
-  const vacancies = wpVacancies.length > 0 ? wpVacancies : staticVacancies;
+  const wpSlugs = new Set(wpVacancies.map(v => v.slug));
+  const vacancies = [...wpVacancies, ...staticVacancies.filter(v => !wpSlugs.has(v.slug))];
   return (
     <>
       <Navbar />

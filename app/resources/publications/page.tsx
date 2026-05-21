@@ -12,7 +12,8 @@ export const revalidate = 60;
 
 export default async function PublicationsPage() {
   const wpPublications = await getPublications(12);
-  const publications = wpPublications.length > 0 ? wpPublications : staticPublications;
+  const wpSlugs = new Set(wpPublications.map(p => p.slug));
+  const publications = [...wpPublications, ...staticPublications.filter(p => !wpSlugs.has(p.slug))];
 
   return (
     <>

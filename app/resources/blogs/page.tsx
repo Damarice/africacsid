@@ -12,7 +12,9 @@ export const revalidate = 60;
 
 export default async function BlogsPage() {
   const wpBlogs = await getBlogs(12);
-  const blogs = wpBlogs.length > 0 ? wpBlogs : staticBlogs;
+  // Merge: WP content first, then static items not already in WP (by slug)
+  const wpSlugs = new Set(wpBlogs.map(b => b.slug));
+  const blogs = [...wpBlogs, ...staticBlogs.filter(b => !wpSlugs.has(b.slug))];
 
   return (
     <>

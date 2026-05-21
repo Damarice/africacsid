@@ -6,6 +6,7 @@ export const revalidate = 60;
 
 export async function GET() {
   const wpNewsletters = await getNewsletters(12);
-  const data = wpNewsletters.length > 0 ? wpNewsletters : staticNewsletters;
+  const wpSlugs = new Set(wpNewsletters.map(n => n.slug));
+  const data = [...wpNewsletters, ...staticNewsletters.filter(n => !wpSlugs.has(n.slug))];
   return NextResponse.json(data);
 }

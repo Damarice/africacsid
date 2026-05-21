@@ -39,7 +39,8 @@ const staticProjects = [
 
 export default async function ProjectsPage() {
   const wpProjects = await getProjects(20);
-  const projects = wpProjects.length > 0 ? wpProjects : staticProjects;
+  const wpTitles = new Set(wpProjects.map(p => p.title));
+  const projects = [...wpProjects, ...staticProjects.filter(p => !wpTitles.has(p.title))];
 
   return <ProjectsClient projects={projects} />;
 }

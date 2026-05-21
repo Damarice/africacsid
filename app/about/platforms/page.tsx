@@ -60,7 +60,8 @@ const staticPlatforms = [
 
 export default async function PlatformsPage() {
   const wpPlatforms = await getPlatforms(20);
-  const platforms = wpPlatforms.length > 0 ? wpPlatforms : staticPlatforms;
+  const wpNames = new Set(wpPlatforms.map(p => p.name));
+  const platforms = [...wpPlatforms, ...staticPlatforms.filter(p => !wpNames.has(p.name))];
 
   return <PlatformsClient platforms={platforms} />;
 }

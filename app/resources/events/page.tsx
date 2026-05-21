@@ -12,7 +12,8 @@ export const revalidate = 60;
 
 export default async function EventsPage() {
   const wpEvents = await getEvents(20);
-  const allEvents = wpEvents.length > 0 ? wpEvents : staticEvents;
+  const wpSlugs = new Set(wpEvents.map(e => e.slug));
+  const allEvents = [...wpEvents, ...staticEvents.filter(e => !wpSlugs.has(e.slug))];
   const upcomingEvents = allEvents.filter(e => e.status === "upcoming");
   const pastEvents = allEvents.filter(e => e.status === "past");
 

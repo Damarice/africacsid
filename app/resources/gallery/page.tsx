@@ -6,7 +6,8 @@ export const revalidate = 60;
 
 export default async function GalleryPage() {
   const wpGallery = await getGallery(50);
-  const galleryImages = wpGallery.length > 0 ? wpGallery : staticGallery;
+  const wpIds = new Set(wpGallery.map(g => g.id));
+  const galleryImages = [...wpGallery, ...staticGallery.filter(g => !wpIds.has(g.id))];
 
   return <GalleryClient galleryImages={galleryImages} />;
 }

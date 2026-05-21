@@ -64,7 +64,8 @@ function DownloadIcon() {
 
 export default async function ReportsPage() {
   const wpReports = await getReports(20);
-  const reports = wpReports.length > 0 ? wpReports : staticReports;
+  const wpSlugs = new Set(wpReports.map(r => r.slug));
+  const reports = [...wpReports, ...staticReports.filter(r => !wpSlugs.has(r.slug))];
 
   return (
     <>
