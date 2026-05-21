@@ -9,11 +9,12 @@
  *   events       → 5
  *   reports      → 6
  *   gallery      → 7
+ *   projects     → 8
+ *   platforms    → 9
  */
 
 const WP_BASE_URL = "https://resources.africacsid.org/wp-json/wp/v2";
 
-// Hardcoded category IDs — no extra API call needed
 export const WP_CATEGORY_IDS = {
   blogs: 2,
   newsletters: 3,
@@ -42,6 +43,11 @@ export interface WPPost {
     event_time?: string;
     event_location?: string;
     event_type?: string;
+    program_area?: string;
+    location?: string;
+    project_status?: string;
+    endorsement_link?: string;
+    platform_type?: string;
     [key: string]: any;
   };
   _embedded?: {
@@ -117,6 +123,42 @@ export interface WPGalleryItem {
   description: string;
 }
 
+export interface WPReport {
+  id: number;
+  slug: string;
+  title: string;
+  description: string;
+  content: string;
+  date: string;
+  downloadUrl: string;
+  category: string;
+}
+
+export interface WPProject {
+  id: number;
+  slug: string;
+  title: string;
+  description: string;
+  content: string;
+  date: string;
+  image: string;
+  programArea: string;
+  location: string;
+  status: string;
+  tags: string[];
+}
+
+export interface WPPlatform {
+  id: number;
+  slug: string;
+  name: string;
+  description: string;
+  content: string;
+  logo: string;
+  endorsementLink: string;
+  platformType: string;
+}
+
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function stripHtml(html: string): string {
@@ -139,9 +181,9 @@ function getAuthor(post: WPPost): string {
 }
 
 function getPrimaryCategory(post: WPPost): string {
-  const contentTypeSlugs = ["blogs", "newsletters", "publications", "events", "reports", "gallery", "uncategorized"];
+  const skip = ["blogs", "newsletters", "publications", "events", "reports", "gallery", "projects", "platforms", "uncategorized"];
   const terms = post._embedded?.["wp:term"]?.[0] ?? [];
-  const cat = terms.find((t) => !contentTypeSlugs.includes(t.slug));
+  const cat = terms.find((t) => !skip.includes(t.slug));
   return cat?.name || "General";
 }
 
@@ -370,17 +412,6 @@ export async function getGallery(perPage = 50): Promise<WPGalleryItem[]> {
 
 // ─── Reports ──────────────────────────────────────────────────────────────────
 
-export interface WPReport {
-  id: number;
-  slug: string;
-  title: string;
-  description: string;
-  content: string;
-  date: string;
-  downloadUrl: string;
-  category: string;
-}
-
 export async function getReports(perPage = 20): Promise<WPReport[]> {
   try {
     const posts = await fetchPosts(WP_CATEGORY_IDS.reports, perPage);
@@ -400,39 +431,7 @@ export async function getReports(perPage = 20): Promise<WPReport[]> {
   }
 }
 
-// ─── Gallery ─────────────────────────────────────────────────────────────────
-
-export async function getGallery(perPage = 50): Promise<WPGalleryItem[]> {
-  try {
-    const posts = await fetchPosts(WP_CATEGORY_IDS.gallery, perPage);
-    return posts.map((p) => ({
-      id: p.id,
-      title: stripHtml(p.title.rendered),
-      category: getPrimaryCategory(p),
-      image: getFeaturedImage(p),
-      description: stripHtml(p.excerpt.rendered),
-    }));
-  } catch (err) {
-    console.error("[WP] getGallery failed:", err);
-    return [];
-  }
-}
-
 // ─── Projects ─────────────────────────────────────────────────────────────────
-
-export interface WPProject {
-  id: number;
-  slug: string;
-  title: string;
-  description: string;
-  content: string;
-  date: string;
-  image: string;
-  programArea: string;
-  location: string;
-  status: string;
-  tags: string[];
-}
 
 export async function getProjects(perPage = 20): Promise<WPProject[]> {
   try {
@@ -457,17 +456,6 @@ export async function getProjects(perPage = 20): Promise<WPProject[]> {
 }
 
 // ─── Platforms ────────────────────────────────────────────────────────────────
-
-export interface WPPlatform {
-  id: number;
-  slug: string;
-  name: string;
-  description: string;
-  content: string;
-  logo: string;
-  endorsementLink: string;
-  platformType: string;
-}
 
 export async function getPlatforms(perPage = 20): Promise<WPPlatform[]> {
   try {
