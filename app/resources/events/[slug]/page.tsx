@@ -10,9 +10,10 @@ import { events as staticEvents } from "@/data/events";
 
 export const revalidate = 60;
 
-export default async function EventDetailPage({ params }: { params: { slug: string } }) {
-  const wpEvent = await getEventBySlug(params.slug);
-  const event = wpEvent ?? staticEvents.find(e => e.slug === params.slug);
+export default async function EventDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const wpEvent = await getEventBySlug(slug);
+  const event = wpEvent ?? staticEvents.find(e => e.slug === slug);
 
   if (!event) notFound();
 

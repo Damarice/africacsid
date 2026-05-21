@@ -10,9 +10,10 @@ import { blogs as staticBlogs } from "@/data/blogs";
 
 export const revalidate = 60;
 
-export default async function BlogDetailPage({ params }: { params: { slug: string } }) {
-  const wpBlog = await getBlogBySlug(params.slug);
-  const blog = wpBlog ?? staticBlogs.find(b => b.slug === params.slug);
+export default async function BlogDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const wpBlog = await getBlogBySlug(slug);
+  const blog = wpBlog ?? staticBlogs.find(b => b.slug === slug);
 
   if (!blog) notFound();
 
@@ -50,10 +51,8 @@ export default async function BlogDetailPage({ params }: { params: { slug: strin
           
           <div className="prose prose-lg max-w-none">
             {wpBlog ? (
-              // Render full WordPress content
               <div dangerouslySetInnerHTML={{ __html: wpBlog.content }} />
             ) : (
-              // Static fallback
               <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
                 {blog.excerpt}
               </p>

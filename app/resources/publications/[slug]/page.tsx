@@ -10,9 +10,10 @@ import { publications as staticPublications } from "@/data/publications";
 
 export const revalidate = 60;
 
-export default async function PublicationDetailPage({ params }: { params: { slug: string } }) {
-  const wpPublication = await getPublicationBySlug(params.slug);
-  const publication = wpPublication ?? staticPublications.find(p => p.slug === params.slug);
+export default async function PublicationDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const wpPublication = await getPublicationBySlug(slug);
+  const publication = wpPublication ?? staticPublications.find(p => p.slug === slug);
 
   if (!publication) notFound();
 
@@ -44,7 +45,6 @@ export default async function PublicationDetailPage({ params }: { params: { slug
                 {publication.date}
               </span>
             </div>
-            
             <a
               href={publication.downloadUrl}
               className="inline-flex items-center gap-2 bg-primary text-white font-semibold py-3 px-8 rounded-lg text-lg hover:bg-primary-dark transition-colors"
