@@ -24,6 +24,7 @@ export const WP_CATEGORY_IDS = {
   gallery: 7,
   projects: 8,
   platforms: 9,
+  vacancies: 10,
 } as const;
 
 // ─── Raw WordPress types ──────────────────────────────────────────────────────
@@ -493,7 +494,7 @@ export interface WPVacancy {
 export async function getVacancies(perPage = 20): Promise<WPVacancy[]> {
   try {
     // Vacancies use category slug "vacancies" — add to WordPress when ready
-    const url = `${WP_BASE_URL}/posts?categories=10&per_page=${perPage}&_embed=1&orderby=date&order=desc`;
+    const url = `${WP_BASE_URL}/posts?categories=${WP_CATEGORY_IDS.vacancies}&per_page=${perPage}&_embed=1&orderby=date&order=desc`;
     const res = await fetch(url, { next: { revalidate: 60 } });
     if (!res.ok) return [];
     const posts: WPPost[] = await res.json();
