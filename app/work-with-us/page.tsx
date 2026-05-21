@@ -1,13 +1,16 @@
-"use client";
-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CTASection from "@/components/CTASection";
 import Link from "next/link";
 import Image from "next/image";
-import { vacancies } from "@/data/vacancies";
+import { getVacancies } from "@/lib/wordpress";
+import { vacancies as staticVacancies } from "@/data/vacancies";
 
-export default function WorkWithUsPage() {
+export const revalidate = 60;
+
+export default async function WorkWithUsPage() {
+  const wpVacancies = await getVacancies(20);
+  const vacancies = wpVacancies.length > 0 ? wpVacancies : staticVacancies;
   return (
     <>
       <Navbar />

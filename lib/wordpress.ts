@@ -475,3 +475,41 @@ export async function getPlatforms(perPage = 20): Promise<WPPlatform[]> {
     return [];
   }
 }
+
+// ─── Vacancies ────────────────────────────────────────────────────────────────
+
+export interface WPVacancy {
+  id: number;
+  slug: string;
+  title: string;
+  description: string;
+  content: string;
+  date: string;
+  location: string;
+  type: string;
+  deadline: string;
+}
+
+export async function getVacancies(perPage = 20): Promise<WPVacancy[]> {
+  try {
+    // Vacancies use category slug "vacancies" — add to WordPress when ready
+    const url = `${WP_BASE_URL}/posts?categories=10&per_page=${perPage}&_embed=1&orderby=date&order=desc`;
+    const res = await fetch(url, { next: { revalidate: 60 } });
+    if (!res.ok) return [];
+    const posts: WPPost[] = await res.json();
+    return posts.map((p) => ({
+      id: p.id,
+      slug: p.slug,
+      title: stripHtml(p.title.rendered),
+      description: stripHtml(p.excerpt.rendered),
+      content: p.content.rendered,
+      date: formatDate(p.date),
+      location: p.acf?.location || "Kenya",
+      type: p.acf?.job_type || "Full-time",
+      deadline: p.acf?.deadline || "",
+    }));
+  } catch (err) {
+    console.error("[WP] getVacancies failed:", err);
+    return [];
+  }
+}
