@@ -88,11 +88,11 @@ export default function Footer() {
             <h3 className="font-bold text-lg md:text-xl mb-4 text-white">Contact Us</h3>
             <ul className="space-y-3 text-gray-400 text-base md:text-lg">
               <li className="flex items-start group hover:text-white transition-colors duration-300">
-                <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-3 mt-1 text-gold" />
+                <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-3 mt-1 text-gold w-4 h-4 flex-shrink-0" />
                 <span>Kenya</span>
               </li>
               <li className="flex items-start group hover:text-white transition-colors duration-300">
-                <FontAwesomeIcon icon={faEnvelope} className="mr-3 mt-1 text-gold" />
+                <FontAwesomeIcon icon={faEnvelope} className="mr-3 mt-1 text-gold w-4 h-4 flex-shrink-0" />
                 <a href="mailto:info@africacsid.org" className="hover:text-gold transition-colors">
                   info@africacsid.org
                 </a>

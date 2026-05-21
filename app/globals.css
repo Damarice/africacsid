@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── FontAwesome icon size fix ───────────────────────────────────────────────
+   Icons without an explicit size class should not inherit the large paragraph
+   font-size set globally below. Cap them at 1em so they stay inline-sized
+   unless a utility class (w-4, w-6, text-2xl, etc.) overrides them.
+   ─────────────────────────────────────────────────────────────────────────── */
+svg.svg-inline--fa {
+  height: 1em;
+  width: auto;
+  vertical-align: -0.125em;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
