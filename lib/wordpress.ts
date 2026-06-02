@@ -166,6 +166,18 @@ function stripHtml(html: string): string {
   return html.replace(/<[^>]*>/g, "").trim();
 }
 
+function processWordPressContent(content: string): string {
+  // Clean up WordPress content for better display
+  return content
+    // Remove empty paragraphs
+    .replace(/<p>\s*<\/p>/g, "")
+    // Ensure proper paragraph spacing
+    .replace(/<\/p>\s*<p>/g, "</p><p>")
+    // Clean up extra whitespace
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function getFeaturedImage(post: WPPost, fallback = "/hero.JPG"): string {
   const media = post._embedded?.["wp:featuredmedia"]?.[0];
   if (!media) return fallback;
@@ -227,7 +239,7 @@ export async function getBlogs(perPage = 12): Promise<WPBlog[]> {
       slug: p.slug,
       title: stripHtml(p.title.rendered),
       excerpt: stripHtml(p.excerpt.rendered),
-      content: p.content.rendered,
+      content: processWordPressContent(p.content.rendered),
       date: formatDate(p.date),
       author: getAuthor(p),
       category: getPrimaryCategory(p),
@@ -248,7 +260,7 @@ export async function getBlogBySlug(slug: string): Promise<WPBlog | null> {
       slug: p.slug,
       title: stripHtml(p.title.rendered),
       excerpt: stripHtml(p.excerpt.rendered),
-      content: p.content.rendered,
+      content: processWordPressContent(p.content.rendered),
       date: formatDate(p.date),
       author: getAuthor(p),
       category: getPrimaryCategory(p),
@@ -307,7 +319,7 @@ export async function getPublications(perPage = 12): Promise<WPPublication[]> {
       slug: p.slug,
       title: stripHtml(p.title.rendered),
       description: stripHtml(p.excerpt.rendered),
-      content: p.content.rendered,
+      content: processWordPressContent(p.content.rendered),
       date: formatDate(p.date),
       image: getFeaturedImage(p),
       downloadUrl: p.acf?.pdf_url || "#",
@@ -328,7 +340,7 @@ export async function getPublicationBySlug(slug: string): Promise<WPPublication 
       slug: p.slug,
       title: stripHtml(p.title.rendered),
       description: stripHtml(p.excerpt.rendered),
-      content: p.content.rendered,
+      content: processWordPressContent(p.content.rendered),
       date: formatDate(p.date),
       image: getFeaturedImage(p),
       downloadUrl: p.acf?.pdf_url || "#",
@@ -353,7 +365,7 @@ export async function getEvents(perPage = 20): Promise<WPEvent[]> {
         slug: p.slug,
         title: stripHtml(p.title.rendered),
         description: stripHtml(p.excerpt.rendered),
-        content: p.content.rendered,
+        content: processWordPressContent(p.content.rendered),
         date: formatDate(eventDate),
         time: p.acf?.event_time || "TBD",
         location: p.acf?.event_location || "TBD",
@@ -379,7 +391,7 @@ export async function getEventBySlug(slug: string): Promise<WPEvent | null> {
       slug: p.slug,
       title: stripHtml(p.title.rendered),
       description: stripHtml(p.excerpt.rendered),
-      content: p.content.rendered,
+      content: processWordPressContent(p.content.rendered),
       date: formatDate(eventDate),
       time: p.acf?.event_time || "TBD",
       location: p.acf?.event_location || "TBD",
@@ -421,7 +433,7 @@ export async function getReports(perPage = 20): Promise<WPReport[]> {
       slug: p.slug,
       title: stripHtml(p.title.rendered),
       description: stripHtml(p.excerpt.rendered),
-      content: p.content.rendered,
+      content: processWordPressContent(p.content.rendered),
       date: formatDate(p.date),
       downloadUrl: p.acf?.pdf_url || "#",
       category: getPrimaryCategory(p),
@@ -442,7 +454,7 @@ export async function getProjects(perPage = 20): Promise<WPProject[]> {
       slug: p.slug,
       title: stripHtml(p.title.rendered),
       description: stripHtml(p.excerpt.rendered),
-      content: p.content.rendered,
+      content: processWordPressContent(p.content.rendered),
       date: formatDate(p.date),
       image: getFeaturedImage(p),
       programArea: p.acf?.program_area || getPrimaryCategory(p),
@@ -466,7 +478,7 @@ export async function getPlatforms(perPage = 20): Promise<WPPlatform[]> {
       slug: p.slug,
       name: stripHtml(p.title.rendered),
       description: stripHtml(p.excerpt.rendered),
-      content: p.content.rendered,
+      content: processWordPressContent(p.content.rendered),
       logo: getFeaturedImage(p, ""),
       endorsementLink: p.acf?.endorsement_link || "",
       platformType: p.acf?.platform_type || "",
@@ -503,7 +515,7 @@ export async function getVacancies(perPage = 20): Promise<WPVacancy[]> {
       slug: p.slug,
       title: stripHtml(p.title.rendered),
       description: stripHtml(p.excerpt.rendered),
-      content: p.content.rendered,
+      content: processWordPressContent(p.content.rendered),
       date: formatDate(p.date),
       location: p.acf?.location || "Kenya",
       type: p.acf?.job_type || "Full-time",

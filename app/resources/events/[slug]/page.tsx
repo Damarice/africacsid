@@ -55,7 +55,7 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
             </div>
           </div>
           
-          <div className="prose prose-lg max-w-none">
+          <div className="prose prose-lg prose-gray max-w-none">
             {wpEvent ? (
               <div dangerouslySetInnerHTML={{ __html: wpEvent.content }} />
             ) : (

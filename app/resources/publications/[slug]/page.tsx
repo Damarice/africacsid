@@ -55,7 +55,7 @@ export default async function PublicationDetailPage({ params }: { params: Promis
             </a>
           </div>
           
-          <div className="prose prose-lg max-w-none">
+          <div className="prose prose-lg prose-gray max-w-none">
             {wpPublication ? (
               <div dangerouslySetInnerHTML={{ __html: wpPublication.content }} />
             ) : (
