@@ -141,7 +141,7 @@ export default function WhatWeDoPage() {
       {/* Hero */}
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
         <Image
-          src="/HomeAbout Us.JPG"
+          src="/Who we are.jpeg"
           alt="What We Do"
           fill
           sizes="100vw"
