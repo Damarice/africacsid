@@ -5,12 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers, faProjectDiagram, faHandshake, faHeart, faBalanceScale, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 
 const metrics = [
-  { value: 500, label: "Communities Reached", suffix: "+", icon: faUsers, color: "text-primary", borderColor: "border-primary" },
-  { value: 15, label: "Projects Delivered", suffix: "+", icon: faProjectDiagram, color: "text-accent", borderColor: "border-accent" },
-  { value: 50, label: "Partners Engaged", suffix: "+", icon: faHandshake, color: "text-secondary", borderColor: "border-secondary" },
-  { value: 10000, label: "People Impacted", suffix: "+", icon: faHeart, color: "text-primary", borderColor: "border-primary" },
+  { value: 1500, label: "People Impacted", suffix: "+", icon: faHeart, color: "text-primary", borderColor: "border-primary" },
+  { value: 50, label: "Communities Reached", suffix: "+", icon: faUsers, color: "text-primary", borderColor: "border-primary" },
+  { value: 10, label: "Projects Delivered", suffix: "+", icon: faProjectDiagram, color: "text-accent", borderColor: "border-accent" },
+  { value: 20, label: "Partners Engaged", suffix: "+", icon: faHandshake, color: "text-secondary", borderColor: "border-secondary" },
+  { value: 10, label: "Events Hosted", suffix: "+", icon: faCalendarAlt, color: "text-secondary", borderColor: "border-secondary" },
   { value: 25, label: "Policy Influences", suffix: "+", icon: faBalanceScale, color: "text-accent", borderColor: "border-accent" },
-  { value: 100, label: "Events Hosted", suffix: "+", icon: faCalendarAlt, color: "text-secondary", borderColor: "border-secondary" },
 ];
 
 function Counter({ end, duration = 2000, suffix = "", color = "text-primary" }: { end: number; duration?: number; suffix?: string; color?: string }) {

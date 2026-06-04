@@ -16,17 +16,17 @@ const statsSlides = [
   {
     title: "Community Empowerment",
     stats: [
-      { icon: faUsers, value: "500+", label: "Communities Reached", color: "text-primary", bgColor: "from-primary/10 to-primary/5" },
-      { icon: faGraduationCap, value: "2,500+", label: "People Trained", color: "text-accent", bgColor: "from-accent/10 to-accent/5" },
-      { icon: faHandHoldingHeart, value: "10,000+", label: "Lives Impacted", color: "text-secondary", bgColor: "from-secondary/10 to-secondary/5" },
+      { icon: faUsers, value: "50+", label: "Communities Reached", color: "text-primary", bgColor: "from-primary/10 to-primary/5" },
+      { icon: faGraduationCap, value: "10+", label: "Projects Delivered", color: "text-accent", bgColor: "from-accent/10 to-accent/5" },
+      { icon: faHandHoldingHeart, value: "1,500+", label: "People Impacted", color: "text-secondary", bgColor: "from-secondary/10 to-secondary/5" },
     ],
   },
   {
-    title: "Environmental Impact",
+    title: "Partnerships & Events",
     stats: [
-      { icon: faTree, value: "50,000+", label: "Trees Planted", color: "text-primary", bgColor: "from-primary/10 to-primary/5" },
-      { icon: faWater, value: "30+", label: "Water Projects", color: "text-accent", bgColor: "from-accent/10 to-accent/5" },
-      { icon: faHome, value: "100+", label: "Villages Supported", color: "text-secondary", bgColor: "from-secondary/10 to-secondary/5" },
+      { icon: faTree, value: "20+", label: "Partners Engaged", color: "text-primary", bgColor: "from-primary/10 to-primary/5" },
+      { icon: faWater, value: "10+", label: "Events Hosted", color: "text-accent", bgColor: "from-accent/10 to-accent/5" },
+      { icon: faHome, value: "25+", label: "Policy Influences", color: "text-secondary", bgColor: "from-secondary/10 to-secondary/5" },
     ],
   },
 ];
