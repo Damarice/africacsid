@@ -109,13 +109,14 @@ export default function WhoWeArePage() {
       {/* Hero */}
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
         <Image
-          src="/hero.JPG"
+          src="/Who we are.jpeg"
           alt="Who We Are"
           fill
           sizes="100vw"
-          className="object-cover"
+          className="object-cover object-center"
           quality={75}
           priority
+          style={{ objectPosition: 'center 30%' }}
         />
         <div className="absolute inset-0 bg-primary/60" />
         <div className="relative h-full flex items-center justify-center text-center px-4">
