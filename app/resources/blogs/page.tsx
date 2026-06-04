@@ -22,7 +22,7 @@ export default async function BlogsPage() {
       
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
         <Image
-          src="/hero.JPG"
+          src="/HomeAbout Us.JPG"
           alt="Blogs & Articles"
           fill
           sizes="100vw"

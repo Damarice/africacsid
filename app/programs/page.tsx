@@ -15,7 +15,7 @@ export default function ProgramsPage() {
       
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
         <Image
-          src="/hero.JPG"
+          src="/HomeAbout Us.JPG"
           alt="Our Programs"
           fill
           sizes="100vw"

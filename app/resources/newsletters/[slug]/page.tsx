@@ -93,7 +93,7 @@ export default function NewsletterDetailPage() {
       {/* Hero Section */}
       <section className="relative h-[40vh] min-h-[300px] w-full overflow-hidden">
         <Image
-          src="/hero.JPG"
+          src="/HomeAbout Us.JPG"
           alt={newsletter.title}
           fill
           sizes="100vw"

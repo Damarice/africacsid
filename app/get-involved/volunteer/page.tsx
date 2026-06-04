@@ -102,7 +102,7 @@ export default function VolunteerPage() {
       
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
         <Image
-          src="/hero.JPG"
+          src="/HomeAbout Us.JPG"
           alt="Volunteer With Us"
           fill
           sizes="100vw"

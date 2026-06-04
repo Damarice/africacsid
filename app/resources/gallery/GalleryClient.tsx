@@ -33,7 +33,7 @@ export default function GalleryClient({ galleryImages }: { galleryImages: Galler
       
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
         <Image
-          src="/hero.JPG"
+          src="/HomeAbout Us.JPG"
           alt="Gallery"
           fill
           sizes="100vw"

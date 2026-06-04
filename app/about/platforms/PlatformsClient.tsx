@@ -33,7 +33,7 @@ export default function PlatformsClient({ platforms }: { platforms: Platform[] }
       <Navbar />
 
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
-        <Image src="/hero.JPG" alt="Our Platforms & Partnerships" fill sizes="100vw" className="object-cover" quality={75} priority />
+        <Image src="/HomeAbout Us.JPG" alt="Our Platforms & Partnerships" fill sizes="100vw" className="object-cover" quality={75} priority />
         <div className="absolute inset-0 bg-primary/60" />
         <div className="relative h-full flex items-center justify-center text-center px-4">
           <div className="max-w-3xl">

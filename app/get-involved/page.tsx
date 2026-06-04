@@ -45,7 +45,7 @@ export default function GetInvolvedPage() {
       
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
         <Image
-          src="/hero.JPG"
+          src="/HomeAbout Us.JPG"
           alt="Get Involved"
           fill
           sizes="100vw"

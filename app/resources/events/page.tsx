@@ -23,7 +23,7 @@ export default async function EventsPage() {
       
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
         <Image
-          src="/hero.JPG"
+          src="/HomeAbout Us.JPG"
           alt="Events"
           fill
           sizes="100vw"

@@ -52,7 +52,7 @@ export default function NewslettersPage() {
       
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
         <Image
-          src="/hero.JPG"
+          src="/HomeAbout Us.JPG"
           alt="Newsletters"
           fill
           sizes="100vw"

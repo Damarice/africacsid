@@ -60,7 +60,7 @@ export default function ContactPage() {
       
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
         <Image
-          src="/hero.JPG"
+          src="/HomeAbout Us.JPG"
           alt="Contact"
           fill
           sizes="100vw"
