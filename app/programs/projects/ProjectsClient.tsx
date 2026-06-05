@@ -38,7 +38,7 @@ function ProjectCard({ project }: { project: Project }) {
           alt={project.alt || project.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover"
+          className="object-cover" style={{ objectPosition: "center 20%" }}
           quality={75}
         />
       </div>
@@ -105,7 +105,7 @@ export default function ProjectsClient({ projects }: { projects: Project[] }) {
       <Navbar />
 
       <section className="relative h-[60vh] min-h-[400px] w-full overflow-hidden">
-        <Image src="/Who we are.jpeg" alt="Our Programs & Projects" fill sizes="100vw" className="object-cover" quality={75} priority />
+        <Image src="/Who we are.jpeg" alt="Our Programs & Projects" fill sizes="100vw" className="object-cover" style={{ objectPosition: "center 20%" }} quality={75} priority />
         <div className="absolute inset-0 bg-primary/60" />
         <div className="relative h-full flex items-center justify-center text-center px-4">
           <div className="max-w-3xl">

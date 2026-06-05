@@ -78,7 +78,7 @@ export default async function ReportsPage() {
           alt="Reports"
           fill
           sizes="100vw"
-          className="object-cover"
+          className="object-cover" style={{ objectPosition: "center 20%" }}
           quality={75}
           priority
         />

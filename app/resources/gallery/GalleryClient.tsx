@@ -37,7 +37,7 @@ export default function GalleryClient({ galleryImages }: { galleryImages: Galler
           alt="Gallery"
           fill
           sizes="100vw"
-          className="object-cover"
+          className="object-cover" style={{ objectPosition: "center 20%" }}
           quality={75}
           priority
         />
