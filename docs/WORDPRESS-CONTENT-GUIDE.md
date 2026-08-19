@@ -112,14 +112,24 @@
 
 **Steps:**
 1. Posts → Add New
-2. Enter the **Title** (e.g. "Community Workshop – Nyatike 2026")
-3. Write a short **description** in the editor (1–2 sentences)
-4. Add a **Featured Image** — this is the photo that appears in the gallery
+2. Enter the **Title** (full project name, e.g. "Agroforestry for Climate Mitigation, Women's Livelihoods and Community Resilience in Tanzania")
+3. In the **Excerpt** field (below the editor), enter a **short name** for the dropdown (e.g. "Agroforestry Tanzania")
+   - If you don't see Excerpt: click the **⋮** (three dots) at top right → Options → check "Excerpt"
+4. Add a **Featured Image** — this is the cover photo for the project
 5. Under **Categories** → check **Gallery**
-6. Add a sub-category for filtering (e.g. Community Engagement, Programs, Events, Capacity Building)
-7. Click **Publish**
+6. In the editor, add a **Gallery block**:
+   - Click **+** → search for **Gallery**
+   - Click **Upload** or **Media Library** and select all the photos you want to show
+   - These photos will appear in the **Photos** tab on the website
+7. To add videos, add a **Video block** below the gallery:
+   - Click **+** → search for **Video**
+   - Click **Upload** and select your video file
+   - Videos will appear in the **Videos** tab on the website
+8. Click **Publish**
 
-**Fields needed:** Title, Short Description, Featured Image, Category (+ sub-category for filter)
+**Fields needed:** Title, Excerpt (short name), Featured Image, Gallery Block (photos), Video Block (videos), Category
+
+> **Note:** WordPress projects appear **first** in the gallery dropdown (newest first), followed by static projects. Photos and videos are extracted automatically from Gallery and Video blocks.
 
 ---
 
@@ -193,7 +203,7 @@
 | Publication | Publications | pdf_url |
 | Report | Reports | pdf_url |
 | Event | Events | event_date, event_time, event_location, event_type |
-| Gallery | Gallery | None (just featured image + sub-category) |
+| Gallery | Gallery | None (featured image + excerpt for short name) |
 | Project | Projects | program_area, location, project_status |
 | Platform | Platforms | endorsement_link, platform_type |
 | Vacancy | Vacancies | location, job_type, deadline |
