@@ -119,17 +119,23 @@ export interface WPEvent {
 /**
  * One WPGalleryAlbum = one WordPress post in the Gallery category.
  *
+ * Uses FREE ACF fields only (no ACF Pro required).
+ *
  * ACF fields expected on the post:
  *
- *   project_id         (text)    — unique slug e.g. "horn-of-africa"
- *   project_name       (text)    — full name shown in the project header
- *   project_short_name (text)    — short name shown on the tab button
- *   cover_image        (image)   — ACF Image field (Return Format = Array)
- *                                  used as the project header thumbnail
- *   gallery            (gallery) — ACF Gallery field (Return Format = Array)
- *                                  [{ id, url, title, caption, alt }]
- *   videos             (repeater)— ACF Repeater field; each row:
- *                                  { video_url, video_title, video_caption }
+ *   project_id         (text)     — unique slug e.g. "horn-of-africa"
+ *   project_name       (text)     — full name shown in the project header
+ *   project_short_name (text)     — short name shown on the tab button
+ *   cover_image        (image)    — Return Format = Array; project header thumbnail
+ *
+ *   photos             (repeater) — one row per photo:
+ *     └─ photo         (image)    — Return Format = Array
+ *     └─ photo_caption (textarea) — optional caption
+ *
+ *   videos             (repeater) — one row per video:
+ *     └─ video_url     (url)
+ *     └─ video_title   (text)
+ *     └─ video_caption (textarea) — optional
  */
 export interface WPGalleryAlbum {
   /** WordPress post id */
@@ -513,15 +519,26 @@ export async function getGalleryAlbums(): Promise<WPGalleryAlbum[]> {
           : "") || getFeaturedImage(p, "/hero.JPG");
 
       // ── Photos ──────────────────────────────────────────────────────────
-      const rawGallery: any[] = Array.isArray(acf.gallery) ? acf.gallery : [];
-      const photos = rawGallery
-        .map((img: any, idx: number) => ({
-          id: typeof img.id === "number" ? img.id : p.id * 1000 + idx,
-          url: img.url ?? img.sizes?.large ?? img.sizes?.medium ?? "",
-          title: img.title ?? img.alt ?? projectName,
-          caption: img.caption ?? img.description ?? "",
-        }))
-        .filter((img) => !!img.url);
+      // ACF Repeater field (free): each row has { photo: imageObject, photo_caption: string }
+      // photo can be an image object (Return Format = Array) or a URL string (Return Format = URL)
+      const rawPhotos: any[] = Array.isArray(acf.photos) ? acf.photos : [];
+      const photos = rawPhotos
+        .map((row: any, idx: number) => {
+          const img = row.photo;
+          if (!img) return null;
+          const url =
+            typeof img === "string"
+              ? img
+              : img.url ?? img.sizes?.large ?? img.sizes?.medium ?? "";
+          if (!url) return null;
+          return {
+            id: typeof img.id === "number" ? img.id : p.id * 1000 + idx,
+            url,
+            title: img.title ?? img.alt ?? projectName,
+            caption: row.photo_caption ?? img.caption ?? "",
+          };
+        })
+        .filter(Boolean) as { id: number; url: string; title: string; caption: string }[];
 
       // ── Videos ──────────────────────────────────────────────────────────
       const rawVideos: any[] = Array.isArray(acf.videos) ? acf.videos : [];
