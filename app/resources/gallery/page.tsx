@@ -20,7 +20,15 @@ export default async function GalleryPage() {
     const wpAlbums = await getGalleryAlbums();
 
     for (const album of wpAlbums) {
-      const existing = projects.find((p) => p.id === album.projectId);
+      // Match by exact id first, then by slug containment
+      // e.g. WP slug "agroforestry-for-climate-mitigation-..."
+      // matches static id "agroforestry"
+      const existing = projects.find(
+        (p) =>
+          p.id === album.projectId ||
+          album.projectId.startsWith(p.id) ||
+          p.id.startsWith(album.projectId)
+      );
 
       if (existing) {
         // Merge WP media into the matching static project

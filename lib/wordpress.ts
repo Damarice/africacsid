@@ -548,7 +548,7 @@ export async function getGalleryAlbums(): Promise<WPGalleryAlbum[]> {
               .filter((m) => !!m.url);
 
             videos = mediaItems
-              .filter((m) => m.media_type === "video" || m.mime_type?.startsWith("video/"))
+              .filter((m) => m.media_type === "file" && m.mime_type?.startsWith("video/"))
               .map((m, idx) => ({
                 id: m.id ?? p.id * 10000 + idx,
                 url: m.source_url ?? "",
