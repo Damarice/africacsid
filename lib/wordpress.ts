@@ -529,6 +529,7 @@ export async function getGalleryAlbums(): Promise<WPGalleryAlbum[]> {
         // ── Videos: video files attached to this post ─────────────────────
         let videos: WPGalleryAlbum["videos"] = [];
         try {
+          // First, try to get directly attached media
           const mediaUrl = `${WP_BASE_URL}/media?parent=${p.id}&per_page=100&orderby=date&order=asc`;
           const mediaRes = await fetch(mediaUrl, { next: { revalidate: 60 } });
           if (mediaRes.ok) {
@@ -557,6 +558,41 @@ export async function getGalleryAlbums(): Promise<WPGalleryAlbum[]> {
                 caption: m.caption?.rendered ? stripHtml(m.caption.rendered) : "",
               }))
               .filter((v) => !!v.url);
+          }
+
+          // Also extract images from Gallery blocks in post content
+          // WordPress Gallery block stores images with data-id attribute
+          if (p.content?.rendered) {
+            const content = p.content.rendered;
+            const dataIdMatches = content.matchAll(/data-id="(\d+)"/g);
+            const galleryImageIds = Array.from(dataIdMatches, m => parseInt(m[1]));
+            
+            // Fetch each gallery image by ID
+            for (const imageId of galleryImageIds) {
+              // Skip if already in photos array
+              if (photos.some(photo => photo.id === imageId)) continue;
+              
+              try {
+                const imgRes = await fetch(`${WP_BASE_URL}/media/${imageId}`, { next: { revalidate: 60 } });
+                if (imgRes.ok) {
+                  const img: any = await imgRes.json();
+                  if (img.media_type === "image") {
+                    photos.push({
+                      id: img.id,
+                      url:
+                        img.media_details?.sizes?.large?.source_url ||
+                        img.media_details?.sizes?.medium_large?.source_url ||
+                        img.media_details?.sizes?.medium?.source_url ||
+                        img.source_url,
+                      title: img.title?.rendered ? stripHtml(img.title.rendered) : projectName,
+                      caption: img.caption?.rendered ? stripHtml(img.caption.rendered) : "",
+                    });
+                  }
+                }
+              } catch {
+                // Skip this image if fetch fails
+              }
+            }
           }
         } catch {
           // media fetch failed — photos and videos stay empty, album still shows
