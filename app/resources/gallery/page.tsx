@@ -22,70 +22,33 @@ export default async function GalleryPage() {
 
     for (const album of wpAlbums) {
       console.log(`[Gallery Page] Processing album: projectId=${album.projectId}, photos=${album.photos.length}, videos=${album.videos.length}`);
-      // Match by exact id first, then by slug containment
-      // e.g. WP slug "agroforestry-for-climate-mitigation-..."
-      // matches static id "agroforestry"
-      const existing = projects.find(
-        (p) =>
-          p.id === album.projectId ||
-          album.projectId.startsWith(p.id) ||
-          p.id.startsWith(album.projectId)
-      );
-
-      if (existing) {
-        console.log(`[Gallery Page] Merging into existing project: ${existing.id}`);
-        // Merge WP media into the matching static project
-        for (const photo of album.photos) {
-          if (existingIds.has(photo.id)) continue;
-          const item: GalleryMedia = {
-            id: photo.id,
-            title: photo.title,
-            src: photo.url,
-            type: "image",
-            description: photo.caption || undefined,
-          };
-          existing.media.push(item);
-          existingIds.add(photo.id);
-        }
-        for (const video of album.videos) {
-          if (existingIds.has(video.id)) continue;
-          const item: GalleryMedia = {
-            id: video.id,
-            title: video.title,
-            src: video.url,
-            type: "video",
-            description: video.caption || undefined,
-          };
-          existing.media.push(item);
-          existingIds.add(video.id);
-        }
-      } else {
-        console.log(`[Gallery Page] Adding new project from WordPress: ${album.projectId}`);
-        // Brand-new project from WordPress — add as a new tab
-        const media: GalleryMedia[] = [
-          ...album.photos.map((photo) => ({
-            id: photo.id,
-            title: photo.title,
-            src: photo.url,
-            type: "image" as const,
-            description: photo.caption || undefined,
-          })),
-          ...album.videos.map((video) => ({
-            id: video.id,
-            title: video.title,
-            src: video.url,
-            type: "video" as const,
-            description: video.caption || undefined,
-          })),
-        ];
-        projects.push({
-          id: album.projectId,
-          name: album.projectName,
-          shortName: album.projectShortName,
-          coverImage: album.coverImage,
-          media,
-        });
-      }
+      
+      // Add every WordPress post as a brand-new project — no merging with static projects
+      // This ensures WordPress projects appear with their full names and aren't confused with static entries
+      console.log(`[Gallery Page] Adding new project from WordPress: ${album.projectId}`);
+      const media: GalleryMedia[] = [
+        ...album.photos.map((photo) => ({
+          id: photo.id,
+          title: photo.title,
+          src: photo.url,
+          type: "image" as const,
+          description: photo.caption || undefined,
+        })),
+        ...album.videos.map((video) => ({
+          id: video.id,
+          title: video.title,
+          src: video.url,
+          type: "video" as const,
+          description: video.caption || undefined,
+        })),
+      ];
+      projects.push({
+        id: album.projectId,
+        name: album.projectName,
+        shortName: album.projectShortName,
+        coverImage: album.coverImage,
+        media,
+      });
     }
   } catch (error) {
     console.error('[Gallery Page] Error fetching WordPress albums:', error);
