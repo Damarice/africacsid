@@ -172,57 +172,48 @@ export default function GalleryClient({ projects }: { projects: GalleryProject[]
 
           {projects.length > 0 && (
             <>
-              {/* Project selector tabs */}
-              <div className="mb-10">
-                <h2 className="text-center text-2xl font-bold text-gray-800 mb-6">Select a Project</h2>
-                <div className="flex flex-wrap justify-center gap-3">
-                  {projects.map((project) => (
-                    <button
-                      key={project.id}
-                      onClick={() => handleProjectChange(project.id)}
-                      className={`px-5 py-3 rounded-full font-semibold text-sm transition-all duration-300 border-2 ${
-                        activeProject === project.id
-                          ? "bg-primary text-white border-primary shadow-lg scale-105"
-                          : "bg-white text-gray-700 border-gray-200 hover:border-primary hover:text-primary"
-                      }`}
+              {/* Project dropdown filter */}
+              <div className="mb-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="w-full sm:w-auto sm:min-w-[340px]">
+                  <label htmlFor="project-select" className="block text-sm font-semibold text-gray-600 mb-2">
+                    Select a Project
+                  </label>
+                  <div className="relative">
+                    <select
+                      id="project-select"
+                      value={activeProject}
+                      onChange={(e) => handleProjectChange(e.target.value)}
+                      className="w-full appearance-none bg-white border-2 border-gray-200 rounded-xl px-4 py-3 pr-10 text-gray-800 font-semibold text-sm focus:outline-none focus:border-primary transition-colors cursor-pointer shadow-sm"
                     >
-                      {project.shortName}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Current project header */}
-              {currentProject && (
-                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-8">
-                  <div className="flex flex-col md:flex-row items-stretch">
-                    <div className="relative w-full md:w-48 h-40 md:h-auto flex-shrink-0">
-                      <Image
-                        src={currentProject.coverImage}
-                        alt={currentProject.name}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 192px"
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="p-6 flex flex-col justify-center">
-                      <h3 className="text-xl font-bold text-gray-900 mb-3 leading-snug">
-                        {currentProject.name}
-                      </h3>
-                      <div className="flex gap-6 text-sm text-gray-500">
-                        <span className="flex items-center gap-2">
-                          <FontAwesomeIcon icon={faImages} className="text-primary" />
-                          {images.length} {images.length === 1 ? "Photo" : "Photos"}
-                        </span>
-                        <span className="flex items-center gap-2">
-                          <FontAwesomeIcon icon={faVideo} className="text-primary" />
-                          {videos.length} {videos.length === 1 ? "Video" : "Videos"}
-                        </span>
-                      </div>
+                      {projects.map((project) => (
+                        <option key={project.id} value={project.id}>
+                          {project.shortName}
+                        </option>
+                      ))}
+                    </select>
+                    {/* Custom chevron */}
+                    <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center">
+                      <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
                     </div>
                   </div>
                 </div>
-              )}
+
+                {/* Media count summary */}
+                {currentProject && (
+                  <div className="flex gap-4 text-sm text-gray-500 self-end pb-1">
+                    <span className="flex items-center gap-2">
+                      <FontAwesomeIcon icon={faImages} className="text-primary" />
+                      {images.length} {images.length === 1 ? "Photo" : "Photos"}
+                    </span>
+                    <span className="flex items-center gap-2">
+                      <FontAwesomeIcon icon={faVideo} className="text-primary" />
+                      {videos.length} {videos.length === 1 ? "Video" : "Videos"}
+                    </span>
+                  </div>
+                )}
+              </div>
 
               {/* Images / Videos tabs */}
               <div className="flex gap-2 mb-8 border-b border-gray-200">
