@@ -5,18 +5,11 @@ import GalleryClient from "./GalleryClient";
 export const revalidate = 60;
 
 export default async function GalleryPage() {
-  // Start with static projects as the base — always visible
-  const projects: GalleryProject[] = staticGalleryProjects.map((p) => ({
-    ...p,
-    media: [...p.media],
-  }));
-
-  // Track existing media ids to avoid duplicates
-  const existingIds = new Set(projects.flatMap((p) => p.media.map((m) => m.id)));
+  // Start with empty array — WordPress projects will be added first
+  const projects: GalleryProject[] = [];
 
   try {
-    // Fetch WordPress albums and merge into matching static projects,
-    // or add as brand-new project tabs if the slug doesn't match any static one.
+    // Fetch WordPress albums first so they appear at the top (newest first)
     const wpAlbums = await getGalleryAlbums();
     console.log(`[Gallery Page] Fetched ${wpAlbums.length} albums from WordPress`);
 
@@ -52,7 +45,15 @@ export default async function GalleryPage() {
     }
   } catch (error) {
     console.error('[Gallery Page] Error fetching WordPress albums:', error);
-    // WordPress unreachable — static projects still show
+    // WordPress unreachable — static projects still show below
+  }
+
+  // Add static projects after WordPress projects
+  for (const p of staticGalleryProjects) {
+    projects.push({
+      ...p,
+      media: [...p.media],
+    });
   }
 
   return <GalleryClient projects={projects} />;
