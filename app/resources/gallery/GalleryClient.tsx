@@ -187,7 +187,7 @@ export default function GalleryClient({ projects }: { projects: GalleryProject[]
                     >
                       {projects.map((project) => (
                         <option key={project.id} value={project.id}>
-                          {project.shortName}
+                          {project.name}
                         </option>
                       ))}
                     </select>
