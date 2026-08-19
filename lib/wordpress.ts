@@ -116,12 +116,50 @@ export interface WPEvent {
   image: string;
 }
 
+/**
+ * One WPGalleryAlbum = one WordPress post in the Gallery category.
+ * The post title is the project name.
+ * ACF fields expected on the post:
+ *
+ *   project_id  (text)     — one of: agroforestry | seeds-for-change |
+ *                            women-faith-climate | zanzadapt
+ *
+ *   gallery     (gallery)  — ACF Gallery field; returns array of image objects:
+ *                            [{ id, url, title, caption, alt }]
+ *
+ *   videos      (repeater) — ACF Repeater field; each row has:
+ *                            { video_url (text/url), video_title (text),
+ *                              video_caption (text) }
+ */
+export interface WPGalleryAlbum {
+  /** WordPress post id */
+  postId: number;
+  /** Matches a GalleryProject id in data/gallery.ts */
+  projectId: string;
+  photos: Array<{
+    id: number;
+    url: string;
+    title: string;
+    caption: string;
+  }>;
+  videos: Array<{
+    id: number;
+    url: string;
+    title: string;
+    caption: string;
+  }>;
+}
+
+/** @deprecated Use WPGalleryAlbum. Kept for any legacy callers. */
 export interface WPGalleryItem {
   id: number;
   title: string;
   category: string;
   image: string;
   description: string;
+  type: "image" | "video";
+  videoUrl?: string;
+  projectId: string;
 }
 
 export interface WPReport {
@@ -407,18 +445,72 @@ export async function getEventBySlug(slug: string): Promise<WPEvent | null> {
 
 // ─── Gallery ──────────────────────────────────────────────────────────────────
 
-export async function getGallery(perPage = 50): Promise<WPGalleryItem[]> {
+/**
+ * Fetch all gallery albums from WordPress.
+ *
+ * WordPress setup required (one-time, done by a developer/admin):
+ *   1. Install the free ACF plugin (Advanced Custom Fields).
+ *   2. Create a Field Group attached to posts in the Gallery category (ID 7).
+ *   3. Add these fields to that group:
+ *
+ *      Field label        | Field name   | Field type
+ *      ─────────────────────────────────────────────────
+ *      Project ID         | project_id   | Text
+ *      Photos             | gallery      | Gallery  ← ACF Gallery field
+ *      Videos             | videos       | Repeater ← ACF Repeater field
+ *        └─ Video URL     |   video_url  | URL
+ *        └─ Video Title   |   video_title| Text
+ *        └─ Caption       |   video_caption | Textarea (optional)
+ *
+ *   4. In ACF → Settings, enable "Return Format = Array" for the Gallery field
+ *      and tick "Show in REST API" for the whole group.
+ *
+ * How your team adds content (one post per project):
+ *   - Posts → Add New
+ *   - Title: e.g. "Agroforestry Tanzania – Gallery"
+ *   - Category: Gallery
+ *   - Project ID field: type  agroforestry  (or seeds-for-change / women-faith-climate / zanzadapt)
+ *   - Photos field: click "Add Image" → select/upload as many photos as needed
+ *   - Videos repeater: click "Add Row" for each video → paste URL + title
+ *   - Publish (or update the existing post to add more photos any time)
+ */
+export async function getGalleryAlbums(): Promise<WPGalleryAlbum[]> {
   try {
-    const posts = await fetchPosts(WP_CATEGORY_IDS.gallery, perPage);
-    return posts.map((p) => ({
-      id: p.id,
-      title: stripHtml(p.title.rendered),
-      category: getPrimaryCategory(p),
-      image: getFeaturedImage(p),
-      description: stripHtml(p.excerpt.rendered),
-    }));
+    const posts = await fetchPosts(WP_CATEGORY_IDS.gallery, 20);
+    const albums: WPGalleryAlbum[] = [];
+
+    for (const p of posts) {
+      const acf = p.acf ?? {};
+      const projectId = (acf.project_id as string | undefined)?.trim() ?? "";
+      if (!projectId) continue; // skip posts with no project_id set
+
+      // ── Photos ────────────────────────────────────────────────────────────
+      // ACF Gallery field returns an array of image objects when Return Format = Array
+      const rawGallery: any[] = Array.isArray(acf.gallery) ? acf.gallery : [];
+      const photos = rawGallery.map((img: any, idx: number) => ({
+        // ACF image object uses numeric id; fall back to post id + index
+        id: typeof img.id === "number" ? img.id : p.id * 1000 + idx,
+        url: img.url ?? img.sizes?.large ?? img.sizes?.medium ?? "",
+        title: img.title ?? img.alt ?? stripHtml(p.title.rendered),
+        caption: img.caption ?? img.description ?? "",
+      })).filter((img) => !!img.url);
+
+      // ── Videos ────────────────────────────────────────────────────────────
+      // ACF Repeater field returns an array of row objects
+      const rawVideos: any[] = Array.isArray(acf.videos) ? acf.videos : [];
+      const videos = rawVideos.map((row: any, idx: number) => ({
+        id: p.id * 10000 + idx,
+        url: row.video_url ?? "",
+        title: row.video_title ?? `Video ${idx + 1}`,
+        caption: row.video_caption ?? "",
+      })).filter((v) => !!v.url);
+
+      albums.push({ postId: p.id, projectId, photos, videos });
+    }
+
+    return albums;
   } catch (err) {
-    console.error("[WP] getGallery failed:", err);
+    console.error("[WP] getGalleryAlbums failed:", err);
     return [];
   }
 }

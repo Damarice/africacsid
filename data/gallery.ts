@@ -1,114 +1,169 @@
-export interface GalleryImage {
+export interface GalleryMedia {
   id: number;
   title: string;
-  category: string;
-  image: string;
-  description: string;
-  isVideo?: boolean;
-  videoUrl?: string;
+  src: string;
+  type: "image" | "video";
+  description?: string;
 }
 
-export const galleryImages: GalleryImage[] = [
+export interface GalleryProject {
+  id: string;
+  name: string;
+  shortName: string;
+  coverImage: string;
+  media: GalleryMedia[];
+}
+
+export const galleryProjects: GalleryProject[] = [
   {
-    id: 1,
-    title: "Community Work Session",
-    category: "Community Engagement",
-    image: "/community-work-1.JPG",
-    description: "Community members participating in local development activities"
+    id: "agroforestry",
+    name: "Agroforestry for Climate Mitigation, Women's Livelihoods and Community Resilience in Tanzania",
+    shortName: "Agroforestry Tanzania",
+    coverImage: "/community-work-1.JPG",
+    media: [
+      {
+        id: 101,
+        title: "Agroforestry Field Training",
+        src: "/community-work-1.JPG",
+        type: "image",
+        description: "Community members learning agroforestry techniques in the field"
+      },
+      {
+        id: 102,
+        title: "Women's Livelihoods Workshop",
+        src: "/community-work-2.JPG",
+        type: "image",
+        description: "Women participating in livelihoods training session"
+      },
+      {
+        id: 103,
+        title: "Tree Planting Activity",
+        src: "/community-work-3.JPG",
+        type: "image",
+        description: "Community members planting trees for climate mitigation"
+      },
+      {
+        id: 104,
+        title: "Community Resilience Meeting",
+        src: "/community-work-4.JPG",
+        type: "image",
+        description: "Community dialogue on resilience strategies"
+      },
+      {
+        id: 105,
+        title: "Agroforestry Project Overview",
+        src: "https://etnhwhwweywzr6wv.public.blob.vercel-storage.com/Emmy%20Clip.mp4",
+        type: "video",
+        description: "Overview of the agroforestry project and its impact on women's livelihoods"
+      }
+    ]
   },
   {
-    id: 2,
-    title: "Community Workshop",
-    category: "Capacity Building",
-    image: "/community-work-2.JPG",
-    description: "Training session on sustainable practices"
+    id: "seeds-for-change",
+    name: "Seeds for Change",
+    shortName: "Seeds for Change",
+    coverImage: "/community-work-5.JPG",
+    media: [
+      {
+        id: 201,
+        title: "Seed Distribution",
+        src: "/community-work-5.JPG",
+        type: "image",
+        description: "Distributing climate-resilient seeds to farmers"
+      },
+      {
+        id: 202,
+        title: "Farmer Training",
+        src: "/community-work-6.JPG",
+        type: "image",
+        description: "Training farmers on best agricultural practices"
+      },
+      {
+        id: 203,
+        title: "Harvest Celebration",
+        src: "/community-work-7.JPG",
+        type: "image",
+        description: "Communities celebrating a successful harvest"
+      },
+      {
+        id: 204,
+        title: "Seeds for Change Story",
+        src: "https://etnhwhwweywzr6wv.public.blob.vercel-storage.com/Janet.mp4",
+        type: "video",
+        description: "Hear from beneficiaries of the Seeds for Change project"
+      }
+    ]
   },
   {
-    id: 3,
-    title: "Field Activities",
-    category: "Programs",
-    image: "/community-work-3.JPG",
-    description: "Field implementation of community projects"
+    id: "women-faith-climate",
+    name: "Women, Faith, and Climate Security: Strengthening the Gender-Conflict-Climate Nexus Across Kenya's Fragile Ecosystems",
+    shortName: "Women, Faith & Climate Security",
+    coverImage: "/community-work-8.JPG",
+    media: [
+      {
+        id: 301,
+        title: "Interfaith Dialogue",
+        src: "/community-work-8.JPG",
+        type: "image",
+        description: "Women from different faiths coming together for climate dialogue"
+      },
+      {
+        id: 302,
+        title: "Peace Committee Meeting",
+        src: "/community-work-9.JPG",
+        type: "image",
+        description: "Women-led peace committee in Baringo pastoral community"
+      },
+      {
+        id: 303,
+        title: "Climate Security Workshop",
+        src: "/community-work-10.JPG",
+        type: "image",
+        description: "Workshop on climate security and gender resilience"
+      },
+      {
+        id: 304,
+        title: "Lake Victoria Basin Session",
+        src: "/community-work-11.JPG",
+        type: "image",
+        description: "Engaging fisher communities along the Lake Victoria Basin"
+      }
+    ]
   },
   {
-    id: 4,
-    title: "Community Gathering",
-    category: "Events",
-    image: "/community-work-4.JPG",
-    description: "Community members coming together for dialogue"
-  },
-  {
-    id: 5,
-    title: "Project Implementation",
-    category: "Programs",
-    image: "/community-work-5.JPG",
-    description: "On-ground project activities"
-  },
-  {
-    id: 6,
-    title: "Community Engagement",
-    category: "Community Engagement",
-    image: "/community-work-6.JPG",
-    description: "Engaging with local communities"
-  },
-  {
-    id: 7,
-    title: "Training Session",
-    category: "Capacity Building",
-    image: "/community-work-7.JPG",
-    description: "Skills development workshop"
-  },
-  {
-    id: 8,
-    title: "Field Visit",
-    category: "Programs",
-    image: "/community-work-8.JPG",
-    description: "Monitoring and evaluation activities"
-  },
-  {
-    id: 9,
-    title: "Community Meeting",
-    category: "Events",
-    image: "/community-work-9.JPG",
-    description: "Community consultation and planning"
-  },
-  {
-    id: 10,
-    title: "Project Activities",
-    category: "Programs",
-    image: "/community-work-10.JPG",
-    description: "Implementation of community initiatives"
-  },
-  {
-    id: 11,
-    title: "Capacity Building",
-    category: "Capacity Building",
-    image: "/community-work-11.JPG",
-    description: "Empowering communities through training"
-  },
-  {
-    id: 12,
-    title: "Community Action",
-    category: "Community Engagement",
-    image: "/community-work-12.JPG",
-    description: "Communities taking action for change"
-  },
-  {
-    id: 13,
-    title: "Emmy's Story",
-    category: "Videos",
-    image: "/community-work-1.JPG",
-    description: "Watch Emmy's inspiring story and journey",
-    isVideo: true,
-    videoUrl: "https://etnhwhwweywzr6wv.public.blob.vercel-storage.com/Emmy%20Clip.mp4"
-  },
-  {
-    id: 14,
-    title: "Janet's Testimonial",
-    category: "Videos",
-    image: "/community-work-2.JPG",
-    description: "Hear from Janet about the impact of our programs",
-    isVideo: true,
-    videoUrl: "https://etnhwhwweywzr6wv.public.blob.vercel-storage.com/Janet.mp4"
+    id: "zanzadapt",
+    name: "Zanzibar Women's Leadership and Adaptation (ZanzAdapt) Project",
+    shortName: "ZanzAdapt",
+    coverImage: "/community-work-12.JPG",
+    media: [
+      {
+        id: 401,
+        title: "Women's Leadership Training",
+        src: "/community-work-12.JPG",
+        type: "image",
+        description: "Women leaders in Zanzibar participating in adaptation training"
+      },
+      {
+        id: 402,
+        title: "Coastal Adaptation Activity",
+        src: "/community-work-1.JPG",
+        type: "image",
+        description: "Community-led coastal adaptation activities in Zanzibar"
+      },
+      {
+        id: 403,
+        title: "ZanzAdapt Community Forum",
+        src: "/community-work-2.JPG",
+        type: "image",
+        description: "Community forum on climate adaptation strategies"
+      },
+      {
+        id: 404,
+        title: "ZanzAdapt Field Work",
+        src: "/community-work-3.JPG",
+        type: "image",
+        description: "On-ground field work with Zanzibar communities"
+      }
+    ]
   }
 ];
