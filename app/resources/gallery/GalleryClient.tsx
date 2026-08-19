@@ -159,127 +159,136 @@ export default function GalleryClient({ projects }: { projects: GalleryProject[]
       <section className="py-12 md:py-16 bg-gray-50">
         <div className="container-custom">
 
-          {/* Project selector tabs */}
-          <div className="mb-10">
-            <h2 className="text-center text-2xl font-bold text-gray-800 mb-6">Select a Project</h2>
-            <div className="flex flex-wrap justify-center gap-3">
-              {projects.map((project) => (
-                <button
-                  key={project.id}
-                  onClick={() => handleProjectChange(project.id)}
-                  className={`px-5 py-3 rounded-full font-semibold text-sm transition-all duration-300 border-2 ${
-                    activeProject === project.id
-                      ? "bg-primary text-white border-primary shadow-lg scale-105"
-                      : "bg-white text-gray-700 border-gray-200 hover:border-primary hover:text-primary"
-                  }`}
-                >
-                  {project.shortName}
-                </button>
-              ))}
+          {/* No projects yet */}
+          {projects.length === 0 && (
+            <div className="text-center py-24 text-gray-400">
+              <FontAwesomeIcon icon={faImages} className="text-6xl mb-6" />
+              <h2 className="text-2xl font-semibold text-gray-500 mb-2">No gallery content yet</h2>
+              <p className="text-gray-400">
+                Add gallery posts in WordPress to populate this page.
+              </p>
             </div>
-          </div>
+          )}
 
-          {/* Current project header */}
-          {currentProject && (
-            <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-8">
-              <div className="flex flex-col md:flex-row items-stretch">
-                {/* Cover image */}
-                <div className="relative w-full md:w-48 h-40 md:h-auto flex-shrink-0">
-                  <Image
-                    src={currentProject.coverImage}
-                    alt={currentProject.name}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 192px"
-                    className="object-cover"
-                  />
-                </div>
-                {/* Project name + media counts */}
-                <div className="p-6 flex flex-col justify-center">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 leading-snug">
-                    {currentProject.name}
-                  </h3>
-                  <div className="flex gap-6 text-sm text-gray-500">
-                    <span className="flex items-center gap-2">
-                      <FontAwesomeIcon icon={faImages} className="text-primary" />
-                      {images.length} {images.length === 1 ? "Photo" : "Photos"}
-                    </span>
-                    <span className="flex items-center gap-2">
-                      <FontAwesomeIcon icon={faVideo} className="text-primary" />
-                      {videos.length} {videos.length === 1 ? "Video" : "Videos"}
-                    </span>
-                  </div>
+          {projects.length > 0 && (
+            <>
+              {/* Project selector tabs */}
+              <div className="mb-10">
+                <h2 className="text-center text-2xl font-bold text-gray-800 mb-6">Select a Project</h2>
+                <div className="flex flex-wrap justify-center gap-3">
+                  {projects.map((project) => (
+                    <button
+                      key={project.id}
+                      onClick={() => handleProjectChange(project.id)}
+                      className={`px-5 py-3 rounded-full font-semibold text-sm transition-all duration-300 border-2 ${
+                        activeProject === project.id
+                          ? "bg-primary text-white border-primary shadow-lg scale-105"
+                          : "bg-white text-gray-700 border-gray-200 hover:border-primary hover:text-primary"
+                      }`}
+                    >
+                      {project.shortName}
+                    </button>
+                  ))}
                 </div>
               </div>
-            </div>
-          )}
 
-          {/* Images / Videos tabs */}
-          <div className="flex gap-2 mb-8 border-b border-gray-200">
-            <button
-              onClick={() => setActiveTab("images")}
-              className={`flex items-center gap-2 px-6 py-3 font-semibold text-sm transition-all duration-200 border-b-2 -mb-px ${
-                activeTab === "images"
-                  ? "border-primary text-primary"
-                  : "border-transparent text-gray-500 hover:text-gray-700"
-              }`}
-            >
-              <FontAwesomeIcon icon={faImages} />
-              Photos
-              <span className={`ml-1 px-2 py-0.5 rounded-full text-xs font-bold ${
-                activeTab === "images" ? "bg-primary text-white" : "bg-gray-100 text-gray-600"
-              }`}>
-                {images.length}
-              </span>
-            </button>
-            <button
-              onClick={() => setActiveTab("videos")}
-              className={`flex items-center gap-2 px-6 py-3 font-semibold text-sm transition-all duration-200 border-b-2 -mb-px ${
-                activeTab === "videos"
-                  ? "border-primary text-primary"
-                  : "border-transparent text-gray-500 hover:text-gray-700"
-              }`}
-            >
-              <FontAwesomeIcon icon={faVideo} />
-              Videos
-              <span className={`ml-1 px-2 py-0.5 rounded-full text-xs font-bold ${
-                activeTab === "videos" ? "bg-primary text-white" : "bg-gray-100 text-gray-600"
-              }`}>
-                {videos.length}
-              </span>
-            </button>
-          </div>
-
-          {/* Media grid */}
-          {activeTab === "images" && (
-            <>
-              {images.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {images.map((item) => (
-                    <ImageCard key={item.id} item={item} onOpen={setLightboxItem} />
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-20 text-gray-400">
-                  <FontAwesomeIcon icon={faImages} className="text-5xl mb-4" />
-                  <p className="text-lg font-medium">No photos yet for this project</p>
+              {/* Current project header */}
+              {currentProject && (
+                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mb-8">
+                  <div className="flex flex-col md:flex-row items-stretch">
+                    <div className="relative w-full md:w-48 h-40 md:h-auto flex-shrink-0">
+                      <Image
+                        src={currentProject.coverImage}
+                        alt={currentProject.name}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 192px"
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="p-6 flex flex-col justify-center">
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 leading-snug">
+                        {currentProject.name}
+                      </h3>
+                      <div className="flex gap-6 text-sm text-gray-500">
+                        <span className="flex items-center gap-2">
+                          <FontAwesomeIcon icon={faImages} className="text-primary" />
+                          {images.length} {images.length === 1 ? "Photo" : "Photos"}
+                        </span>
+                        <span className="flex items-center gap-2">
+                          <FontAwesomeIcon icon={faVideo} className="text-primary" />
+                          {videos.length} {videos.length === 1 ? "Video" : "Videos"}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               )}
-            </>
-          )}
 
-          {activeTab === "videos" && (
-            <>
-              {videos.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {videos.map((item) => (
-                    <VideoCard key={item.id} item={item} />
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-20 text-gray-400">
-                  <FontAwesomeIcon icon={faVideo} className="text-5xl mb-4" />
-                  <p className="text-lg font-medium">No videos yet for this project</p>
-                </div>
+              {/* Images / Videos tabs */}
+              <div className="flex gap-2 mb-8 border-b border-gray-200">
+                <button
+                  onClick={() => setActiveTab("images")}
+                  className={`flex items-center gap-2 px-6 py-3 font-semibold text-sm transition-all duration-200 border-b-2 -mb-px ${
+                    activeTab === "images"
+                      ? "border-primary text-primary"
+                      : "border-transparent text-gray-500 hover:text-gray-700"
+                  }`}
+                >
+                  <FontAwesomeIcon icon={faImages} />
+                  Photos
+                  <span className={`ml-1 px-2 py-0.5 rounded-full text-xs font-bold ${
+                    activeTab === "images" ? "bg-primary text-white" : "bg-gray-100 text-gray-600"
+                  }`}>
+                    {images.length}
+                  </span>
+                </button>
+                <button
+                  onClick={() => setActiveTab("videos")}
+                  className={`flex items-center gap-2 px-6 py-3 font-semibold text-sm transition-all duration-200 border-b-2 -mb-px ${
+                    activeTab === "videos"
+                      ? "border-primary text-primary"
+                      : "border-transparent text-gray-500 hover:text-gray-700"
+                  }`}
+                >
+                  <FontAwesomeIcon icon={faVideo} />
+                  Videos
+                  <span className={`ml-1 px-2 py-0.5 rounded-full text-xs font-bold ${
+                    activeTab === "videos" ? "bg-primary text-white" : "bg-gray-100 text-gray-600"
+                  }`}>
+                    {videos.length}
+                  </span>
+                </button>
+              </div>
+
+              {/* Media grid */}
+              {activeTab === "images" && (
+                images.length > 0 ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {images.map((item) => (
+                      <ImageCard key={item.id} item={item} onOpen={setLightboxItem} />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-20 text-gray-400">
+                    <FontAwesomeIcon icon={faImages} className="text-5xl mb-4" />
+                    <p className="text-lg font-medium">No photos yet for this project</p>
+                  </div>
+                )
+              )}
+
+              {activeTab === "videos" && (
+                videos.length > 0 ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {videos.map((item) => (
+                      <VideoCard key={item.id} item={item} />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-20 text-gray-400">
+                    <FontAwesomeIcon icon={faVideo} className="text-5xl mb-4" />
+                    <p className="text-lg font-medium">No videos yet for this project</p>
+                  </div>
+                )
               )}
             </>
           )}

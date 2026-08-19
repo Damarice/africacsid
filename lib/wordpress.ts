@@ -118,24 +118,30 @@ export interface WPEvent {
 
 /**
  * One WPGalleryAlbum = one WordPress post in the Gallery category.
- * The post title is the project name.
+ *
  * ACF fields expected on the post:
  *
- *   project_id  (text)     — one of: agroforestry | seeds-for-change |
- *                            women-faith-climate | zanzadapt
- *
- *   gallery     (gallery)  — ACF Gallery field; returns array of image objects:
- *                            [{ id, url, title, caption, alt }]
- *
- *   videos      (repeater) — ACF Repeater field; each row has:
- *                            { video_url (text/url), video_title (text),
- *                              video_caption (text) }
+ *   project_id         (text)    — unique slug e.g. "horn-of-africa"
+ *   project_name       (text)    — full name shown in the project header
+ *   project_short_name (text)    — short name shown on the tab button
+ *   cover_image        (image)   — ACF Image field (Return Format = Array)
+ *                                  used as the project header thumbnail
+ *   gallery            (gallery) — ACF Gallery field (Return Format = Array)
+ *                                  [{ id, url, title, caption, alt }]
+ *   videos             (repeater)— ACF Repeater field; each row:
+ *                                  { video_url, video_title, video_caption }
  */
 export interface WPGalleryAlbum {
   /** WordPress post id */
   postId: number;
-  /** Matches a GalleryProject id in data/gallery.ts */
+  /** Unique project slug, e.g. "horn-of-africa" */
   projectId: string;
+  /** Full project name, e.g. "Climate Resilience in the Horn of Africa" */
+  projectName: string;
+  /** Short name for the tab button, e.g. "Horn of Africa" */
+  projectShortName: string;
+  /** Cover image URL shown in the project header card */
+  coverImage: string;
   photos: Array<{
     id: number;
     url: string;
@@ -476,36 +482,67 @@ export async function getEventBySlug(slug: string): Promise<WPEvent | null> {
  */
 export async function getGalleryAlbums(): Promise<WPGalleryAlbum[]> {
   try {
-    const posts = await fetchPosts(WP_CATEGORY_IDS.gallery, 20);
+    const posts = await fetchPosts(WP_CATEGORY_IDS.gallery, 50);
     const albums: WPGalleryAlbum[] = [];
 
     for (const p of posts) {
       const acf = p.acf ?? {};
+
+      // project_id is required — skip posts that don't have it
       const projectId = (acf.project_id as string | undefined)?.trim() ?? "";
-      if (!projectId) continue; // skip posts with no project_id set
+      if (!projectId) continue;
 
-      // ── Photos ────────────────────────────────────────────────────────────
-      // ACF Gallery field returns an array of image objects when Return Format = Array
+      // project_name falls back to the post title if not set
+      const projectName =
+        (acf.project_name as string | undefined)?.trim() ||
+        stripHtml(p.title.rendered);
+
+      // project_short_name falls back to project_name if not set
+      const projectShortName =
+        (acf.project_short_name as string | undefined)?.trim() ||
+        projectName;
+
+      // cover_image — ACF Image field (Return Format = Array)
+      // falls back to the post's featured image
+      const rawCover = acf.cover_image;
+      const coverImage: string =
+        (typeof rawCover === "object" && rawCover !== null
+          ? rawCover.url ?? rawCover.sizes?.large ?? rawCover.sizes?.medium ?? ""
+          : typeof rawCover === "string"
+          ? rawCover
+          : "") || getFeaturedImage(p, "/hero.JPG");
+
+      // ── Photos ──────────────────────────────────────────────────────────
       const rawGallery: any[] = Array.isArray(acf.gallery) ? acf.gallery : [];
-      const photos = rawGallery.map((img: any, idx: number) => ({
-        // ACF image object uses numeric id; fall back to post id + index
-        id: typeof img.id === "number" ? img.id : p.id * 1000 + idx,
-        url: img.url ?? img.sizes?.large ?? img.sizes?.medium ?? "",
-        title: img.title ?? img.alt ?? stripHtml(p.title.rendered),
-        caption: img.caption ?? img.description ?? "",
-      })).filter((img) => !!img.url);
+      const photos = rawGallery
+        .map((img: any, idx: number) => ({
+          id: typeof img.id === "number" ? img.id : p.id * 1000 + idx,
+          url: img.url ?? img.sizes?.large ?? img.sizes?.medium ?? "",
+          title: img.title ?? img.alt ?? projectName,
+          caption: img.caption ?? img.description ?? "",
+        }))
+        .filter((img) => !!img.url);
 
-      // ── Videos ────────────────────────────────────────────────────────────
-      // ACF Repeater field returns an array of row objects
+      // ── Videos ──────────────────────────────────────────────────────────
       const rawVideos: any[] = Array.isArray(acf.videos) ? acf.videos : [];
-      const videos = rawVideos.map((row: any, idx: number) => ({
-        id: p.id * 10000 + idx,
-        url: row.video_url ?? "",
-        title: row.video_title ?? `Video ${idx + 1}`,
-        caption: row.video_caption ?? "",
-      })).filter((v) => !!v.url);
+      const videos = rawVideos
+        .map((row: any, idx: number) => ({
+          id: p.id * 10000 + idx,
+          url: row.video_url ?? "",
+          title: row.video_title ?? `Video ${idx + 1}`,
+          caption: row.video_caption ?? "",
+        }))
+        .filter((v) => !!v.url);
 
-      albums.push({ postId: p.id, projectId, photos, videos });
+      albums.push({
+        postId: p.id,
+        projectId,
+        projectName,
+        projectShortName,
+        coverImage,
+        photos,
+        videos,
+      });
     }
 
     return albums;
