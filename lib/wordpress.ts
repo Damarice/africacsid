@@ -512,6 +512,7 @@ export interface WPGalleryItem {
 export async function getGalleryAlbums(): Promise<WPGalleryAlbum[]> {
   try {
     const posts = await fetchPosts(WP_CATEGORY_IDS.gallery, 50);
+    console.log(`[WP] getGalleryAlbums: fetched ${posts.length} posts`);
     if (posts.length === 0) return [];
 
     // Fetch attached media and build albums in parallel
@@ -561,6 +562,7 @@ export async function getGalleryAlbums(): Promise<WPGalleryAlbum[]> {
           // media fetch failed — photos and videos stay empty, album still shows
         }
 
+        console.log(`[WP] Album built: projectId=${projectId}, photos=${photos.length}, videos=${videos.length}`);
         return { postId: p.id, projectId, projectName, projectShortName, coverImage, photos, videos };
       })
     );
