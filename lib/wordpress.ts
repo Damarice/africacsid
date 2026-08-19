@@ -476,12 +476,11 @@ export async function getEventBySlug(slug: string): Promise<WPEvent | null> {
  *                    to upload/select all project photos.
  *                    WordPress automatically "attaches" uploaded images
  *                    to this post — that is how the site reads them.
- * 7. Videos (optional) → In the right sidebar, open "Custom Fields" panel
- *                    (if not visible: Screen Options → tick Custom Fields).
- *                    Add one field per video:
- *                      Name:  video_1   Value: https://...video-url.mp4
- *                      Name:  video_2   Value: https://...another.mp4
- *                    (up to video_10)
+ * 7. Videos (optional) → In the post body, use Add Block → Video
+ *                    to upload video files directly to WordPress.
+ *                    Uploaded videos are attached to the post just like
+ *                    photos — the site reads them the same way.
+ *                    Add as many Video blocks as you need.
  * 8. Publish
  *
  * To add more photos later → Edit the post → upload more images in the body
@@ -524,14 +523,16 @@ export async function getGalleryAlbums(): Promise<WPGalleryAlbum[]> {
         const projectShortName = stripHtml(p.excerpt.rendered) || projectName;
         const coverImage  = getFeaturedImage(p, "/hero.JPG");
 
-        // ── Photos: all media uploaded/attached to this post ──────────────
-        // WordPress REST API: /wp/v2/media?parent=<postId>&per_page=100
+        // ── Photos: images attached to this post ──────────────────────────
         let photos: WPGalleryAlbum["photos"] = [];
+        // ── Videos: video files attached to this post ─────────────────────
+        let videos: WPGalleryAlbum["videos"] = [];
         try {
           const mediaUrl = `${WP_BASE_URL}/media?parent=${p.id}&per_page=100&orderby=date&order=asc`;
           const mediaRes = await fetch(mediaUrl, { next: { revalidate: 60 } });
           if (mediaRes.ok) {
             const mediaItems: any[] = await mediaRes.json();
+
             photos = mediaItems
               .filter((m) => m.media_type === "image")
               .map((m) => ({
@@ -545,28 +546,19 @@ export async function getGalleryAlbums(): Promise<WPGalleryAlbum[]> {
                 caption: m.caption?.rendered ? stripHtml(m.caption.rendered) : "",
               }))
               .filter((m) => !!m.url);
+
+            videos = mediaItems
+              .filter((m) => m.media_type === "file" && m.mime_type?.startsWith("video/"))
+              .map((m, idx) => ({
+                id: m.id ?? p.id * 10000 + idx,
+                url: m.source_url ?? "",
+                title: m.title?.rendered ? stripHtml(m.title.rendered) : `Video ${idx + 1}`,
+                caption: m.caption?.rendered ? stripHtml(m.caption.rendered) : "",
+              }))
+              .filter((v) => !!v.url);
           }
         } catch {
-          // media fetch failed — photos stay empty, album still shows
-        }
-
-        // ── Videos: built-in WordPress custom fields video_1 … video_10 ──
-        // Requires: Settings → Reading → "Enable custom fields" or the
-        // post must expose meta via REST (add_post_meta / register_meta).
-        // The post meta appears under p.meta in the REST response when the
-        // theme/plugin registers each key with show_in_rest = true.
-        // Fallback: also check p.acf in case a lightweight ACF setup exists.
-        const meta: Record<string, any> = (p as any).meta ?? p.acf ?? {};
-        const videos: WPGalleryAlbum["videos"] = [];
-        for (let i = 1; i <= 10; i++) {
-          const url = (meta[`video_${i}`] as string | undefined)?.trim();
-          if (!url) continue;
-          videos.push({
-            id: p.id * 10000 + i,
-            url,
-            title: (meta[`video_${i}_title`] as string | undefined)?.trim() || `Video ${i}`,
-            caption: (meta[`video_${i}_caption`] as string | undefined)?.trim() || "",
-          });
+          // media fetch failed — photos and videos stay empty, album still shows
         }
 
         return { postId: p.id, projectId, projectName, projectShortName, coverImage, photos, videos };
