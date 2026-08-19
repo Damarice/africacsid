@@ -458,111 +458,122 @@ export async function getEventBySlug(slug: string): Promise<WPEvent | null> {
 // ─── Gallery ──────────────────────────────────────────────────────────────────
 
 /**
- * Fetch all gallery albums from WordPress.
+ * ZERO PLUGINS REQUIRED — uses only built-in WordPress features.
  *
- * WordPress setup required (one-time, done by a developer/admin):
- *   1. Install the free ACF plugin (Advanced Custom Fields).
- *   2. Create a Field Group attached to posts in the Gallery category (ID 7).
- *   3. Add these fields to that group:
+ * ═══════════════════════════════════════════════════════════════════
+ * HOW TO SET UP A PROJECT GALLERY IN WORDPRESS (one-time per project)
+ * ═══════════════════════════════════════════════════════════════════
  *
- *      Field label        | Field name   | Field type
- *      ─────────────────────────────────────────────────
- *      Project ID         | project_id   | Text
- *      Photos             | gallery      | Gallery  ← ACF Gallery field
- *      Videos             | videos       | Repeater ← ACF Repeater field
- *        └─ Video URL     |   video_url  | URL
- *        └─ Video Title   |   video_title| Text
- *        └─ Caption       |   video_caption | Textarea (optional)
+ * 1. Posts → Add New
+ * 2. Title         → Full project name
+ *                    e.g. "Agroforestry for Climate Mitigation, Women's
+ *                    Livelihoods and Community Resilience in Tanzania"
+ * 3. Excerpt       → Short tab label  e.g. "Agroforestry Tanzania"
+ *                    (Click "Open excerpt panel" if not visible)
+ * 4. Featured Image → The cover photo shown in the project header card
+ * 5. Category      → Gallery
+ * 6. Upload photos → In the post body, use Add Block → Gallery (or Image)
+ *                    to upload/select all project photos.
+ *                    WordPress automatically "attaches" uploaded images
+ *                    to this post — that is how the site reads them.
+ * 7. Videos (optional) → In the right sidebar, open "Custom Fields" panel
+ *                    (if not visible: Screen Options → tick Custom Fields).
+ *                    Add one field per video:
+ *                      Name:  video_1   Value: https://...video-url.mp4
+ *                      Name:  video_2   Value: https://...another.mp4
+ *                    (up to video_10)
+ * 8. Publish
  *
- *   4. In ACF → Settings, enable "Return Format = Array" for the Gallery field
- *      and tick "Show in REST API" for the whole group.
+ * To add more photos later → Edit the post → upload more images in the body
+ * To add a brand new project → repeat steps above with a new post
  *
- * How your team adds content (one post per project):
- *   - Posts → Add New
- *   - Title: e.g. "Agroforestry Tanzania – Gallery"
- *   - Category: Gallery
- *   - Project ID field: type  agroforestry  (or seeds-for-change / women-faith-climate / zanzadapt)
- *   - Photos field: click "Add Image" → select/upload as many photos as needed
- *   - Videos repeater: click "Add Row" for each video → paste URL + title
- *   - Publish (or update the existing post to add more photos any time)
+ * ═══════════════════════════════════════════════════════════════════
  */
+
+export interface WPGalleryAlbum {
+  postId: number;
+  /** Derived from the post slug */
+  projectId: string;
+  /** Derived from the post title */
+  projectName: string;
+  /** Derived from the post excerpt — short label for the tab button */
+  projectShortName: string;
+  /** Featured image URL */
+  coverImage: string;
+  photos: Array<{ id: number; url: string; title: string; caption: string }>;
+  videos: Array<{ id: number; url: string; title: string; caption: string }>;
+}
+
+/** @deprecated kept for type safety during transition */
+export interface WPGalleryItem {
+  id: number; title: string; category: string; image: string;
+  description: string; type: "image" | "video"; videoUrl?: string; projectId: string;
+}
+
 export async function getGalleryAlbums(): Promise<WPGalleryAlbum[]> {
   try {
     const posts = await fetchPosts(WP_CATEGORY_IDS.gallery, 50);
-    const albums: WPGalleryAlbum[] = [];
+    if (posts.length === 0) return [];
 
-    for (const p of posts) {
-      const acf = p.acf ?? {};
+    // Fetch attached media and build albums in parallel
+    const albums = await Promise.all(
+      posts.map(async (p): Promise<WPGalleryAlbum | null> => {
+        const projectId   = p.slug.trim();
+        const projectName = stripHtml(p.title.rendered);
+        // Excerpt used as the short tab label; fall back to title if empty
+        const projectShortName = stripHtml(p.excerpt.rendered) || projectName;
+        const coverImage  = getFeaturedImage(p, "/hero.JPG");
 
-      // project_id is required — skip posts that don't have it
-      const projectId = (acf.project_id as string | undefined)?.trim() ?? "";
-      if (!projectId) continue;
+        // ── Photos: all media uploaded/attached to this post ──────────────
+        // WordPress REST API: /wp/v2/media?parent=<postId>&per_page=100
+        let photos: WPGalleryAlbum["photos"] = [];
+        try {
+          const mediaUrl = `${WP_BASE_URL}/media?parent=${p.id}&per_page=100&orderby=date&order=asc`;
+          const mediaRes = await fetch(mediaUrl, { next: { revalidate: 60 } });
+          if (mediaRes.ok) {
+            const mediaItems: any[] = await mediaRes.json();
+            photos = mediaItems
+              .filter((m) => m.media_type === "image")
+              .map((m) => ({
+                id: m.id,
+                url:
+                  m.media_details?.sizes?.large?.source_url ||
+                  m.media_details?.sizes?.medium_large?.source_url ||
+                  m.media_details?.sizes?.medium?.source_url ||
+                  m.source_url,
+                title: m.title?.rendered ? stripHtml(m.title.rendered) : projectName,
+                caption: m.caption?.rendered ? stripHtml(m.caption.rendered) : "",
+              }))
+              .filter((m) => !!m.url);
+          }
+        } catch {
+          // media fetch failed — photos stay empty, album still shows
+        }
 
-      // project_name falls back to the post title if not set
-      const projectName =
-        (acf.project_name as string | undefined)?.trim() ||
-        stripHtml(p.title.rendered);
-
-      // project_short_name falls back to project_name if not set
-      const projectShortName =
-        (acf.project_short_name as string | undefined)?.trim() ||
-        projectName;
-
-      // cover_image — ACF Image field (Return Format = Array)
-      // falls back to the post's featured image
-      const rawCover = acf.cover_image;
-      const coverImage: string =
-        (typeof rawCover === "object" && rawCover !== null
-          ? rawCover.url ?? rawCover.sizes?.large ?? rawCover.sizes?.medium ?? ""
-          : typeof rawCover === "string"
-          ? rawCover
-          : "") || getFeaturedImage(p, "/hero.JPG");
-
-      // ── Photos ──────────────────────────────────────────────────────────
-      // ACF Repeater field (free): each row has { photo: imageObject, photo_caption: string }
-      // photo can be an image object (Return Format = Array) or a URL string (Return Format = URL)
-      const rawPhotos: any[] = Array.isArray(acf.photos) ? acf.photos : [];
-      const photos = rawPhotos
-        .map((row: any, idx: number) => {
-          const img = row.photo;
-          if (!img) return null;
-          const url =
-            typeof img === "string"
-              ? img
-              : img.url ?? img.sizes?.large ?? img.sizes?.medium ?? "";
-          if (!url) return null;
-          return {
-            id: typeof img.id === "number" ? img.id : p.id * 1000 + idx,
+        // ── Videos: built-in WordPress custom fields video_1 … video_10 ──
+        // Requires: Settings → Reading → "Enable custom fields" or the
+        // post must expose meta via REST (add_post_meta / register_meta).
+        // The post meta appears under p.meta in the REST response when the
+        // theme/plugin registers each key with show_in_rest = true.
+        // Fallback: also check p.acf in case a lightweight ACF setup exists.
+        const meta: Record<string, any> = (p as any).meta ?? p.acf ?? {};
+        const videos: WPGalleryAlbum["videos"] = [];
+        for (let i = 1; i <= 10; i++) {
+          const url = (meta[`video_${i}`] as string | undefined)?.trim();
+          if (!url) continue;
+          videos.push({
+            id: p.id * 10000 + i,
             url,
-            title: img.title ?? img.alt ?? projectName,
-            caption: row.photo_caption ?? img.caption ?? "",
-          };
-        })
-        .filter(Boolean) as { id: number; url: string; title: string; caption: string }[];
+            title: (meta[`video_${i}_title`] as string | undefined)?.trim() || `Video ${i}`,
+            caption: (meta[`video_${i}_caption`] as string | undefined)?.trim() || "",
+          });
+        }
 
-      // ── Videos ──────────────────────────────────────────────────────────
-      const rawVideos: any[] = Array.isArray(acf.videos) ? acf.videos : [];
-      const videos = rawVideos
-        .map((row: any, idx: number) => ({
-          id: p.id * 10000 + idx,
-          url: row.video_url ?? "",
-          title: row.video_title ?? `Video ${idx + 1}`,
-          caption: row.video_caption ?? "",
-        }))
-        .filter((v) => !!v.url);
+        return { postId: p.id, projectId, projectName, projectShortName, coverImage, photos, videos };
+      })
+    );
 
-      albums.push({
-        postId: p.id,
-        projectId,
-        projectName,
-        projectShortName,
-        coverImage,
-        photos,
-        videos,
-      });
-    }
-
-    return albums;
+    return albums.filter(Boolean) as WPGalleryAlbum[];
   } catch (err) {
     console.error("[WP] getGalleryAlbums failed:", err);
     return [];
