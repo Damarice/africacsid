@@ -138,6 +138,8 @@
 
 The website updates automatically within 60 seconds.
 
+---
+
 ### Projects with Sub-Projects
 
 If a project has sub-projects (e.g., "Women, Faith & Climate Security" with activities in Baringo, Lake Victoria Basin, and Mombasa), **create ONE WordPress post** that contains all the media from the main project and all its sub-projects:
@@ -223,14 +225,14 @@ If a project has sub-projects (e.g., "Women, Faith & Climate Security" with acti
 
 ## Quick Reference Table
 
-| Content Type | Category to Select | Key ACF Fields |
+| Content Type | Category to Select | Key Fields |
 |---|---|---|
 | Blog | Blogs | None (just featured image) |
 | Newsletter | Newsletters | pdf_url |
 | Publication | Publications | pdf_url |
 | Report | Reports | pdf_url |
 | Event | Events | event_date, event_time, event_location, event_type |
-| Gallery | Gallery | None (featured image + excerpt for short name) |
+| Gallery | Gallery | Excerpt (short name), Gallery Block, Video Block |
 | Project | Projects | program_area, location, project_status |
 | Platform | Platforms | endorsement_link, platform_type |
 | Vacancy | Vacancies | location, job_type, deadline |
