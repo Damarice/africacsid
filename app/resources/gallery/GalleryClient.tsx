@@ -117,16 +117,33 @@ function LightboxModal({ item, onClose }: { item: GalleryMedia; onClose: () => v
 export default function GalleryClient({ projects }: { projects: GalleryProject[] }) {
   const [activeProject, setActiveProject] = useState<string>(projects[0]?.id ?? "");
   const [activeTab, setActiveTab] = useState<"images" | "videos">("images");
+  const [activeFilter, setActiveFilter] = useState<string>("all");
   const [lightboxItem, setLightboxItem] = useState<GalleryMedia | null>(null);
 
   const currentProject = projects.find((p) => p.id === activeProject) ?? projects[0];
 
-  const images = currentProject?.media.filter((m) => m.type === "image") ?? [];
-  const videos = currentProject?.media.filter((m) => m.type === "video") ?? [];
+  // Extract unique captions (sub-projects/locations) from all media
+  const allCaptions = currentProject?.media
+    .map((m) => m.description?.trim())
+    .filter((desc): desc is string => !!desc && desc.length > 0) ?? [];
+  const uniqueCaptions = Array.from(new Set(allCaptions)).sort();
+
+  // Filter media by active filter
+  const filterMedia = (media: GalleryMedia[]) => {
+    if (activeFilter === "all") return media;
+    return media.filter((m) => m.description?.trim() === activeFilter);
+  };
+
+  const allImages = currentProject?.media.filter((m) => m.type === "image") ?? [];
+  const allVideos = currentProject?.media.filter((m) => m.type === "video") ?? [];
+  
+  const images = filterMedia(allImages);
+  const videos = filterMedia(allVideos);
 
   const handleProjectChange = (id: string) => {
     setActiveProject(id);
     setActiveTab("images");
+    setActiveFilter("all");
   };
 
   return (
@@ -230,7 +247,7 @@ export default function GalleryClient({ projects }: { projects: GalleryProject[]
                   <span className={`ml-1 px-2 py-0.5 rounded-full text-xs font-bold ${
                     activeTab === "images" ? "bg-primary text-white" : "bg-gray-100 text-gray-600"
                   }`}>
-                    {images.length}
+                    {allImages.length}
                   </span>
                 </button>
                 <button
@@ -246,10 +263,42 @@ export default function GalleryClient({ projects }: { projects: GalleryProject[]
                   <span className={`ml-1 px-2 py-0.5 rounded-full text-xs font-bold ${
                     activeTab === "videos" ? "bg-primary text-white" : "bg-gray-100 text-gray-600"
                   }`}>
-                    {videos.length}
+                    {allVideos.length}
                   </span>
                 </button>
               </div>
+
+              {/* Caption filters (sub-projects/locations) */}
+              {uniqueCaptions.length > 0 && (
+                <div className="mb-8">
+                  <p className="text-sm font-semibold text-gray-600 mb-3">Filter by Sub-Project / Location:</p>
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      onClick={() => setActiveFilter("all")}
+                      className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
+                        activeFilter === "all"
+                          ? "bg-primary text-white shadow-md"
+                          : "bg-white text-gray-700 border border-gray-200 hover:border-primary hover:text-primary"
+                      }`}
+                    >
+                      All
+                    </button>
+                    {uniqueCaptions.map((caption) => (
+                      <button
+                        key={caption}
+                        onClick={() => setActiveFilter(caption)}
+                        className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
+                          activeFilter === caption
+                            ? "bg-primary text-white shadow-md"
+                            : "bg-white text-gray-700 border border-gray-200 hover:border-primary hover:text-primary"
+                        }`}
+                      >
+                        {caption}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Media grid */}
               {activeTab === "images" && (

@@ -146,17 +146,29 @@ If a project has sub-projects (e.g., "Women, Faith & Climate Security" with acti
 1. Create one gallery post with the main project name (e.g., "Women, Faith & Climate Security")
 2. In the Gallery block, upload **all photos from all sub-projects** in one go
 3. Add **all videos from all sub-projects** using multiple Video blocks
-4. Use photo/video **captions or titles** to indicate which sub-project or region each item belongs to:
-   - Example captions: "Baringo peace dialogue", "Lake Victoria community meeting", "Mombasa interfaith session"
+4. **IMPORTANT:** Add a **caption** to each photo and video indicating which sub-project or region it belongs to:
+   - Click on each image in the Gallery block → Add caption (e.g., "Baringo")
+   - Click on each video → Add caption (e.g., "Lake Victoria Basin")
+   - Use consistent caption text for items from the same sub-project
 5. All media appears under **one project entry** in the dropdown
 
-**Result:** Users select "Women, Faith & Climate Security" from the dropdown and see all photos and videos from the main project and all sub-projects in the Photos and Videos tabs.
+**Result on the Website:**
+- Users select "Women, Faith & Climate Security" from the dropdown
+- Filter buttons appear automatically based on unique captions: **All | Baringo | Lake Victoria Basin | Mombasa**
+- Clicking a filter shows only photos/videos with that caption
+- Photos and videos appear in the Photos and Videos tabs
+
+**Caption Tips:**
+- Use **short, consistent** captions (e.g., "Baringo" not "Baringo Region Activities")
+- Use the **same caption text** for all items from one sub-project
+- Captions automatically become filter buttons (sorted alphabetically)
+- Items without captions appear when "All" filter is selected
 
 **Why this approach?**
-- Keeps related content together
-- Easier to browse all project activities in one place
+- Keeps related content together under one project
+- Filters let users explore by sub-project/location
 - Simpler to manage (one post instead of many)
-- Captions provide context about which sub-project/location each item is from
+- Flexible - add more sub-projects anytime by using new caption values
 
 ---
 
