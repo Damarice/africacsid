@@ -123,8 +123,10 @@
    - These photos will appear in the **Photos** tab on the website
 7. To add videos, add a **Video block** below the gallery:
    - Click **+** → search for **Video**
-   - Click **Upload** and select your video file
-   - Videos will appear in the **Videos** tab on the website
+   - Click **Upload** and select your video file (wait for upload to complete)
+   - OR click **Media Library** and select an existing video
+   - **IMPORTANT:** Make sure the video appears in the block before publishing
+   - Add a caption if this is a sub-project video (e.g., "Baringo")
 8. Click **Publish**
 
 **Fields needed:** Title, Excerpt (short name), Featured Image, Gallery Block (photos), Video Block (videos), Category

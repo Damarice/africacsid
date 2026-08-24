@@ -564,6 +564,8 @@ export async function getGalleryAlbums(): Promise<WPGalleryAlbum[]> {
           // WordPress Gallery block stores images with data-id attribute
           if (p.content?.rendered) {
             const content = p.content.rendered;
+            
+            // Extract images from Gallery blocks
             const dataIdMatches = content.matchAll(/data-id="(\d+)"/g);
             const galleryImageIds = Array.from(dataIdMatches, m => parseInt(m[1]));
             
@@ -592,6 +594,32 @@ export async function getGalleryAlbums(): Promise<WPGalleryAlbum[]> {
               } catch {
                 // Skip this image if fetch fails
               }
+            }
+
+            // Extract videos from Video blocks
+            // WordPress Video block uses <video> tag with src or <source> child
+            const videoSrcMatches = content.matchAll(/<video[^>]*>[\s\S]*?<source[^>]*src="([^"]+)"[^>]*>[\s\S]*?<\/video>/g);
+            const videoDirectMatches = content.matchAll(/<video[^>]*src="([^"]+)"[^>]*>/g);
+            
+            const videoUrls = [
+              ...Array.from(videoSrcMatches, m => m[1]),
+              ...Array.from(videoDirectMatches, m => m[1])
+            ];
+
+            for (const videoUrl of videoUrls) {
+              // Skip if already in videos array
+              if (videos.some(v => v.url === videoUrl)) continue;
+
+              // Try to get video metadata from media library
+              // Extract media ID from URL if possible (e.g., /uploads/2026/08/video.mp4 → search by filename)
+              const filename = videoUrl.split('/').pop()?.split('?')[0];
+              
+              videos.push({
+                id: videos.length + 1000 + p.id * 10000,
+                url: videoUrl,
+                title: filename?.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ') || `Video ${videos.length + 1}`,
+                caption: "", // Video blocks don't have easy caption extraction from HTML
+              });
             }
           }
         } catch {
