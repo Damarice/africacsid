@@ -92,12 +92,6 @@ export default function Footer() {
                 <span>Nairobi, Kenya</span>
               </li>
               <li className="flex items-start group hover:text-white transition-colors duration-300">
-                <FontAwesomeIcon icon={faPhone} className="mr-3 mt-1 text-gold w-4 h-4 flex-shrink-0" />
-                <a href="tel:+254700000000" className="hover:text-gold transition-colors">
-                  +254 700 000 000
-                </a>
-              </li>
-              <li className="flex items-start group hover:text-white transition-colors duration-300">
                 <FontAwesomeIcon icon={faEnvelope} className="mr-3 mt-1 text-gold w-4 h-4 flex-shrink-0" />
                 <a href="mailto:info@africacsid.org" className="hover:text-gold transition-colors">
                   info@africacsid.org
