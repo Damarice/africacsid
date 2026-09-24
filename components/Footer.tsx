@@ -89,7 +89,13 @@ export default function Footer() {
             <ul className="space-y-3 text-gray-400 text-base md:text-lg">
               <li className="flex items-start group hover:text-white transition-colors duration-300">
                 <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-3 mt-1 text-gold w-4 h-4 flex-shrink-0" />
-                <span>Nairobi, Kenya</span>
+                <span>Kenya</span>
+              </li>
+              <li className="flex items-start group hover:text-white transition-colors duration-300">
+                <FontAwesomeIcon icon={faPhone} className="mr-3 mt-1 text-gold w-4 h-4 flex-shrink-0" />
+                <a href="tel:+254113909961" className="hover:text-gold transition-colors">
+                  +254 113 909 961
+                </a>
               </li>
               <li className="flex items-start group hover:text-white transition-colors duration-300">
                 <FontAwesomeIcon icon={faEnvelope} className="mr-3 mt-1 text-gold w-4 h-4 flex-shrink-0" />
