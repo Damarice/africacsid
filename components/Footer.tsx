@@ -89,7 +89,13 @@ export default function Footer() {
             <ul className="space-y-3 text-gray-400 text-base md:text-lg">
               <li className="flex items-start group hover:text-white transition-colors duration-300">
                 <FontAwesomeIcon icon={faMapMarkerAlt} className="mr-3 mt-1 text-gold w-4 h-4 flex-shrink-0" />
-                <span>Kenya</span>
+                <span>Nairobi, Kenya</span>
+              </li>
+              <li className="flex items-start group hover:text-white transition-colors duration-300">
+                <FontAwesomeIcon icon={faPhone} className="mr-3 mt-1 text-gold w-4 h-4 flex-shrink-0" />
+                <a href="tel:+254700000000" className="hover:text-gold transition-colors">
+                  +254 700 000 000
+                </a>
               </li>
               <li className="flex items-start group hover:text-white transition-colors duration-300">
                 <FontAwesomeIcon icon={faEnvelope} className="mr-3 mt-1 text-gold w-4 h-4 flex-shrink-0" />
@@ -115,8 +121,11 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-700 pt-8 text-center text-gray-400 text-base md:text-lg">
-          <p>&copy; {new Date().getFullYear()} Africa CSID. All rights reserved.</p>
+        <div className="border-t border-gray-700 pt-8 text-center text-gray-400">
+          <p className="text-base md:text-lg mb-2">&copy; {new Date().getFullYear()} Africa CSID. All rights reserved.</p>
+          <p className="text-sm md:text-base text-gray-500">
+            Registered Charity ID: OP.218/051/23-348/13471
+          </p>
         </div>
       </div>
     </footer>
