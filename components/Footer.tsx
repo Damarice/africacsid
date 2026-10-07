@@ -108,7 +108,7 @@ export default function Footer() {
               <a href="https://x.com/africacsid" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gold transition-all duration-300 transform hover:scale-125 hover:-translate-y-1">
                 <FontAwesomeIcon icon={faTwitter} className="w-6 h-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-gold transition-all duration-300 transform hover:scale-125 hover:-translate-y-1">
+              <a href="https://www.facebook.com/profile.php?id=100094160551577" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gold transition-all duration-300 transform hover:scale-125 hover:-translate-y-1">
                 <FontAwesomeIcon icon={faFacebook} className="w-6 h-6" />
               </a>
               <a href="https://www.linkedin.com/company/africacsid/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-gold transition-all duration-300 transform hover:scale-125 hover:-translate-y-1">
