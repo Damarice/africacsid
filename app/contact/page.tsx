@@ -199,13 +199,13 @@ export default function ContactPage() {
               <div>
                 <h3 className="font-bold text-gray-900 mb-4">Follow Us</h3>
                 <div className="flex space-x-4">
-                  <a href="#" className="text-gray-400 hover:text-primary transition-all duration-300 transform hover:scale-125">
+                  <a href="https://x.com/africacsid" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-all duration-300 transform hover:scale-125">
                     <FontAwesomeIcon icon={faTwitter} className="w-8 h-8" />
                   </a>
                   <a href="#" className="text-gray-400 hover:text-primary transition-all duration-300 transform hover:scale-125">
                     <FontAwesomeIcon icon={faFacebook} className="w-8 h-8" />
                   </a>
-                  <a href="#" className="text-gray-400 hover:text-primary transition-all duration-300 transform hover:scale-125">
+                  <a href="https://www.linkedin.com/company/africacsid/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary transition-all duration-300 transform hover:scale-125">
                     <FontAwesomeIcon icon={faLinkedin} className="w-8 h-8" />
                   </a>
                   <a href="#" className="text-gray-400 hover:text-primary transition-all duration-300 transform hover:scale-125">
