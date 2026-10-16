@@ -31,13 +31,5 @@ export const newsletters: Newsletter[] = [
     description: "Year-end review of our achievements, community impact stories, and upcoming initiatives for 2024.",
     downloadUrl: "#",
     slug: "q4-2023"
-  },
-  {
-    id: 4,
-    title: "Quarterly Newsletter - Q3 2023",
-    date: "September 2023",
-    description: "Updates on our climate change programs, women empowerment initiatives, and youth engagement activities.",
-    downloadUrl: "#",
-    slug: "q3-2023"
   }
 ];
