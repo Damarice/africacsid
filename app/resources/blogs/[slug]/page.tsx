@@ -6,14 +6,12 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar, faUser, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { getBlogBySlug } from "@/lib/wordpress";
-import { blogs as staticBlogs } from "@/data/blogs";
 
 export const revalidate = 60;
 
 export default async function BlogDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const wpBlog = await getBlogBySlug(slug);
-  const blog = wpBlog ?? staticBlogs.find(b => b.slug === slug);
+  const blog = await getBlogBySlug(slug);
 
   if (!blog) notFound();
 

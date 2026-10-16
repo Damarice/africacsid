@@ -3,13 +3,17 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { blogs } from "@/data/blogs";
 
 export default function LatestNews() {
   const { ref, isVisible } = useScrollAnimation(0.1);
   
-  // Get only the first 3 blogs for homepage
-  const latestBlogs = blogs.slice(0, 3);
+  // No static blogs - component will be hidden or show message
+  const latestBlogs: any[] = [];
+
+  // Don't render if no blogs
+  if (latestBlogs.length === 0) {
+    return null;
+  }
 
   return (
     <section className="py-8 md:py-10 bg-gradient-to-br from-accent/5 to-primary/5 relative overflow-hidden">

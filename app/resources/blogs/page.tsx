@@ -6,15 +6,11 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendar, faUser, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { getBlogs } from "@/lib/wordpress";
-import { blogs as staticBlogs } from "@/data/blogs";
 
 export const revalidate = 60;
 
 export default async function BlogsPage() {
-  const wpBlogs = await getBlogs(12);
-  // Merge: WP content first, then static items not already in WP (by slug)
-  const wpSlugs = new Set(wpBlogs.map(b => b.slug));
-  const blogs = [...wpBlogs, ...staticBlogs.filter(b => !wpSlugs.has(b.slug))];
+  const blogs = await getBlogs(12);
 
   return (
     <>
