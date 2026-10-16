@@ -48,13 +48,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
           />
           
           <div className="prose prose-lg prose-gray max-w-none">
-            {wpBlog ? (
-              <div dangerouslySetInnerHTML={{ __html: wpBlog.content }} />
-            ) : (
-              <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
-                {blog.excerpt}
-              </p>
-            )}
+            <div dangerouslySetInnerHTML={{ __html: blog.content }} />
           </div>
         </div>
       </article>
